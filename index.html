@@ -3,334 +3,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of Togi & Ruth</title>
+    <title>The Wedding Masterpiece of Togi & Ruth</title>
     
-    <!-- 5. FONT: Mengimpor Font Premium dari Google Fonts -->
+    <!-- FONTS & ICONS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Alex+Brush&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@200;400;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
     <style>
-        /* --- GAYA DASAR --- */
+        /* --- DESIGN SYSTEM & CSS VARIABLES --- */
         :root {
-            --primary: #85586F;
-            --secondary: #AC7D88;
-            --dark: #2C2A29;
-            --light: #F8F5F1;
-            --bg-blur: rgba(255, 255, 255, 0.85);
+            --primary: #6E4A58;
+            --accent: #D4AF37; /* Gold Accent */
+            --bg-current: #FBF9F6;
+            --text-color: #2C2A29;
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --font-script: 'Pinyon Script', cursive;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
-            margin: 0; padding: 0;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--dark);
-            background-color: var(--light);
+            font-family: var(--font-sans);
+            color: var(--text-color);
+            background-color: var(--bg-current);
             overflow-x: hidden;
-            scroll-behavior: smooth;
+            transition: background-color 1.5s ease, color 1.5s ease;
         }
 
-        /* 1. TRANSISI: Halaman Cover Pembuka yang Bergeser Mulus */
+        /* CANVAS UNTUK EFEK DEBU EMAS INTERAKTIF */
+        #particle-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1;
+        }
+
+        /* --- 1. CINEMATIC COVER OVERLAY --- */
         #cover {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(44, 42, 41, 0.7), rgba(44, 42, 41, 0.85)), url('bg.jpg');
-            background-size: cover; background-position: center;
-            color: white; z-index: 9999; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            background: #1a1a1a; color: white; z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; clip-path: inset(0 0 0 0);
+            transition: clip-path 1.5s cubic-bezier(0.86, 0, 0.07, 1);
             padding: 20px;
         }
 
-        /* 4. PERUBAHAN BACKGROUND: Pengaturan Section Penuh Layar */
+        #cover.opened {
+            clip-path: inset(0 0 100% 0); /* Efek tirai teater terangkat yang dramatis */
+        }
+
+        /* --- STYLING SECTIONS --- */
         section {
-            min-height: 100vh;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 60px 20px;
-            position: relative;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Efek Parallax kontemporer */
+            min-height: 100vh; width: 100vw; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; padding: 80px 24px;
+            position: relative; z-index: 2; box-sizing: border-box;
         }
 
-        /* Variasi Background Tiap Section agar Tidak Monoton */
-        .sec-intro { background-image: url('bg.jpg'); }
-        .sec-couple { background-color: #F1ECE6; }
-        .sec-events { background-image: url('bg.jpg'); }
-        .sec-gallery { background-color: var(--dark); color: var(--light); }
-        .sec-rsvp { background-color: var(--light); }
-
-        .wrapper {
-            background: var(--bg-blur);
-            padding: 40px 30px; border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            text-align: center; max-width: 450px; width: 100%;
-            border: 1px solid rgba(255,255,255,0.8);
-        }
-        .sec-gallery .wrapper { background: rgba(255,255,255,0.05); color: white; border: none;}
-
-        /* 6 & 7. ANIMASI IN/OUT SAAT SCROLL (Efek Memudar & Naik) */
-        .animate-hidden {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .animate-show {
-            opacity: 1;
-            transform: translateY(0);
+        .container {
+            max-width: 480px; width: 100%; text-align: center;
+            padding: 50px 30px; border-radius: 24px;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+            transition: transform 0.5s, background-color 1s;
         }
 
-        /* Tipografi Elegan */
-        .font-aesthetic { font-family: 'Alex Brush', cursive; font-size: 55px; color: var(--primary); margin: 10px 0; }
-        .sec-gallery .font-aesthetic { color: var(--secondary); }
-        #cover h1 { font-family: 'Cormorant Garamond', serif; font-size: 45px; font-weight: 400; letter-spacing: 2px; margin: 15px 0;}
-        h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; letter-spacing: 3px; color: var(--primary); margin-bottom: 25px; }
-        .sec-gallery h2 { color: white; }
-        h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--primary); margin: 10px 0; }
-        p { font-size: 14px; line-height: 1.8; color: #555; }
-        .sec-gallery p { color: #ccc; }
-
-        /* Komponen Foto Premium */
-        .foto-frame {
-            width: 180px; height: 240px; object-fit: cover;
-            border-radius: 100px 100px 0 0; margin: 15px 0;
-            border: 4px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            transition: transform 0.5s;
+        /* --- ADVANCED SCROLL-TRIGGER ANIMATION CLASS --- */
+        .reveal {
+            opacity: 0; transform: translateY(60px) scale(0.95);
+            filter: blur(4px);
+            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .foto-frame:hover { transform: scale(1.05); }
-
-        /* 2. GALERI FOTO GRID */
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
-            width: 100%; margin-top: 20px;
-        }
-        .gallery-item {
-            width: 100%; height: 150px; object-fit: cover;
-            border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.4s;
-        }
-        .gallery-item:hover { transform: scale(1.03); }
-
-        /* 3. VIDEO CONTAINER RESPONSIF */
-        .video-container {
-            position: relative; width: 100%; padding-bottom: 56.25%; /* Rasio 16:9 */
-            height: 0; overflow: hidden; border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin: 20px 0;
-        }
-        .video-container iframe, .video-container video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+        .reveal.active {
+            opacity: 1; transform: translateY(0) scale(1);
+            filter: blur(0);
         }
 
-        /* Tombol Mengapung (Music Disc Icon) */
-        #music-control {
-            position: fixed; bottom: 25px; right: 25px; z-index: 9999;
-            background: var(--primary); color: white; width: 50px; height: 50px;
-            border-radius: 50%; display: flex; justify-content: center;
-            align-items: center; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            font-size: 20px; transition: transform 0.3s;
+        /* --- TYPOGRAPHY MASTERPIECE --- */
+        .title-large { font-family: var(--font-serif); font-size: 38px; font-weight: 400; letter-spacing: 4px; color: var(--primary); text-transform: uppercase; }
+        .title-script { font-family: var(--font-script); font-size: 65px; color: var(--accent); margin: 15px 0; }
+        .sub-title { font-size: 11px; letter-spacing: 5px; font-weight: 600; text-transform: uppercase; color: #888; }
+        p { font-size: 14px; line-height: 1.9; color: #4A4A4A; font-weight: 300; }
+        
+        /* FOTO FRAME ARCH (Gaya Arsitektur Modern) */
+        .arch-frame {
+            width: 220px; height: 320px; object-fit: cover;
+            border-radius: 120px 120px 0 0; margin: 25px auto;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--accent); padding: 5px; background: white;
         }
-        .rotate { animation: spin 4s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* Kotak Tamu & Tombol */
-        .tamu-box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 10px; margin: 20px 0; border: 1px dashed var(--secondary); }
-        .btn {
-            background-color: var(--primary); color: white; padding: 12px 30px;
-            text-decoration: none; border-radius: 30px; font-weight: 500; letter-spacing: 1px;
-            display: inline-block; font-size: 13px; cursor: pointer; border: none; transition: 0.3s;
+        /* 2. GALERI PRESTISE GRID */
+        .premium-gallery {
+            display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 30px;
         }
-        .btn:hover { background-color: #643A6B; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        .gallery-photo {
+            grid-column: span 3; width: 100%; height: 200px; object-fit: cover;
+            border-radius: 12px; transition: 0.5s ease;
+        }
+        .gallery-photo:nth-child(3) { grid-column: span 6; height: 250px; } /* Foto utama di tengah */
+        .gallery-photo:hover { transform: scale(1.05) rotate(1deg); }
 
-        .rsvp-form input, .rsvp-form select {
-            width: 100%; padding: 12px; margin: 8px 0;
-            border: 1px solid #CCC; border-radius: 8px; font-family: inherit;
+        /* 3. AUDIO VISUALIZER LIVE WAVE */
+        #visualizer-container {
+            position: fixed; bottom: 25px; right: 25px; z-index: 10000;
+            display: flex; align-items: flex-end; gap: 3px; height: 30px; cursor: pointer;
+            background: rgba(255,255,255,0.8); padding: 10px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .bar { width: 3px; height: 5px; background: var(--primary); transition: height 0.2s ease; }
+        .bar.playing { animation: bounce 0.8s ease infinite alternate; }
+        .bar:nth-child(2) { animation-delay: 0.2s; }
+        .bar:nth-child(3) { animation-delay: 0.4s; }
+        .bar:nth-child(4) { animation-delay: 0.1s; }
+        @keyframes bounce { from { height: 5px; } to { height: 25px; } }
+
+        /* PREMIUM BUTTON */
+        .btn-luxury {
+            background: var(--primary); color: white; padding: 14px 35px;
+            font-family: var(--font-serif); font-size: 11px; letter-spacing: 3px;
+            text-transform: uppercase; border: none; border-radius: 40px;
+            cursor: pointer; transition: 0.4s; box-shadow: 0 10px 25px rgba(110,74,88,0.2);
+            margin-top: 20px;
+        }
+        .btn-luxury:hover { background: #3e2730; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(110,74,88,0.4); }
+
+        .tamu-card {
+            background: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 16px;
+            margin: 25px 0; border-left: 4px solid var(--accent); text-align: left;
         }
     </style>
 </head>
 <body>
 
-    <!-- 🎵 PENGATURAN MUSIK UTAMA -->
-    <audio id="bg-music" loop preload="auto">
-        <!-- Pastikan file musik.mp3 sudah Anda unggah ke repositori GitHub Anda -->
+    <!-- 🌟 KANVAS DEBU EMAS INTERAKTIF -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- 🎵 AUDIO ENGINE -->
+    <audio id="wedding-audio" loop>
         <source src="musik.mp3" type="audio/mp3">
     </audio>
-    <div id="music-control" onclick="toggleMusic()">🎵</div>
 
-    <!-- 🚪 1. COVER / AMPLOP DEPAN DEPAN -->
-    <div id="cover">
-        <p style="letter-spacing: 4px; font-size: 12px; font-weight: 300;">WEDDING INVITATION</p>
-        <h1>Togi & Ruth</h1>
-        <div class="tamu-box">
-            <p style="margin: 0 0 5px 0; font-size: 12px; color: #ddd;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-            <div id="namaTamuCover" style="font-size: 22px; font-weight: 500; font-family: 'Cormorant Garamond', serif;">Nama Tamu</div>
-        </div>
-        <button class="btn" onclick="bukaUndangan()">Buka Undangan</button>
+    <!-- 🎵 3. LIVE AUDIO VISUALIZER WAVE -->
+    <div id="visualizer-container" onclick="toggleAudioEngine()">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
     </div>
 
-    <!-- 🌟 SECTION 1: INTRO (KATA MUTIARA) -->
-    <section class="sec-intro">
-        <div class="wrapper animate-hidden">
-            <p style="letter-spacing: 3px; font-size: 11px; font-weight: bold; color: var(--secondary);">THE WEDDING OF</p>
-            <div class="font-aesthetic">Togi & Ruth</div>
-            <p style="font-style: italic; color: #666; font-size: 13px;">
-                "Tuhan membuat segala sesuatu indah pada waktunya. Indah saat Dia mempertemukan, indah saat Dia menumbuhkan kasih, dan indah saat Dia mempersatukan dalam suatu ikatan Pernikahan Kudus."
+    <!-- 🚪 1. CINEMATIC COVER (TIRAI TEATER) -->
+    <div id="cover">
+        <span class="sub-title" style="color: #aaa; margin-bottom: 10px;">The Wedding Celebration Of</span>
+        <h1 style="font-family: var(--font-serif); font-size: 38px; letter-spacing: 5px; font-weight: 300;">Togi & Ruth</h1>
+        <div class="tamu-card" style="background: rgba(255,255,255,0.05); border-left: 4px solid var(--accent); color: #fff;">
+            <p style="font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 2px;">Eksklusif Kepada:</p>
+            <div id="namaTamuCover" style="font-size: 24px; font-family: var(--font-serif); margin-top: 5px; color: var(--accent);">Nama Tamu</div>
+        </div>
+        <button class="btn-luxury" style="background: var(--accent); color: #1a1a1a; font-weight: bold;" onclick="unveilMasterpiece()">Mulai Pengalaman Sineas ✉</button>
+    </div>
+
+
+    <!-- 👑 KONTEN UTAMA MASTERPIECE -->
+
+    <!-- SECTION 1: PROLOG (PERMUTARAN WARNA: PEARL) -->
+    <section id="sec-1" style="--bg-section: #FBF9F6; --text-section: #2C2A29;">
+        <div class="container reveal">
+            <span class="sub-title">Prolog</span>
+            <div class="title-script">Welcome</div>
+            <p style="font-style: italic; margin-top: 15px;">
+                "Dua jiwa namun satu pikiran, dua hati namun satu denyut." — Friedrich Halm. Atas kasih karunia Tuhan, kami mengundang Anda menyaksikan penyatuan suci kami.
             </p>
         </div>
     </section>
 
-    <!-- 🌟 SECTION 2: PROFIL MEMPELAI (IN/OUT FOTO & TULISAN) -->
-    <section class="sec-couple">
-        <div class="wrapper animate-hidden">
-            <h2>KEDUA MEMPELAI</h2>
+    <!-- SECTION 2: MEMPELAI (PERMUTARAN WARNA: ROMANTIC ROSE) -->
+    <section id="sec-2" style="--bg-section: #F5EBE6; --text-section: #332C2A;">
+        <div class="container reveal">
+            <span class="sub-title">The Souls</span>
+            <h2 class="title-large" style="font-size: 24px; margin-top: 10px;">Beloved Couple</h2>
             
-            <!-- Mempelai Pria -->
-            <img src="foto.jpg" alt="Togi" class="foto-frame">
-            <h3>Togi Christevensenlaw Sihaloho</h3>
-            <p style="font-size: 13px; color: #777;">Putra Kedua dari:<br><b>Bapak Walden Matheous Sihaloho</b><br>& Ibu Evi Handayani Simarmata</p>
+            <img src="foto.jpg" alt="Mempelai Pria" class="arch-frame">
+            <h3 style="font-family: var(--font-serif); letter-spacing: 2px;">Togi Christevensenlaw S.</h3>
+            <p style="font-size: 12px; margin-top: 5px; color: #666;">Putra dari Bapak Walden M. Sihaloho & Ibu Evi H. Simarmata</p>
             
-            <p style="font-family: 'Alex Brush', cursive; font-size: 35px; margin: 20px 0; color: var(--secondary);">dengan</p>
-            
-            <!-- Mempelai Wanita -->
-            <!-- 📝 Anda bisa mengganti 'foto.jpg' menjadi 'foto2.jpg' jika ada foto terpisah -->
-            <img src="foto.jpg" alt="Ruth" class="foto-frame">
-            <h3>Ruth Melda Simanjuntak</h3>
-            <p style="font-size: 13px; color: #777;">Putri Keempat dari:<br><b>Bapak Manggontar Simanjuntak (✟)</b><br>& Ibu Rosmaida Simamora</p>
+            <div class="title-script" style="font-size: 45px; margin: 15px 0;">&</div>
+
+            <img src="foto.jpg" alt="Mempelai Wanita" class="arch-frame">
+            <h3 style="font-family: var(--font-serif); letter-spacing: 2px;">Ruth Melda Simanjuntak</h3>
+            <p style="font-size: 12px; margin-top: 5px; color: #666;">Putri dari Alm. Bapak Manggontar Simanjuntak & Ibu Rosmaida Simamora</p>
         </div>
     </section>
 
-    <!-- 🌟 SECTION 3: VIDEO -->
-    <section class="sec-intro" style="background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('bg.jpg');">
-        <div class="wrapper animate-hidden">
-            <h2>PREWEDDING VIDEO</h2>
-            <!-- 3. FITUR VIDEO: Sematkan Video Youtube / File Video di Sini -->
-            <div class="video-container">
-                <!-- Contoh memakai Youtube Iframe (Ganti Id Video sesuai kepunyaan Anda) -->
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-            </div>
-            <p style="font-size: 12px; color: #888;">*Ketuk ikon speaker di pojok jika musik bertabrakan</p>
-        </div>
-    </section>
-
-    <!-- 🌟 SECTION 4: DETAIL WAKTU ACARA -->
-    <section class="sec-events">
-        <div class="wrapper animate-hidden">
-            <h2>WAKTU & LOKASI</h2>
-            
-            <h3>PEMBERKATAN KUDUS</h3>
-            <p style="margin: 0; font-weight: 500;">Sabtu, 27 April 2024</p>
-            <p style="margin: 0; color: var(--secondary); font-size: 13px;">Pukul 08.00 WIB - Selesai</p>
-            <p style="font-size: 13px;"><b>Gereja Katedral Santa Maria</b><br>Jl. Tjilik Riwut Km 1, Palangka Raya</p>
-            <a href="https://maps.app.goo.gl/78kx1hKB4Ze7fUKg6" target="_blank" class="btn">GOOGLE MAPS</a>
-
-            <hr style="border: 0; border-top: 1px solid #DDD; margin: 30px 0;">
-
-            <h3>RESEPSI / ADAT</h3>
-            <p style="margin: 0; font-weight: 500;">Sabtu, 27 April 2024</p>
-            <p style="margin: 0; color: var(--secondary); font-size: 13px;">Pukul 10.00 WIB - Selesai</p>
-            <p style="font-size: 13px;"><b>GPU Palampang Tarung Km 5,5</b><br>Palangka Raya</p>
-            <a href="https://maps.app.goo.gl/cJ7gCH2kYXsBy6PfA" target="_blank" class="btn">GOOGLE MAPS</a>
-        </div>
-    </section>
-
-    <!-- 🌟 SECTION 5: GALERI FOTO (ALBUM GRID) -->
-    <section class="sec-gallery">
-        <div class="wrapper animate-hidden">
-            <h2>OUR GALLERY</h2>
-            <p>Momen-momen kebahagiaan kami yang diabadikan.</p>
-            
-            <!-- 2. FITUR GALERI FOTO GRID -->
-            <div class="gallery-grid">
-                <img src="foto.jpg" alt="Gallery 1" class="gallery-item">
-                <img src="foto.jpg" alt="Gallery 2" class="gallery-item">
-                <img src="foto.jpg" alt="Gallery 3" class="gallery-item">
-                <img src="foto.jpg" alt="Gallery 4" class="gallery-item">
+    <!-- SECTION 3: PREWEDDING VIDEO -->
+    <section id="sec-3" style="--bg-section: #EAE3DE; --text-section: #2C2A29;">
+        <div class="container reveal">
+            <span class="sub-title">Motion Picture</span>
+            <h2 class="title-large" style="font-size: 24px; margin: 10px 0 20px 0;">Love Journey</h2>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.15);">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen></iframe>
             </div>
         </div>
     </section>
 
-    <!-- 🌟 SECTION 6: RSVP FORM -->
-    <section class="sec-rsvp">
-        <div class="wrapper rsvp-form animate-hidden">
-            <h2>KONFIRMASI KEHADIRAN</h2>
-            <p>Suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
+    <!-- SECTION 4: GALERI (PERMUTARAN WARNA: LUXURY DARK) -->
+    <section id="sec-4" style="--bg-section: #1E1E1E; --text-section: #FFFFFF;">
+        <div class="container reveal" style="background: rgba(30,30,30,0.7); border: 1px solid rgba(255,255,255,0.1);">
+            <span class="sub-title" style="color: var(--accent);">Visual Album</span>
+            <h2 class="title-large" style="color: white; font-size: 24px; margin-top: 10px;">Our Gallery</h2>
             
-            <input type="text" id="rsvp-nama" placeholder="Nama Anda" required>
-            <select id="rsvp-status">
-                <option value="Hadir">Saya Akan Hadir</option>
-                <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
-            </select>
-            <input type="number" id="rsvp-jumlah" placeholder="Jumlah Pax Kehadiran" min="1" max="5">
+            <div class="premium-gallery">
+                <img src="foto.jpg" alt="G1" class="gallery-photo">
+                <img src="foto.jpg" alt="G2" class="gallery-photo">
+                <img src="foto.jpg" alt="G3" class="gallery-photo">
+                <img src="foto.jpg" alt="G4" class="gallery-photo">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: RSVP -->
+    <section id="sec-5" style="--bg-section: #FBF9F6; --text-section: #2C2A29;">
+        <div class="container reveal" style="text-align: left;">
+            <center>
+                <span class="sub-title">Reservation</span>
+                <h2 class="title-large" style="font-size: 24px; margin: 10px 0 25px 0;">Konfirmasi</h2>
+            </center>
             
-            <button class="btn" style="width: 100%; margin-top: 15px;" onclick="kirimRSVP()">KIRIM KONFIRMASI (WA)</button>
+            <div class="rsvp-form" style="display: flex; flex-direction: column;">
+                <input type="text" id="rsvp-nama" placeholder="Nama Lengkap Anda" style="width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 10px; font-family: inherit;">
+                <select id="rsvp-status" style="width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 10px; font-family: inherit; background: white;">
+                    <option value="Hadir">Akan Hadir Memeriahkan</option>
+                    <option value="Tidak Hadir">Berhalangan Hadir</option>
+                </select>
+                <button class="btn-luxury" onclick="prosesRSVP()">Kirim Kehadiran Premium</button>
+            </div>
         </div>
     </section>
 
 
-    <!-- --- LOGIKA INTEGRASI SCRIPT JAVASCRIPT --- -->
+    <!-- --- JAVASCRIPT MASTERPIECE ENGINE --- -->
     <script>
-        // Baca Parameter URL Tamu
-        const urlParams = new URLSearchParams(window.location.search);
-        const nama = urlParams.get('to');
-        const namaTeks = nama ? decodeURIComponent(nama) : "Tamu Undangan";
-        document.getElementById('namaTamuCover').innerText = namaTeks;
-        if(nama) { document.getElementById('rsvp-nama').value = namaTeks; }
+        // 1. SMART DYNAMIC GREETING & VIP VIBE SHIFT
+        const params = new URLSearchParams(window.location.search);
+        const namaTamu = params.get('to') ? decodeURIComponent(params.get('to')) : "Tamu Undangan";
+        const vibeMode = params.get('vibe');
 
-        // Mekanisme Buka Undangan & Pemicu Musik Utama
-        const music = document.getElementById('bg-music');
-        const musicControl = document.getElementById('music-control');
+        document.getElementById('namaTamuCover').innerText = namaTamu;
+        document.getElementById('rsvp-nama').value = namaTamu === "Tamu Undangan" ? "" : namaTamu;
 
-        function bukaUndangan() {
-            // 1. Transisi Menggeser Cover
-            document.getElementById('cover').style.transform = 'translateY(-100%)';
-            
-            // Mengatasi Autoplay Kebijakan Browser
-            setTimeout(() => {
-                music.play().then(() => {
-                    musicControl.classList.add('rotate');
-                }).catch(err => {
-                    console.log("Browser memblokir pemutaran otomatis audio awal:", err);
-                });
-            }, 300);
+        // Jika URL disisipkan &vibe=vip, ubah palet tema instan menjadi Luxury Gold Emas
+        if(vibeMode === 'vip') {
+            document.documentElement.style.setProperty('--primary', '#B38B22');
+            document.documentElement.style.setProperty('--accent', '#856404');
         }
 
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-                musicControl.classList.add('rotate');
-                musicControl.innerText = "🎵";
+        // 2. TIMING BUKA UNDANGAN & AUDIO TRIGGER
+        const audio = document.getElementById('wedding-audio');
+        const bars = document.querySelectorAll('.bar');
+
+        function unveilMasterpiece() {
+            document.getElementById('cover').classList.add('opened');
+            audio.play().then(() => {
+                bars.forEach(bar => bar.classList.add('playing'));
+            }).catch(e => console.log("Akses audio otomatis ditahan browser"));
+            animateOnScroll(); // Picu pengecekan scroll pertama
+        }
+
+        function toggleAudioEngine() {
+            if (audio.paused) {
+                audio.play();
+                bars.forEach(bar => bar.classList.add('playing'));
             } else {
-                music.pause();
-                musicControl.classList.remove('rotate');
-                musicControl.innerText = "🔇";
+                audio.pause();
+                bars.forEach(bar => bar.classList.remove('playing'));
             }
         }
 
-        // 6 & 7. FITUR SCROLL ANIMATION (Intersection Observer API)
-        // Mendeteksi elemen masuk layar lalu memicu animasi masuk lembut
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-show');
+        // 3. INTERACTIVE GOLD DUST ENGINE (CANVAS)
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.5 + 0.5;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = Math.random() * 0.5 + 0.1;
+                this.opacity = Math.random() * 0.6 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y -= this.speedY;
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = window.innerWidth < 500 ? 40 : 90; // Atur jumlah partikel sesuai layar
+            for (let i = 0; i < count; i++) { particles.push(new Particle()); }
+        }
+        initParticles();
+
+        function loopParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(loopParticles);
+        }
+        loopParticles();
+
+        // 4. ADVANCED INTERSECTION OBSERVER & DYNAMIC COLOR MORPHING
+        const sections = document.querySelectorAll('section');
+        const reveals = document.querySelectorAll('.reveal');
+
+        function animateOnScroll() {
+            // Memicu Efek Muncul In/Out Kartu
+            reveals.forEach(rev => {
+                const windowHeight = window.innerHeight;
+                const elementTop = rev.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    rev.classList.add('active');
+                } else {
+                    rev.classList.remove('active'); // Efek Out ketika di-scroll balik ke atas
                 }
             });
-        }, { threshold: 0.1 }); // Terpicu ketika 10% bagian kartu terlihat
 
-        document.querySelectorAll('.animate-hidden').forEach((el) => observer.observe(el));
+            // Sistem Deteksi Mengubah Warna Latar Belakang (Color Morphing)
+            sections.forEach(sec => {
+                const rect = sec.getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    const newBg = sec.getAttribute('style').match(/--bg-section:\s*(#[^\s;]+)/)[1];
+                    const newText = sec.getAttribute('style').match(/--text-section:\s*(#[^\s;]+)/)[1];
+                    document.body.style.backgroundColor = newBg;
+                    document.body.style.color = newText;
+                }
+            });
+        }
+        window.addEventListener('scroll', animateOnScroll);
 
-        // Pengiriman Formulir RSVP ke WhatsApp Keamanan Tujuan
-        function kirimRSVP() {
-            const nomorWA = "6281234567890"; // 📝 Silakan ganti dengan nomor WA aktif Anda (Gunakan kode 62)
-            const namaTamu = document.getElementById('rsvp-nama').value;
-            const status = document.getElementById('rsvp-status').value;
-            const jumlah = document.getElementById('rsvp-jumlah').value || "1";
-
-            if(!namaTamu) { alert("Harap isi nama konfirmasi terlebih dahulu."); return; }
-            
-            const teksPesan = `Halo Togi %26 Ruth, saya *${namaTamu}* mengonfirmasi bahwa status kehadiran saya: *${status}* dengan kuota *${jumlah} orang*. Terima kasih!`;
-            window.open(`https://api.whatsapp.com/send?phone=${nomorWA}&text=${teksPesan}`, '_blank');
+        // 5. ENGINE RSVP AUTOMATION
+        function prosesRSVP() {
+            const waMe = "6281234567890"; // 📝 Ganti dengan No WA Anda sendiri
+            const inputNama = document.getElementById('rsvp-nama').value;
+            const inputStatus = document.getElementById('rsvp-status').value;
+            if(!inputNama) { alert("Harap masukkan nama Anda."); return; }
+            const formatPesan = `Halo Togi & Ruth, Saya *${inputNama}* ingin mengonfirmasi kehadiran di Acara Masterpiece Pernikahan Anda bahwa saya *${inputStatus}*. Terima kasih!`;
+            window.open(`https://api.whatsapp.com/send?phone=${waMe}&text=${formatPesan}`, '_blank');
         }
     </script>
 </body>
