@@ -3,226 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan Kudus</title>
+    <title>The Wedding of Togi & Ruth</title>
+    
+    <!-- 5. FONT: Mengimpor Font Premium dari Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+
     <style>
-        /* --- GAYA DASAR & ANIMASI TRANSISI --- */
-        body {
-            margin: 0; padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url('bg.jpg');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            color: #333; display: flex; flex-direction: column; align-items: center;
-            padding: 20px 0; overflow-x: hidden;
+        /* --- GAYA DASAR --- */
+        :root {
+            --primary: #85586F;
+            --secondary: #AC7D88;
+            --dark: #2C2A29;
+            --light: #F8F5F1;
+            --bg-blur: rgba(255, 255, 255, 0.85);
         }
 
-        /* Halaman Cover Depan (Overlay) */
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* 1. TRANSISI: Halaman Cover Pembuka yang Bergeser Mulus */
         #cover {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(133, 88, 111, 0.9), rgba(100, 58, 107, 0.95)), url('bg.jpg');
+            background: linear-gradient(rgba(44, 42, 41, 0.7), rgba(44, 42, 41, 0.85)), url('bg.jpg');
             background-size: cover; background-position: center;
             color: white; z-index: 9999; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
-            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            padding: 20px;
         }
 
-        /* Animasi Muncul Lembut untuk Kartu Konten */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* 4. PERUBAHAN BACKGROUND: Pengaturan Section Penuh Layar */
+        section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Efek Parallax kontemporer */
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.96);
-            padding: 30px 25px; border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15); text-align: center;
-            max-width: 400px; width: 85%; margin-bottom: 25px; box-sizing: border-box;
-            animation: fadeInUp 1.2s ease forwards; /* Efek transisi saat di-scroll/muncul */
+        /* Variasi Background Tiap Section agar Tidak Monoton */
+        .sec-intro { background-image: url('bg.jpg'); }
+        .sec-couple { background-color: #F1ECE6; }
+        .sec-events { background-image: url('bg.jpg'); }
+        .sec-gallery { background-color: var(--dark); color: var(--light); }
+        .sec-rsvp { background-color: var(--light); }
+
+        .wrapper {
+            background: var(--bg-blur);
+            padding: 40px 30px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center; max-width: 450px; width: 100%;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        .sec-gallery .wrapper { background: rgba(255,255,255,0.05); color: white; border: none;}
+
+        /* 6 & 7. ANIMASI IN/OUT SAAT SCROLL (Efek Memudar & Naik) */
+        .animate-hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .animate-show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Elemen Gambar/Foto */
-        .foto-wedding {
-            width: 100%; max-height: 350px; object-fit: cover;
-            border-radius: 10px; margin: 15px 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        /* Tipografi Elegan */
+        .font-aesthetic { font-family: 'Alex Brush', cursive; font-size: 55px; color: var(--primary); margin: 10px 0; }
+        .sec-gallery .font-aesthetic { color: var(--secondary); }
+        #cover h1 { font-family: 'Cormorant Garamond', serif; font-size: 45px; font-weight: 400; letter-spacing: 2px; margin: 15px 0;}
+        h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; letter-spacing: 3px; color: var(--primary); margin-bottom: 25px; }
+        .sec-gallery h2 { color: white; }
+        h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--primary); margin: 10px 0; }
+        p { font-size: 14px; line-height: 1.8; color: #555; }
+        .sec-gallery p { color: #ccc; }
+
+        /* Komponen Foto Premium */
+        .foto-frame {
+            width: 180px; height: 240px; object-fit: cover;
+            border-radius: 100px 100px 0 0; margin: 15px 0;
+            border: 4px solid white; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.5s;
+        }
+        .foto-frame:hover { transform: scale(1.05); }
+
+        /* 2. GALERI FOTO GRID */
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+            width: 100%; margin-top: 20px;
+        }
+        .gallery-item {
+            width: 100%; height: 150px; object-fit: cover;
+            border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.4s;
+        }
+        .gallery-item:hover { transform: scale(1.03); }
+
+        /* 3. VIDEO CONTAINER RESPONSIF */
+        .video-container {
+            position: relative; width: 100%; padding-bottom: 56.25%; /* Rasio 16:9 */
+            height: 0; overflow: hidden; border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin: 20px 0;
+        }
+        .video-container iframe, .video-container video {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
         }
 
-        /* Tombol-Tombol */
-        .btn {
-            background-color: #85586F; color: white; padding: 12px 25px;
-            text-decoration: none; border-radius: 25px; font-weight: bold;
-            display: inline-block; font-size: 14px; margin-top: 10px;
-            cursor: pointer; border: none; transition: 0.3s;
-        }
-        .btn:hover { background-color: #643A6B; transform: scale(1.05); }
-
-        /* Tombol Musik Mengapung di Pojok */
+        /* Tombol Mengapung (Music Disc Icon) */
         #music-control {
-            position: fixed; bottom: 20px; right: 20px; z-index: 999;
-            background: #85586F; color: white; width: 45px; height: 45px;
+            position: fixed; bottom: 25px; right: 25px; z-index: 9999;
+            background: var(--primary); color: white; width: 50px; height: 50px;
             border-radius: 50%; display: flex; justify-content: center;
-            align-items: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            font-size: 18px;
+            align-items: center; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-size: 20px; transition: transform 0.3s;
         }
+        .rotate { animation: spin 4s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        /* Desain Input RSVP */
+        /* Kotak Tamu & Tombol */
+        .tamu-box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 10px; margin: 20px 0; border: 1px dashed var(--secondary); }
+        .btn {
+            background-color: var(--primary); color: white; padding: 12px 30px;
+            text-decoration: none; border-radius: 30px; font-weight: 500; letter-spacing: 1px;
+            display: inline-block; font-size: 13px; cursor: pointer; border: none; transition: 0.3s;
+        }
+        .btn:hover { background-color: #643A6B; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+
         .rsvp-form input, .rsvp-form select {
-            width: 100%; padding: 10px; margin: 8px 0;
-            border: 1px solid #AC7D88; border-radius: 8px; box-sizing: border-box;
+            width: 100%; padding: 12px; margin: 8px 0;
+            border: 1px solid #CCC; border-radius: 8px; font-family: inherit;
         }
-
-        /* Tipografi */
-        h1 { color: #85586F; font-size: 28px; margin-bottom: 5px; text-transform: uppercase; }
-        .cover-title { color: #fff; font-size: 32px; text-transform: uppercase; margin: 10px 0;}
-        h2 { color: #AC7D88; font-size: 18px; margin-top: 0; border-bottom: 2px solid #F8F5F1; padding-bottom: 10px; letter-spacing: 2px; }
-        h3 { color: #643A6B; font-size: 18px; margin: 15px 0 5px 0; }
-        p { font-size: 14px; line-height: 1.6; color: #555; }
-        .verse { font-style: italic; color: #666; font-size: 13px; }
-        .tamu-box { background: #F8F5F1; padding: 15px; border-radius: 10px; margin: 20px 0; border: 1px dashed #AC7D88; }
-        .nama-tamu { font-weight: bold; font-size: 20px; color: #643A6B; }
-        .line { border-top: 1px solid #AC7D88; margin: 20px 0; opacity: 0.3; }
     </style>
 </head>
 <body>
 
-    <!-- 🎵 AUDIO ELEMENT (MUSIK) -->
-    <audio id="bg-music" loop>
+    <!-- 🎵 PENGATURAN MUSIK UTAMA -->
+    <audio id="bg-music" loop preload="auto">
+        <!-- Pastikan file musik.mp3 sudah Anda unggah ke repositori GitHub Anda -->
         <source src="musik.mp3" type="audio/mp3">
     </audio>
-
-    <!-- 🎛️ TOMBOL KONTROL MUSIK (MENGAPUNG) -->
     <div id="music-control" onclick="toggleMusic()">🎵</div>
 
-    <!-- 🚪 HALAMAN COVER / AMPLOP DEPAN -->
+    <!-- 🚪 1. COVER / AMPLOP DEPAN DEPAN -->
     <div id="cover">
-        <p style="letter-spacing: 3px; font-size: 14px;">WEDDING INVITATION</p>
-        <!-- Ganti Nama Pengantin -->
-        <h1 class="cover-title">Togi & Ruth</h1>
-        
-        <div class="tamu-box" style="background: rgba(255,255,255,0.1); border: 1px dashed white; color: white;">
-            <p style="margin: 0 0 5px 0; font-size: 12px; color: #eee;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-            <div id="namaTamuCover" class="nama-tamu" style="color: #fff;">Nama Tamu</div>
-        </div>
-
-        <button class="btn" onclick="bukaUndangan()">✉ Buka Undangan</button>
-    </div>
-
-
-    <!-- 📋 KONTEN UTAMA (AKAN MUNCUL SETELAH COVER DIBUKA) -->
-    
-    <!-- KARTU 1: FOTO & SALAM -->
-    <div class="card">
-        <p style="letter-spacing: 2px; font-size: 12px; font-weight: bold; color: #AC7D88;">THE WEDDING OF</p>
+        <p style="letter-spacing: 4px; font-size: 12px; font-weight: 300;">WEDDING INVITATION</p>
         <h1>Togi & Ruth</h1>
-        <div class="line"></div>
-        
-        <!-- Menampilkan Foto dari Canva -->
-        <img src="foto.jpg" alt="Foto Pengantin" class="foto-wedding">
-        
-        <p class="verse">"Tuhan membuat segala sesuatu indah pada waktunya. Indah saat Dia mempertemukan, indah saat Dia menumbuhkan kasih, dan indah saat Dia mempersatukan dalam suatu ikatan Pernikahan Kudus."</p>
+        <div class="tamu-box">
+            <p style="margin: 0 0 5px 0; font-size: 12px; color: #ddd;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <div id="namaTamuCover" style="font-size: 22px; font-weight: 500; font-family: 'Cormorant Garamond', serif;">Nama Tamu</div>
+        </div>
+        <button class="btn" onclick="bukaUndangan()">Buka Undangan</button>
     </div>
 
-    <!-- KARTU 2: KEDUA MEMPELAI -->
-    <div class="card">
-        <h2>KEDUA MEMPELAI</h2>
-        <h3>Togi Christevensenlaw Sihaloho</h3>
-        <p style="font-size: 13px; color: #777; font-style: italic;">Putra Kedua dari:<br>Bapak Walden Matheous Sihaloho &<br>Ibu Evi Handayani Simarmata</p>
-        
-        <div class="line"></div>
-        <p style="font-weight: bold; color: #AC7D88; font-style: italic;">dengan</p>
-        <div class="line"></div>
+    <!-- 🌟 SECTION 1: INTRO (KATA MUTIARA) -->
+    <section class="sec-intro">
+        <div class="wrapper animate-hidden">
+            <p style="letter-spacing: 3px; font-size: 11px; font-weight: bold; color: var(--secondary);">THE WEDDING OF</p>
+            <div class="font-aesthetic">Togi & Ruth</div>
+            <p style="font-style: italic; color: #666; font-size: 13px;">
+                "Tuhan membuat segala sesuatu indah pada waktunya. Indah saat Dia mempertemukan, indah saat Dia menumbuhkan kasih, dan indah saat Dia mempersatukan dalam suatu ikatan Pernikahan Kudus."
+            </p>
+        </div>
+    </section>
 
-        <h3>Ruth Melda Simanjuntak</h3>
-        <p style="font-size: 13px; color: #777; font-style: italic;">Putri Keempat dari:<br>Bapak Manggontar Simanjuntak (✟) &<br>Ibu Rosmaida Simamora</p>
-    </div>
+    <!-- 🌟 SECTION 2: PROFIL MEMPELAI (IN/OUT FOTO & TULISAN) -->
+    <section class="sec-couple">
+        <div class="wrapper animate-hidden">
+            <h2>KEDUA MEMPELAI</h2>
+            
+            <!-- Mempelai Pria -->
+            <img src="foto.jpg" alt="Togi" class="foto-frame">
+            <h3>Togi Christevensenlaw Sihaloho</h3>
+            <p style="font-size: 13px; color: #777;">Putra Kedua dari:<br><b>Bapak Walden Matheous Sihaloho</b><br>& Ibu Evi Handayani Simarmata</p>
+            
+            <p style="font-family: 'Alex Brush', cursive; font-size: 35px; margin: 20px 0; color: var(--secondary);">dengan</p>
+            
+            <!-- Mempelai Wanita -->
+            <!-- 📝 Anda bisa mengganti 'foto.jpg' menjadi 'foto2.jpg' jika ada foto terpisah -->
+            <img src="foto.jpg" alt="Ruth" class="foto-frame">
+            <h3>Ruth Melda Simanjuntak</h3>
+            <p style="font-size: 13px; color: #777;">Putri Keempat dari:<br><b>Bapak Manggontar Simanjuntak (✟)</b><br>& Ibu Rosmaida Simamora</p>
+        </div>
+    </section>
 
-    <!-- KARTU 3: DETAIL ACARA -->
-    <div class="card">
-        <h2>WAKTU & LOKASI</h2>
-        <p style="font-weight: bold; color: #85586F; margin-bottom: 2px;">PEMBERKATAN KUDUS</p>
-        <p style="margin: 0; font-weight: bold;">Sabtu, 27 April 2024</p>
-        <p style="margin: 0 0 10px 0; color: #777; font-size: 13px;">Pukul 08.00 WIB - Selesai</p>
-        <p style="font-size: 13px; color: #666;"><b>Gereja Katedral Santa Maria</b><br>Jl. Tjilik Riwut Km 1, Palangka Raya</p>
-        <a href="https://maps.app.goo.gl/78kx1hKB4Ze7fUKg6" target="_blank" class="btn">📍 Peta Pemberkatan</a>
+    <!-- 🌟 SECTION 3: VIDEO -->
+    <section class="sec-intro" style="background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('bg.jpg');">
+        <div class="wrapper animate-hidden">
+            <h2>PREWEDDING VIDEO</h2>
+            <!-- 3. FITUR VIDEO: Sematkan Video Youtube / File Video di Sini -->
+            <div class="video-container">
+                <!-- Contoh memakai Youtube Iframe (Ganti Id Video sesuai kepunyaan Anda) -->
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+            <p style="font-size: 12px; color: #888;">*Ketuk ikon speaker di pojok jika musik bertabrakan</p>
+        </div>
+    </section>
 
-        <div class="line"></div>
+    <!-- 🌟 SECTION 4: DETAIL WAKTU ACARA -->
+    <section class="sec-events">
+        <div class="wrapper animate-hidden">
+            <h2>WAKTU & LOKASI</h2>
+            
+            <h3>PEMBERKATAN KUDUS</h3>
+            <p style="margin: 0; font-weight: 500;">Sabtu, 27 April 2024</p>
+            <p style="margin: 0; color: var(--secondary); font-size: 13px;">Pukul 08.00 WIB - Selesai</p>
+            <p style="font-size: 13px;"><b>Gereja Katedral Santa Maria</b><br>Jl. Tjilik Riwut Km 1, Palangka Raya</p>
+            <a href="https://maps.app.goo.gl/78kx1hKB4Ze7fUKg6" target="_blank" class="btn">GOOGLE MAPS</a>
 
-        <p style="font-weight: bold; color: #85586F; margin-bottom: 2px;">RESEPSI / ADAT</p>
-        <p style="margin: 0; font-weight: bold;">Sabtu, 27 April 2024</p>
-        <p style="margin: 0 0 10px 0; color: #777; font-size: 13px;">Pukul 10.00 WIB - Selesai</p>
-        <p style="font-size: 13px; color: #666;"><b>GPU Palampang Tarung Km 5,5</b><br>Palangka Raya</p>
-        <a href="https://maps.app.goo.gl/cJ7gCH2kYXsBy6PfA" target="_blank" class="btn">📍 Peta Resepsi</a>
-    </div>
+            <hr style="border: 0; border-top: 1px solid #DDD; margin: 30px 0;">
 
-    <!-- KARTU 4: FITUR RSVP (KONFIRMASI KEHADIRAN KE WHATSAPP) -->
-    <div class="card rsvp-form">
-        <h2>KONFIRMASI KEHADIRAN</h2>
-        <p>Mohon konfirmasikan kehadiran Anda melalui formulir di bawah ini:</p>
-        
-        <input type="text" id="rsvp-nama" placeholder="Nama Anda" required>
-        <select id="rsvp-status">
-            <option value="Hadir">Ya, Saya Akan Hadir</option>
-            <option value="Tidak Hadir">Maaf, Saya Tidak Bisa Hadir</option>
-        </select>
-        <input type="number" id="rsvp-jumlah" placeholder="Jumlah Orang (Angka)" min="1" max="5">
-        
-        <button class="btn" onclick="kirimRSVP()">📩 Kirim via WhatsApp</button>
-    </div>
+            <h3>RESEPSI / ADAT</h3>
+            <p style="margin: 0; font-weight: 500;">Sabtu, 27 April 2024</p>
+            <p style="margin: 0; color: var(--secondary); font-size: 13px;">Pukul 10.00 WIB - Selesai</p>
+            <p style="font-size: 13px;"><b>GPU Palampang Tarung Km 5,5</b><br>Palangka Raya</p>
+            <a href="https://maps.app.goo.gl/cJ7gCH2kYXsBy6PfA" target="_blank" class="btn">GOOGLE MAPS</a>
+        </div>
+    </section>
 
-    <!-- KARTU 5: PENUTUP -->
-    <div class="card">
-        <p class="verse">"Ungkapan terima kasih yang tulus dari kami atas kehadiran serta doa restu Bapak/Ibu/Saudara/i sekalian."</p>
-        <div class="line"></div>
-        <p style="font-size: 13px; color: #777;">Kami yang berbahagia,</p>
-        <p style="font-weight: bold; font-size: 18px; color: #85586F; margin-top: 5px;">Togi & Ruth</p>
-    </div>
+    <!-- 🌟 SECTION 5: GALERI FOTO (ALBUM GRID) -->
+    <section class="sec-gallery">
+        <div class="wrapper animate-hidden">
+            <h2>OUR GALLERY</h2>
+            <p>Momen-momen kebahagiaan kami yang diabadikan.</p>
+            
+            <!-- 2. FITUR GALERI FOTO GRID -->
+            <div class="gallery-grid">
+                <img src="foto.jpg" alt="Gallery 1" class="gallery-item">
+                <img src="foto.jpg" alt="Gallery 2" class="gallery-item">
+                <img src="foto.jpg" alt="Gallery 3" class="gallery-item">
+                <img src="foto.jpg" alt="Gallery 4" class="gallery-item">
+            </div>
+        </div>
+    </section>
+
+    <!-- 🌟 SECTION 6: RSVP FORM -->
+    <section class="sec-rsvp">
+        <div class="wrapper rsvp-form animate-hidden">
+            <h2>KONFIRMASI KEHADIRAN</h2>
+            <p>Suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
+            
+            <input type="text" id="rsvp-nama" placeholder="Nama Anda" required>
+            <select id="rsvp-status">
+                <option value="Hadir">Saya Akan Hadir</option>
+                <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
+            </select>
+            <input type="number" id="rsvp-jumlah" placeholder="Jumlah Pax Kehadiran" min="1" max="5">
+            
+            <button class="btn" style="width: 100%; margin-top: 15px;" onclick="kirimRSVP()">KIRIM KONFIRMASI (WA)</button>
+        </div>
+    </section>
 
 
-    <!-- --- LOGIKA JAVASCRIPT --- -->
+    <!-- --- LOGIKA INTEGRASI SCRIPT JAVASCRIPT --- -->
     <script>
-        // 1. Baca Parameter Nama Tamu dari URL
+        // Baca Parameter URL Tamu
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('to');
         const namaTeks = nama ? decodeURIComponent(nama) : "Tamu Undangan";
-        
         document.getElementById('namaTamuCover').innerText = namaTeks;
-        // Otomatis isi kolom nama di form RSVP sesuai nama di URL
         if(nama) { document.getElementById('rsvp-nama').value = namaTeks; }
 
-        // 2. Fungsi Tombol Buka Undangan (Memicu Musik & Transisi Geser)
+        // Mekanisme Buka Undangan & Pemicu Musik Utama
         const music = document.getElementById('bg-music');
+        const musicControl = document.getElementById('music-control');
+
         function bukaUndangan() {
-            // Efek transisi: Geser cover ke atas keluar layar
+            // 1. Transisi Menggeser Cover
             document.getElementById('cover').style.transform = 'translateY(-100%)';
-            // Putar musik otomatis setelah klik
-            music.play().catch(error => console.log("Musik diblokir browser:", error));
+            
+            // Mengatasi Autoplay Kebijakan Browser
+            setTimeout(() => {
+                music.play().then(() => {
+                    musicControl.classList.add('rotate');
+                }).catch(err => {
+                    console.log("Browser memblokir pemutaran otomatis audio awal:", err);
+                });
+            }, 300);
         }
 
-        // 3. Fungsi Hidup/Matikan Musik (Toggle)
         function toggleMusic() {
             if (music.paused) {
                 music.play();
-                document.getElementById('music-control').innerText = "🎵";
+                musicControl.classList.add('rotate');
+                musicControl.innerText = "🎵";
             } else {
                 music.pause();
-                document.getElementById('music-control').innerText = "🔇";
+                musicControl.classList.remove('rotate');
+                musicControl.innerText = "🔇";
             }
         }
 
-        // 4. Fitur RSVP Otomatis Terintegrasi ke WhatsApp Anda
+        // 6 & 7. FITUR SCROLL ANIMATION (Intersection Observer API)
+        // Mendeteksi elemen masuk layar lalu memicu animasi masuk lembut
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-show');
+                }
+            });
+        }, { threshold: 0.1 }); // Terpicu ketika 10% bagian kartu terlihat
+
+        document.querySelectorAll('.animate-hidden').forEach((el) => observer.observe(el));
+
+        // Pengiriman Formulir RSVP ke WhatsApp Keamanan Tujuan
         function kirimRSVP() {
-            // 📝 GANTI nomor di bawah ini dengan nomor WhatsApp Anda (Gunakan kode negara tanpa tanda '+')
-            const nomorWA = "6281344390194"; 
-            
+            const nomorWA = "6281234567890"; // 📝 Silakan ganti dengan nomor WA aktif Anda (Gunakan kode 62)
             const namaTamu = document.getElementById('rsvp-nama').value;
             const status = document.getElementById('rsvp-status').value;
             const jumlah = document.getElementById('rsvp-jumlah').value || "1";
 
-            if(!namaTamu) { alert("Mohon isi nama Anda terlebih dahulu."); return; }
-
-            // Menyusun isi teks pesan WhatsApp otomatis
-            const teksPesan = `Halo Togi %26 Ruth, saya *${namaTamu}* ingin mengonfirmasi bahwa saya *${status}* di acara pernikahan kalian dengan jumlah *${jumlah} orang*. Terima kasih!`;
+            if(!namaTamu) { alert("Harap isi nama konfirmasi terlebih dahulu."); return; }
             
-            // Buka WhatsApp otomatis
+            const teksPesan = `Halo Togi %26 Ruth, saya *${namaTamu}* mengonfirmasi bahwa status kehadiran saya: *${status}* dengan kuota *${jumlah} orang*. Terima kasih!`;
             window.open(`https://api.whatsapp.com/send?phone=${nomorWA}&text=${teksPesan}`, '_blank');
         }
     </script>
