@@ -3,35 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan</title>
+    <title>Undangan Pernikahan Kudus</title>
     <style>
-        /* Gaya Tampilan (CSS) */
+        /* Gaya Tampilan Dasar */
         body {
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url('bg.jpg'); /* Menggunakan gambar dari Canva */
+            background-image: url('bg.jpg'); /* Menggunakan background dari Canva Anda */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: #333;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            padding: 20px 0;
         }
-        .container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
+
+        /* Gaya Kotak Informasi (Card) */
+        .card {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 30px 25px;
             border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             text-align: center;
             max-width: 400px;
-            width: 90%;
-            margin: 20px;
+            width: 85%;
+            margin-bottom: 25px;
+            box-sizing: border-box;
         }
-        h1 { color: #85586F; font-size: 28px; margin-bottom: 5px; }
-        h2 { color: #AC7D88; font-size: 20px; margin-top: 0; }
+
+        /* Pengaturan Tipografi / Tulisan */
+        h1 { color: #85586F; font-size: 26px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        h2 { color: #AC7D88; font-size: 18px; margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid #F8F5F1; padding-bottom: 10px; letter-spacing: 2px; }
+        h3 { color: #643A6B; font-size: 18px; margin: 15px 0 5px 0; }
+        p { font-size: 14px; line-height: 1.6; color: #555; margin: 10px 0; }
+        
+        .verse { font-style: italic; color: #666; font-size: 13px; line-height: 1.5; }
+        .ortu { font-size: 13px; color: #777; font-style: italic; margin-top: 5px; }
+        .line { border-top: 1px solid #AC7D88; margin: 20px 0; opacity: 0.3; }
+
+        /* Kotak Nama Tamu */
         .tamu-box {
             background: #F8F5F1;
             padding: 15px;
@@ -40,43 +53,98 @@
             border: 1px dashed #AC7D88;
         }
         .nama-tamu { font-weight: bold; font-size: 18px; color: #643A6B; }
+
+        /* Tombol Google Maps */
         .btn {
             background-color: #85586F;
             color: white;
-            padding: 12px 25px;
+            padding: 10px 20px;
             text-decoration: none;
-            border-radius: 25px;
+            border-radius: 20px;
             font-weight: bold;
             display: inline-block;
+            font-size: 13px;
+            margin-top: 10px;
             transition: 0.3s;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .btn:hover { background-color: #643A6B; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <p>Hello & Welcome</p>
-        <h1>Alder & Lelly</h1>
-        <h2>Wedding Invitation</h2>
+    <!-- KARTU 1: SAMPUL & NAMA TAMU -->
+    <div class="card">
+        <p style="letter-spacing: 2px; font-size: 12px; font-weight: bold; color: #AC7D88;">THE WEDDING OF</p>
+        <!-- 📝 GANTI NAMA PENGANTIN DI SINI -->
+        <h1>Togi & Ruth</h1>
+        
+        <div class="line"></div>
+        
+        <p class="verse">"Tuhan membuat segala sesuatu indah pada waktunya. Indah saat Dia mempertemukan, indah saat Dia menumbuhkan kasih, dan indah saat Dia mempersatukan dalam suatu ikatan Pernikahan Kudus."</p>
         
         <div class="tamu-box">
-            <p style="margin: 0 0 5px 0; font-size: 14px; color: #777;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <p style="margin: 0 0 5px 0; font-size: 12px; color: #777;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
             <div id="namaTamu" class="nama-tamu">Nama Tamu</div>
         </div>
+        <p style="font-size: 12px; color: #999; animation: pulse 2s infinite;">GULIR KE BAWAH UNTUK DETAIL ACARA ↓</p>
+    </div>
 
-        <p>Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di acara kebahagiaan kami.</p>
+    <!-- KARTU 2: PROFIL MEMPELAI -->
+    <div class="card">
+        <h2>KEDUA MEMPELAI</h2>
         
-        <a href="https://maps.google.com" target="_blank" class="btn">Buka Lokasi Acara</a>
+        <!-- 📝 GANTI PROFIL MEMPELAI PRIA -->
+        <h3>Togi Christevensenlaw Sihaloho</h3>
+        <p class="ortu">Putra Kedua dari:<br>Bapak Walden Matheous Sihaloho &<br>Ibu Evi Handayani Simarmata</p>
+        
+        <div class="line"></div>
+        <p style="font-weight: bold; color: #AC7D88; font-style: italic;">dengan</p>
+        <div class="line"></div>
+
+        <!-- 📝 GANTI PROFIL MEMPELAI WANITA -->
+        <h3>Ruth Melda Simanjuntak</h3>
+        <p class="ortu">Putri Keempat dari:<br>Bapak Manggontar Simanjuntak (✟) &<br>Ibu Rosmaida Simamora</p>
+    </div>
+
+    <!-- KARTU 3: DETAIL ACARA & MAPS -->
+    <div class="card">
+        <h2>WAKTU & LOKASI</h2>
+        
+        <!-- 📝 ACARA 1: PEMBERKATAN -->
+        <p style="font-weight: bold; color: #85586F; margin-bottom: 2px; letter-spacing: 1px;">PEMBERKATAN KUDUS</p>
+        <p style="margin: 0; font-weight: bold; color: #333;">Sabtu, 27 April 2024</p>
+        <p style="margin: 0 0 10px 0; color: #777; font-size: 13px;">Pukul 08.00 WIB - Selesai</p>
+        <p class="ortu" style="margin-top: 5px;"><b>Gereja Katedral Santa Maria</b><br>Jl. Tjilik Riwut Km 1, Palangka Raya,<br>Kalimantan Tengah</p>
+        <!-- 📝 GANTI LINK GOOGLE MAPS PEMBERKATAN DI SINI -->
+        <a href="https://maps.app.goo.gl/78kx1hKB4Ze7fUKg6" target="_blank" class="btn">📍 Peta Lokasi Pemberkatan</a>
+
+        <div class="line"></div>
+
+        <!-- 📝 ACARA 2: RESEPSI -->
+        <p style="font-weight: bold; color: #85586F; margin-bottom: 2px; letter-spacing: 1px;">RESEPSI / ADAT</p>
+        <p style="margin: 0; font-weight: bold; color: #333;">Sabtu, 27 April 2024</p>
+        <p style="margin: 0 0 10px 0; color: #777; font-size: 13px;">Pukul 10.00 WIB - Selesai</p>
+        <p class="ortu" style="margin-top: 5px;"><b>GPU Palampang Tarung Km 5,5</b><br>Palangka Raya,<br>Kalimantan Tengah</p>
+        <!-- 📝 GANTI LINK GOOGLE MAPS RESEPSI DI SINI -->
+        <a href="https://maps.app.goo.gl/cJ7gCH2kYXsBy6PfA" target="_blank" class="btn">📍 Peta Lokasi Resepsi</a>
+    </div>
+
+    <!-- KARTU 4: UNGKAPAN TERIMA KASIH / PENUTUP -->
+    <div class="card">
+        <p class="verse">"Ungkapan terima kasih yang tulus dari kami atas kehadiran serta doa restu Bapak/Ibu/Saudara/i sekalian."</p>
+        <div class="line"></div>
+        <p style="font-size: 13px; color: #777;">Kami yang berbahagia,</p>
+        <p style="font-weight: bold; font-size: 18px; color: #85586F; margin-top: 5px;">Togi & Ruth</p>
+        <p style="font-size: 12px; color: #aaa; margin-top: 15px;">&copy; 2026 Undangan Digital Sendiri</p>
     </div>
 
     <script>
         /* Fitur Otomatis Nama Tamu (JavaScript) */
-        // Kode ini membaca teks setelah '?to=' di link URL Anda
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('to');
         
-        // Jika ada nama di URL, ganti tulisan 'Nama Tamu' menjadi nama tersebut
         if (nama) {
             document.getElementById('namaTamu').innerText = decodeURIComponent(nama);
         } else {
