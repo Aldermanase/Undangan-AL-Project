@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan</title>
+    <style>
+        /* Gaya Tampilan (CSS) */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('bg.jpg'); /* Menggunakan gambar dari Canva */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            margin: 20px;
+        }
+        h1 { color: #85586F; font-size: 28px; margin-bottom: 5px; }
+        h2 { color: #AC7D88; font-size: 20px; margin-top: 0; }
+        .tamu-box {
+            background: #F8F5F1;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px dashed #AC7D88;
+        }
+        .nama-tamu { font-weight: bold; font-size: 18px; color: #643A6B; }
+        .btn {
+            background-color: #85586F;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .btn:hover { background-color: #643A6B; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <p>Hello & Welcome</p>
+        <h1>Togi & Ruth</h1>
+        <h2>Wedding Invitation</h2>
+        
+        <div class="tamu-box">
+            <p style="margin: 0 0 5px 0; font-size: 14px; color: #777;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <div id="namaTamu" class="nama-tamu">Nama Tamu</div>
+        </div>
+
+        <p>Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di acara kebahagiaan kami.</p>
+        
+        <a href="https://maps.google.com" target="_blank" class="btn">Buka Lokasi Acara</a>
+    </div>
+
+    <script>
+        /* Fitur Otomatis Nama Tamu (JavaScript) */
+        // Kode ini membaca teks setelah '?to=' di link URL Anda
+        const urlParams = new URLSearchParams(window.location.search);
+        const nama = urlParams.get('to');
+        
+        // Jika ada nama di URL, ganti tulisan 'Nama Tamu' menjadi nama tersebut
+        if (nama) {
+            document.getElementById('namaTamu').innerText = decodeURIComponent(nama);
+        } else {
+            document.getElementById('namaTamu').innerText = "Tamu Undangan";
+        }
+    </script>
+
+</body>
+</html>
