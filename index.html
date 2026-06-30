@@ -5,152 +5,226 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan Kudus</title>
     <style>
-        /* Gaya Tampilan Dasar */
+        /* --- GAYA DASAR & ANIMASI TRANSISI --- */
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image: url('bg.jpg'); /* Menggunakan background dari Canva Anda */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 0;
+            background-image: url('bg.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #333; display: flex; flex-direction: column; align-items: center;
+            padding: 20px 0; overflow-x: hidden;
         }
 
-        /* Gaya Kotak Informasi (Card) */
+        /* Halaman Cover Depan (Overlay) */
+        #cover {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(133, 88, 111, 0.9), rgba(100, 58, 107, 0.95)), url('bg.jpg');
+            background-size: cover; background-position: center;
+            color: white; z-index: 9999; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        /* Animasi Muncul Lembut untuk Kartu Konten */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .card {
             background: rgba(255, 255, 255, 0.96);
-            padding: 30px 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            text-align: center;
-            max-width: 400px;
-            width: 85%;
-            margin-bottom: 25px;
-            box-sizing: border-box;
+            padding: 30px 25px; border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); text-align: center;
+            max-width: 400px; width: 85%; margin-bottom: 25px; box-sizing: border-box;
+            animation: fadeInUp 1.2s ease forwards; /* Efek transisi saat di-scroll/muncul */
         }
 
-        /* Pengaturan Tipografi / Tulisan */
-        h1 { color: #85586F; font-size: 26px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
-        h2 { color: #AC7D88; font-size: 18px; margin-top: 0; margin-bottom: 20px; border-bottom: 2px solid #F8F5F1; padding-bottom: 10px; letter-spacing: 2px; }
-        h3 { color: #643A6B; font-size: 18px; margin: 15px 0 5px 0; }
-        p { font-size: 14px; line-height: 1.6; color: #555; margin: 10px 0; }
-        
-        .verse { font-style: italic; color: #666; font-size: 13px; line-height: 1.5; }
-        .ortu { font-size: 13px; color: #777; font-style: italic; margin-top: 5px; }
-        .line { border-top: 1px solid #AC7D88; margin: 20px 0; opacity: 0.3; }
-
-        /* Kotak Nama Tamu */
-        .tamu-box {
-            background: #F8F5F1;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border: 1px dashed #AC7D88;
+        /* Elemen Gambar/Foto */
+        .foto-wedding {
+            width: 100%; max-height: 350px; object-fit: cover;
+            border-radius: 10px; margin: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .nama-tamu { font-weight: bold; font-size: 18px; color: #643A6B; }
 
-        /* Tombol Google Maps */
+        /* Tombol-Tombol */
         .btn {
-            background-color: #85586F;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 20px;
-            font-weight: bold;
-            display: inline-block;
-            font-size: 13px;
-            margin-top: 10px;
-            transition: 0.3s;
-            border: none;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #85586F; color: white; padding: 12px 25px;
+            text-decoration: none; border-radius: 25px; font-weight: bold;
+            display: inline-block; font-size: 14px; margin-top: 10px;
+            cursor: pointer; border: none; transition: 0.3s;
         }
-        .btn:hover { background-color: #643A6B; }
+        .btn:hover { background-color: #643A6B; transform: scale(1.05); }
+
+        /* Tombol Musik Mengapung di Pojok */
+        #music-control {
+            position: fixed; bottom: 20px; right: 20px; z-index: 999;
+            background: #85586F; color: white; width: 45px; height: 45px;
+            border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            font-size: 18px;
+        }
+
+        /* Desain Input RSVP */
+        .rsvp-form input, .rsvp-form select {
+            width: 100%; padding: 10px; margin: 8px 0;
+            border: 1px solid #AC7D88; border-radius: 8px; box-sizing: border-box;
+        }
+
+        /* Tipografi */
+        h1 { color: #85586F; font-size: 28px; margin-bottom: 5px; text-transform: uppercase; }
+        .cover-title { color: #fff; font-size: 32px; text-transform: uppercase; margin: 10px 0;}
+        h2 { color: #AC7D88; font-size: 18px; margin-top: 0; border-bottom: 2px solid #F8F5F1; padding-bottom: 10px; letter-spacing: 2px; }
+        h3 { color: #643A6B; font-size: 18px; margin: 15px 0 5px 0; }
+        p { font-size: 14px; line-height: 1.6; color: #555; }
+        .verse { font-style: italic; color: #666; font-size: 13px; }
+        .tamu-box { background: #F8F5F1; padding: 15px; border-radius: 10px; margin: 20px 0; border: 1px dashed #AC7D88; }
+        .nama-tamu { font-weight: bold; font-size: 20px; color: #643A6B; }
+        .line { border-top: 1px solid #AC7D88; margin: 20px 0; opacity: 0.3; }
     </style>
 </head>
 <body>
 
-    <!-- KARTU 1: SAMPUL & NAMA TAMU -->
-    <div class="card">
-        <p style="letter-spacing: 2px; font-size: 12px; font-weight: bold; color: #AC7D88;">THE WEDDING OF</p>
-        <!-- 📝 GANTI NAMA PENGANTIN DI SINI -->
-        <h1>Togi & Ruth</h1>
+    <!-- 🎵 AUDIO ELEMENT (MUSIK) -->
+    <audio id="bg-music" loop>
+        <source src="musik.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- 🎛️ TOMBOL KONTROL MUSIK (MENGAPUNG) -->
+    <div id="music-control" onclick="toggleMusic()">🎵</div>
+
+    <!-- 🚪 HALAMAN COVER / AMPLOP DEPAN -->
+    <div id="cover">
+        <p style="letter-spacing: 3px; font-size: 14px;">WEDDING INVITATION</p>
+        <!-- Ganti Nama Pengantin -->
+        <h1 class="cover-title">Togi & Ruth</h1>
         
-        <div class="line"></div>
-        
-        <p class="verse">"Tuhan membuat segala sesuatu indah pada waktunya. Indah saat Dia mempertemukan, indah saat Dia menumbuhkan kasih, dan indah saat Dia mempersatukan dalam suatu ikatan Pernikahan Kudus."</p>
-        
-        <div class="tamu-box">
-            <p style="margin: 0 0 5px 0; font-size: 12px; color: #777;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-            <div id="namaTamu" class="nama-tamu">Nama Tamu</div>
+        <div class="tamu-box" style="background: rgba(255,255,255,0.1); border: 1px dashed white; color: white;">
+            <p style="margin: 0 0 5px 0; font-size: 12px; color: #eee;">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+            <div id="namaTamuCover" class="nama-tamu" style="color: #fff;">Nama Tamu</div>
         </div>
-        <p style="font-size: 12px; color: #999; animation: pulse 2s infinite;">GULIR KE BAWAH UNTUK DETAIL ACARA ↓</p>
+
+        <button class="btn" onclick="bukaUndangan()">✉ Buka Undangan</button>
     </div>
 
-    <!-- KARTU 2: PROFIL MEMPELAI -->
+
+    <!-- 📋 KONTEN UTAMA (AKAN MUNCUL SETELAH COVER DIBUKA) -->
+    
+    <!-- KARTU 1: FOTO & SALAM -->
+    <div class="card">
+        <p style="letter-spacing: 2px; font-size: 12px; font-weight: bold; color: #AC7D88;">THE WEDDING OF</p>
+        <h1>Togi & Ruth</h1>
+        <div class="line"></div>
+        
+        <!-- Menampilkan Foto dari Canva -->
+        <img src="foto.jpg" alt="Foto Pengantin" class="foto-wedding">
+        
+        <p class="verse">"Tuhan membuat segala sesuatu indah pada waktunya. Indah saat Dia mempertemukan, indah saat Dia menumbuhkan kasih, dan indah saat Dia mempersatukan dalam suatu ikatan Pernikahan Kudus."</p>
+    </div>
+
+    <!-- KARTU 2: KEDUA MEMPELAI -->
     <div class="card">
         <h2>KEDUA MEMPELAI</h2>
-        
-        <!-- 📝 GANTI PROFIL MEMPELAI PRIA -->
         <h3>Togi Christevensenlaw Sihaloho</h3>
-        <p class="ortu">Putra Kedua dari:<br>Bapak Walden Matheous Sihaloho &<br>Ibu Evi Handayani Simarmata</p>
+        <p style="font-size: 13px; color: #777; font-style: italic;">Putra Kedua dari:<br>Bapak Walden Matheous Sihaloho &<br>Ibu Evi Handayani Simarmata</p>
         
         <div class="line"></div>
         <p style="font-weight: bold; color: #AC7D88; font-style: italic;">dengan</p>
         <div class="line"></div>
 
-        <!-- 📝 GANTI PROFIL MEMPELAI WANITA -->
         <h3>Ruth Melda Simanjuntak</h3>
-        <p class="ortu">Putri Keempat dari:<br>Bapak Manggontar Simanjuntak (✟) &<br>Ibu Rosmaida Simamora</p>
+        <p style="font-size: 13px; color: #777; font-style: italic;">Putri Keempat dari:<br>Bapak Manggontar Simanjuntak (✟) &<br>Ibu Rosmaida Simamora</p>
     </div>
 
-    <!-- KARTU 3: DETAIL ACARA & MAPS -->
+    <!-- KARTU 3: DETAIL ACARA -->
     <div class="card">
         <h2>WAKTU & LOKASI</h2>
-        
-        <!-- 📝 ACARA 1: PEMBERKATAN -->
-        <p style="font-weight: bold; color: #85586F; margin-bottom: 2px; letter-spacing: 1px;">PEMBERKATAN KUDUS</p>
-        <p style="margin: 0; font-weight: bold; color: #333;">Sabtu, 27 April 2024</p>
+        <p style="font-weight: bold; color: #85586F; margin-bottom: 2px;">PEMBERKATAN KUDUS</p>
+        <p style="margin: 0; font-weight: bold;">Sabtu, 27 April 2024</p>
         <p style="margin: 0 0 10px 0; color: #777; font-size: 13px;">Pukul 08.00 WIB - Selesai</p>
-        <p class="ortu" style="margin-top: 5px;"><b>Gereja Katedral Santa Maria</b><br>Jl. Tjilik Riwut Km 1, Palangka Raya,<br>Kalimantan Tengah</p>
-        <!-- 📝 GANTI LINK GOOGLE MAPS PEMBERKATAN DI SINI -->
-        <a href="https://maps.app.goo.gl/78kx1hKB4Ze7fUKg6" target="_blank" class="btn">📍 Peta Lokasi Pemberkatan</a>
+        <p style="font-size: 13px; color: #666;"><b>Gereja Katedral Santa Maria</b><br>Jl. Tjilik Riwut Km 1, Palangka Raya</p>
+        <a href="https://maps.app.goo.gl/78kx1hKB4Ze7fUKg6" target="_blank" class="btn">📍 Peta Pemberkatan</a>
 
         <div class="line"></div>
 
-        <!-- 📝 ACARA 2: RESEPSI -->
-        <p style="font-weight: bold; color: #85586F; margin-bottom: 2px; letter-spacing: 1px;">RESEPSI / ADAT</p>
-        <p style="margin: 0; font-weight: bold; color: #333;">Sabtu, 27 April 2024</p>
+        <p style="font-weight: bold; color: #85586F; margin-bottom: 2px;">RESEPSI / ADAT</p>
+        <p style="margin: 0; font-weight: bold;">Sabtu, 27 April 2024</p>
         <p style="margin: 0 0 10px 0; color: #777; font-size: 13px;">Pukul 10.00 WIB - Selesai</p>
-        <p class="ortu" style="margin-top: 5px;"><b>GPU Palampang Tarung Km 5,5</b><br>Palangka Raya,<br>Kalimantan Tengah</p>
-        <!-- 📝 GANTI LINK GOOGLE MAPS RESEPSI DI SINI -->
-        <a href="https://maps.app.goo.gl/cJ7gCH2kYXsBy6PfA" target="_blank" class="btn">📍 Peta Lokasi Resepsi</a>
+        <p style="font-size: 13px; color: #666;"><b>GPU Palampang Tarung Km 5,5</b><br>Palangka Raya</p>
+        <a href="https://maps.app.goo.gl/cJ7gCH2kYXsBy6PfA" target="_blank" class="btn">📍 Peta Resepsi</a>
     </div>
 
-    <!-- KARTU 4: UNGKAPAN TERIMA KASIH / PENUTUP -->
+    <!-- KARTU 4: FITUR RSVP (KONFIRMASI KEHADIRAN KE WHATSAPP) -->
+    <div class="card rsvp-form">
+        <h2>KONFIRMASI KEHADIRAN</h2>
+        <p>Mohon konfirmasikan kehadiran Anda melalui formulir di bawah ini:</p>
+        
+        <input type="text" id="rsvp-nama" placeholder="Nama Anda" required>
+        <select id="rsvp-status">
+            <option value="Hadir">Ya, Saya Akan Hadir</option>
+            <option value="Tidak Hadir">Maaf, Saya Tidak Bisa Hadir</option>
+        </select>
+        <input type="number" id="rsvp-jumlah" placeholder="Jumlah Orang (Angka)" min="1" max="5">
+        
+        <button class="btn" onclick="kirimRSVP()">📩 Kirim via WhatsApp</button>
+    </div>
+
+    <!-- KARTU 5: PENUTUP -->
     <div class="card">
         <p class="verse">"Ungkapan terima kasih yang tulus dari kami atas kehadiran serta doa restu Bapak/Ibu/Saudara/i sekalian."</p>
         <div class="line"></div>
         <p style="font-size: 13px; color: #777;">Kami yang berbahagia,</p>
         <p style="font-weight: bold; font-size: 18px; color: #85586F; margin-top: 5px;">Togi & Ruth</p>
-        <p style="font-size: 12px; color: #aaa; margin-top: 15px;">&copy; 2026 Undangan Digital Sendiri</p>
     </div>
 
+
+    <!-- --- LOGIKA JAVASCRIPT --- -->
     <script>
-        /* Fitur Otomatis Nama Tamu (JavaScript) */
+        // 1. Baca Parameter Nama Tamu dari URL
         const urlParams = new URLSearchParams(window.location.search);
         const nama = urlParams.get('to');
+        const namaTeks = nama ? decodeURIComponent(nama) : "Tamu Undangan";
         
-        if (nama) {
-            document.getElementById('namaTamu').innerText = decodeURIComponent(nama);
-        } else {
-            document.getElementById('namaTamu').innerText = "Tamu Undangan";
+        document.getElementById('namaTamuCover').innerText = namaTeks;
+        // Otomatis isi kolom nama di form RSVP sesuai nama di URL
+        if(nama) { document.getElementById('rsvp-nama').value = namaTeks; }
+
+        // 2. Fungsi Tombol Buka Undangan (Memicu Musik & Transisi Geser)
+        const music = document.getElementById('bg-music');
+        function bukaUndangan() {
+            // Efek transisi: Geser cover ke atas keluar layar
+            document.getElementById('cover').style.transform = 'translateY(-100%)';
+            // Putar musik otomatis setelah klik
+            music.play().catch(error => console.log("Musik diblokir browser:", error));
+        }
+
+        // 3. Fungsi Hidup/Matikan Musik (Toggle)
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                document.getElementById('music-control').innerText = "🎵";
+            } else {
+                music.pause();
+                document.getElementById('music-control').innerText = "🔇";
+            }
+        }
+
+        // 4. Fitur RSVP Otomatis Terintegrasi ke WhatsApp Anda
+        function kirimRSVP() {
+            // 📝 GANTI nomor di bawah ini dengan nomor WhatsApp Anda (Gunakan kode negara tanpa tanda '+')
+            const nomorWA = "6281234567890"; 
+            
+            const namaTamu = document.getElementById('rsvp-nama').value;
+            const status = document.getElementById('rsvp-status').value;
+            const jumlah = document.getElementById('rsvp-jumlah').value || "1";
+
+            if(!namaTamu) { alert("Mohon isi nama Anda terlebih dahulu."); return; }
+
+            // Menyusun isi teks pesan WhatsApp otomatis
+            const teksPesan = `Halo Togi %26 Ruth, saya *${namaTamu}* ingin mengonfirmasi bahwa saya *${status}* di acara pernikahan kalian dengan jumlah *${jumlah} orang*. Terima kasih!`;
+            
+            // Buka WhatsApp otomatis
+            window.open(`https://api.whatsapp.com/send?phone=${nomorWA}&text=${teksPesan}`, '_blank');
         }
     </script>
-
 </body>
 </html>
