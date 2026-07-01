@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Wedding Masterpiece of Alder & Lelly</title>
     
-    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
     
-    <!-- FONT AWESOME FOR ICONS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -35,13 +33,13 @@
             scroll-behavior: smooth;
         }
 
-        /* ENGINE KANVAS DEBU EMAS --> NOTE TETAP BERJALAN */
+        /* ENGINE KANVAS DEBU EMAS */
         #particle-canvas {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             pointer-events: none; z-index: 10;
         }
 
-        /* --- HALAMAN AWAL (COVER CINEMATIC 70/30) --> NOTE TETAP BERJALAN --- */
+        /* --- HALAMAN AWAL (COVER CINEMATIC 70/30) --- */
         #cover {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: #000; z-index: 9999; 
@@ -71,63 +69,60 @@
             background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.15); padding: 10px 20px; border-radius: 12px; width: 90%; max-width: 350px; margin: 8px 0;
         }
+        
+        /* REVISI POIN 2 & 3: BACKGROUND TRANSPARAN & REPOSISI NAIK 0.5 CM */
         .btn-open {
-            background: white; color: var(--text-dark); padding: 12px 28px;
+            background: transparent; 
+            color: #ffffff; 
+            padding: 12px 28px;
             font-family: var(--font-serif); font-size: 12px; letter-spacing: 2px;
-            text-transform: uppercase; border: none; border-radius: 30px;
-            cursor: pointer; display: flex; align-items: center; gap: 8px;
-            transition: 0.3s; font-weight: 600; box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+            text-transform: uppercase; 
+            border: 1px solid rgba(255, 255, 255, 0.6); 
+            border-radius: 30px;
+            cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+            transition: 0.3s ease; font-weight: 600; 
+            margin-bottom: 25px; /* Menaikkan posisi tombol agar proporsional di HP */
         }
-        .btn-open:hover { transform: scale(1.05); background: var(--accent-gold); color: white; }
+        .btn-open:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.1); border-color: #ffffff; }
 
         /* --- STRUCTURE CONTINUOUS STREAM --- */
         .main-stream { position: relative; width: 100%; z-index: 2; }
         section { position: relative; min-height: 100vh; width: 100vw; display: flex; flex-direction: column; box-sizing: border-box; overflow: hidden; }
 
-        .luxury-card {
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.6); padding: 40px 24px; border-radius: 20px;
-            max-width: 420px; width: 90%; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            margin: auto; z-index: 5;
-        }
-
-        /* --- HALAMAN KEDUA: REVISI PREALINE STRUKTUR SUDUT LENSA WIDE / NORMAL 1X --- */
+        /* --- HALAMAN KEDUA: REVISI TINGGI SPACER AGAR FOTO PROLOG JELAS MURNI --- */
         .sec-prologue { 
             justify-content: flex-start; 
             padding: 0; 
             color: white;
             text-align: center;
-            min-height: 145vh;
-            background-color: #000000; /* Dasar hitam murni untuk menampung aliran sisa frame foto wide */
+            min-height: 155vh;
+            background-color: #000000;
         }
-        .sec-prologue .slideshow-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
+        .sec-prologue .slideshow-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
         
-        /* REVISI UTAMA: Mengubah paksa rasio agar foto menampilkan sudut lebar lensa wide tanpa terpotong (zoom-in) */
+        /* SINKRONISASI DAN PERBAIKAN SENSITIVITAS NAMA FILE REPOSITORI GITHUB ANDA (.jpg & .JPG) */
         .sec-prologue .slide { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            background-size: 100vw auto; /* Memaksimalkan visual horizontal foto normal 1x / wide-angle */
+            background-size: 100vw auto; 
             background-position: center top; 
             background-repeat: no-repeat;
             opacity: 0; transition: opacity 1.2s ease-in-out; 
+            z-index: 1;
         }
-        .sec-prologue .slide.active { opacity: 1; }
+        .sec-prologue .slide.active { opacity: 1; z-index: 2; }
         
-        /* Spacer atas transparan setinggi 60% layar agar visual objek foto wide terekspos bersih */
+        /* Menaikkan tinggi ruang kosong transparan menjadi 65vh agar foto pengantin benar-benar terekspos murni */
         .prologue-viewport-spacer {
-            height: 60vh;
-            width: 100%;
-            pointer-events: none;
+            height: 65vh; width: 100%; pointer-events: none; position: relative; z-index: 3;
         }
 
-        /* Wadah teks berselimut masking gradasi hitam tebal penunjang ketajaman teks */
+        /* Wadah teks tergeser murni ke area bawah terlindungi gradasi hitam tebal */
         .prologue-text-wrap {
             width: 100%;
-            background: linear-gradient(to top, #000000 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.95) 75%, rgba(0,0,0,0.5) 92%, transparent 100%);
-            padding: 80px 24px 60px 24px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 2;
+            background: linear-gradient(to top, #000000 0%, rgba(0,0,0,1) 55%, rgba(0,0,0,0.95) 78%, rgba(0,0,0,0.4) 95%, transparent 100%);
+            padding: 90px 24px 60px 24px;
+            display: flex; flex-direction: column; align-items: center;
+            position: relative; z-index: 5; 
         }
 
         .prolog-name-script { font-family: var(--font-script); font-size: 55px; color: white; margin-bottom: 20px; font-weight: 400; }
@@ -135,9 +130,7 @@
         .prolog-verse-reference { font-family: var(--font-serif); font-size: 14px; margin-top: 10px; color: rgba(255,255,255,0.7); letter-spacing: 1px; }
 
         .countdown-container-flat { 
-            display: flex; justify-content: center; gap: 25px; 
-            margin: 45px auto 45px auto; 
-            width: 100%; max-width: 340px;
+            display: flex; justify-content: center; gap: 25px; margin: 45px auto 45px auto; width: 100%; max-width: 340px;
         }
         .countdown-item-flat { text-align: center; min-width: 50px; }
         .countdown-item-flat span { font-family: var(--font-serif); font-size: 32px; font-weight: 300; color: white; display: block; line-height: 1; }
@@ -155,12 +148,12 @@
         .video-box-pax video { width: 100%; height: 100%; object-fit: cover; }
         .video-notice-text { font-family: var(--font-serif); font-size: 13px; color: rgba(255, 255, 255, 0.8); margin-top: 25px; text-align: center; font-style: italic; letter-spacing: 0.5px; }
 
-        /* --- STRUKTUR SEKSI MEMPELAI LAINNYA --- */
+        /* --- STRUKTUR SEKSI MEMPELAI --- */
         .sec-couple { display: flex; flex-direction: column; min-height: 100vh; justify-content: flex-start; padding-bottom: 0; }
-        
-        .couple-image-wrap { height: 65vh; position: relative; width: 100%; overflow: hidden; }
-        .couple-image-wrap .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.2s ease-in-out; }
-        .couple-image-wrap .slide.active { opacity: 1; }
+        .couple-image-wrap { height: 65vh; position: relative; width: 100%; overflow: hidden; z-index: 1; }
+        .couple-image-wrap .slideshow-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        .couple-image-wrap .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.2s ease-in-out; z-index: 1; }
+        .couple-image-wrap .slide.active { opacity: 1; z-index: 2; }
 
         .couple-image-wrap::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 22%; background: linear-gradient(to bottom, #1a1a1a 0%, transparent 100%); z-index: 3; pointer-events: none; }
         .couple-image-wrap-groom::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 22%; background: linear-gradient(to top, #ffffff 0%, transparent 100%); z-index: 3; pointer-events: none; }
@@ -174,10 +167,9 @@
         .couple-name-dark { font-family: var(--font-serif); font-size: 20px; font-weight: 600; color: #111111; margin-bottom: 8px; }
         .couple-parents-dark { font-family: var(--font-serif); font-size: 14px; color: #444444; line-height: 1.6; font-weight: 400; font-style: italic; }
 
-        /* SEKSI TRANSISI WITH LOVE FONT PUTIH GRADASI MELELEH */
+        /* SEKSI TRANSISI WITH LOVE */
         .sec-divider-love {
-            min-height: 25vh;
-            background: linear-gradient(to bottom, #ffffff 0%, #1a1a1a 45%, #1a1a1a 100%); 
+            min-height: 25vh; background: linear-gradient(to bottom, #ffffff 0%, #1a1a1a 45%, #1a1a1a 100%); 
             display: flex; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 6; margin-top: -1px;
         }
         .with-love-script { font-family: var(--font-script); font-size: 52px; color: #ffffff; letter-spacing: 1px; font-weight: 400; text-shadow: 0 2px 10px rgba(255, 255, 255, 0.15); }
@@ -187,11 +179,14 @@
         .events-gradient-header { width: 100vw; padding: 85px 20px 40px 20px; background: linear-gradient(to bottom, #f4ede4 0%, #000000 35%, #000000 100%); display: flex; justify-content: center; align-items: center; margin-top: -2px; }
         .events-main-title { font-family: var(--font-script); font-size: clamp(28px, 6vw, 44px); color: #ffffff; font-weight: 400; letter-spacing: 1px; text-shadow: 0 2px 15px rgba(225,225,225,0.1); padding: 0 20px; }
         
-        .events-slideshow-container { width: 100vw; height: 55vh; position: relative; overflow: hidden; margin-bottom: 50px; box-shadow: inset 0 -30px 40px #000000, inset 0 30px 40px #000000; }
+        .events-slideshow-container { width: 100vw; height: 55vh; position: relative; overflow: hidden; margin-bottom: 50px; box-shadow: inset 0 -30px 40px #000000, inset 0 30px 40px #000000; z-index: 1; }
+        .events-slideshow-container .slideshow-bg { position: absolute; top:0; left:0; width:100%; height:100%; z-index:1; }
+        .events-slideshow-container .slide { position: absolute; top:0; left:0; width:100%; height:100%; background-size: cover; background-position: center; opacity:0; transition: opacity 1.2s; z-index:1; }
+        .events-slideshow-container .slide.active { opacity:1; z-index:2; }
         .events-slideshow-container::before { content: ''; position: absolute; top:0; left:0; width:100%; height:20%; background: linear-gradient(to bottom, #000 0%, transparent 100%); z-index:3; }
         .events-slideshow-container::after { content: ''; position: absolute; bottom:0; left:0; width:100%; height:20%; background: linear-gradient(to top, #000 0%, transparent 100%); z-index:3; }
 
-        .event-block-detail { max-width: 350px; width: 90%; margin-bottom: 55px; display: flex; flex-direction: column; align-items: center; }
+        .event-block-detail { max-width: 350px; width: 90%; margin-bottom: 55px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 5; }
         .event-custom-icon { color: var(--accent-gold); font-size: 32px; margin-bottom: 15px; filter: drop-shadow(0 2px 5px rgba(229,193,88,0.3)); }
         .event-heading-type { font-family: var(--font-heading); font-size: 22px; letter-spacing: 4px; font-weight: 700; color: #ffffff; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 6px; width: 100%; }
         .event-datetime-serif { font-family: var(--font-serif); font-size: 18px; font-style: italic; color: var(--accent-gold); margin-bottom: 4px; letter-spacing: 1px; }
@@ -215,7 +210,7 @@
         .story-node-title { font-family: var(--font-serif); font-size: 18px; font-style: italic; color: #ffffff; margin-bottom: 8px; font-weight: 500; }
         .story-node-desc { font-family: var(--font-sans); font-size: 13px; color: #bbbbbb; line-height: 1.7; font-weight: 300; text-align: justify; }
 
-        /* SEKSI RSVP PREMIUM HIGH-END (BLACK THEME) */
+        /* SEKSI RSVP PREMIUM HIGH-END */
         .sec-rsvp-premium { background: #0b0b0b; padding: 80px 24px; z-index: 6; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .rsvp-thin-line-top { width: 100%; max-width: 400px; border: none; border-top: 1px solid rgba(255,255,255,0.15); margin-bottom: 25px; }
         .rsvp-title-large-white { font-family: var(--font-heading); font-size: 36px; font-weight: 700; color: #ffffff; letter-spacing: 4px; text-align: right; width: 100%; max-width: 400px; margin: 0 auto 15px auto; }
@@ -230,7 +225,7 @@
         .btn-submit-rsvp-gray { width: 100%; padding: 14px; background: #999999; color: #ffffff; font-family: var(--font-serif); font-size: 14px; letter-spacing: 1px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.3s; margin-top: 10px; text-transform: uppercase; }
         .btn-submit-rsvp-gray:hover { background: #808080; }
 
-        /* FOTO PENUTUP RSVP DESAIN LENGKUNG ARCH (SENSITIVITAS FILE AMAN: closing.jpg) */
+        /* FOTO PENUTUP RSVP DESAIN LENGKUNG ARCH */
         .rsvp-closing-image-container { width: 100vw; display: flex; justify-content: center; background: #0b0b0b; padding-bottom: 40px; }
         .rsvp-closing-arch-photo { width: 90vw; max-width: 400px; height: 55vh; object-fit: cover; border-radius: 0 0 200px 200px; box-shadow: 0 10px 35px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); }
 
@@ -239,7 +234,7 @@
 
         /* SEKSI WEDDING GIFT */
         .sec-gift { background-image: linear-gradient(rgba(20, 20, 20, 0.75), rgba(20, 20, 20, 0.85)), url('bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed; justify-content: center; align-items: center; padding: 80px 24px; z-index: 6; }
-        .gift-content-wrap { max-width: 450px; width: 100%; text-align: center; }
+        .gift-content-wrap { max-width: 450px; width: 100%; text-align: center; position: relative; z-index: 5; }
         .gift-main-icon-pax { font-size: 42px; color: var(--accent-gold); margin-bottom: 12px; filter: drop-shadow(0 2px 10px rgba(229,193,88,0.3)); }
         .gift-title-text { font-family: var(--font-heading); font-size: 28px; color: #ffffff; letter-spacing: 4px; margin-bottom: 18px; text-transform: uppercase; }
         .gift-paragraph-quote { font-family: var(--font-serif); font-size: 15px; color: rgba(255, 255, 255, 0.9); line-height: 1.8; margin-bottom: 30px; text-align: center; }
@@ -261,14 +256,11 @@
 </head>
 <body>
 
-    <!-- DEBU EMAS CANVAS -->
     <canvas id="particle-canvas"></canvas>
 
-    <!-- AUDIO ENGINE -->
     <audio id="bg-audio" loop><source src="musik.mp3" type="audio/mp3"></audio>
     <div id="music-box" onclick="toggleAudio()">🎵</div>
 
-    <!-- 🚪 HALAMAN AWAL (COVER 70/30) -->
     <div id="cover">
         <div class="cover-image-area"></div>
         <div class="cover-text-area">
@@ -278,33 +270,30 @@
                 <p style="font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #BBB;">Eksklusif Kepada Yth:</p>
                 <div id="namaTamu" style="font-size: 18px; font-family: var(--font-serif); margin-top: 3px; color: var(--accent-gold);">Nama Tamu</div>
             </div>
-            <button class="btn-open cover-animate" onclick="bukaUndanganMasterpiece()">🌸 Buka Undangan</button>
+            <button class="btn-open cover-animate" onclick="bukaUndanganMasterpiece()">
+                <i class="fas fa-leaf" style="font-size: 11px;"></i> Buka Undangan
+            </button>
         </div>
     </div>
 
 
-    <!-- 📋 MAIN FLOW STREAM -->
     <div class="main-stream">
 
-        <!-- 🌟 HALAMAN KEDUA: REVISI INTEGRASI SPACER PERGESERAN TEKS (MEMBUKA SUDUT LENSA WIDE 1X) -->
         <section class="sec-prologue">
             <div class="slideshow-bg">
                 <div class="slide active" style="background-image: url('prolog1.jpg');"></div>
-                <div class="slide" style="background-image: url('prolog2.jpg');"></div>
-                <div class="slide" style="background-image: url('prolog3.jpg');"></div>
-                <div class="slide" style="background-image: url('prolog4.jpg');"></div>
+                <div class="slide" style="background-image: url('prolog2.JPG');"></div>
+                <div class="slide" style="background-image: url('prolog3.JPG');"></div>
+                <div class="slide" style="background-image: url('prolog4.JPG');"></div>
             </div>
 
-            <!-- Elemen Pembatas Atas Transparan agar Sisi Atas Foto Wide Pengantin Terekspos Bersih -->
             <div class="prologue-viewport-spacer"></div>
 
-            <!-- Wadah Blok Teks di Sisi Bawah Berselimut Masking Gradasi Hitam Pekat Anti-Menempel -->
             <div class="prologue-text-wrap reveal-smooth">
                 <div class="prolog-name-script">Alder & Lelly</div>
                 <p class="prolog-verse-text">”Tidak baik, kalau manusia itu seorang diri saja. Aku akan menjadikan penolong baginya, yang sepadan dengan dia”</p>
                 <p class="prolog-verse-reference">Kejadian 2:18</p>
 
-                <!-- HITUNG MUNDUR RAPI DI BAWAH TEKS AYAT -->
                 <div class="countdown-container-flat">
                     <div class="countdown-item-flat"><span id="days">00</span><p>Days</p></div>
                     <div class="countdown-item-flat"><span id="hours">00</span><p>Hours</p></div>
@@ -320,7 +309,6 @@
         </section>
 
 
-        <!-- 🌟 HALAMAN KETIGA: VIDEO KECIL MANDIRI -->
         <section class="sec-cinema-video">
             <div class="video-box-pax reveal-smooth">
                 <video autoplay loop muted playsinline><source src="video.mp4" type="video/mp4"></video>
@@ -329,7 +317,6 @@
         </section>
 
 
-        <!-- 🌟 HALAMAN KEEMPAT: THE GROOM -->
         <section class="sec-couple">
             <div class="couple-image-wrap couple-image-wrap-groom">
                 <div class="slideshow-bg">
@@ -349,13 +336,11 @@
         </section>
 
 
-        <!-- 🌟 POSISI TRANSISI: "WITH LOVE" BERGRADASI MELELEH HALUS FONT PUTIH -->
         <section class="sec-divider-love">
             <div class="with-love-script reveal-smooth">with love</div>
         </section>
 
 
-        <!-- 🌟 HALAMAN KELIMA: THE BRIDE -->
         <section class="sec-couple">
             <div class="couple-image-wrap couple-image-wrap-bride">
                 <div class="slideshow-bg">
@@ -375,7 +360,6 @@
         </section>
 
 
-        <!-- 🌟 HALAMAN DETIL WAKTU & LOKASI ACARA -->
         <section class="sec-masterpiece-events">
             <div class="events-gradient-header">
                 <div class="events-main-title reveal-smooth">Jadilah bagian dari hari istimewa kami</div>
@@ -389,7 +373,6 @@
                 </div>
             </div>
 
-            <!-- DETIL ACARA 1: PEMBERKATAN -->
             <div class="event-block-detail reveal-smooth">
                 <div class="event-custom-icon"><i class="fas fa-church"></i></div>
                 <div class="event-heading-type">PEMBERKATAN</div>
@@ -398,12 +381,11 @@
                 <p style="font-size: 13px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Acara akan berlangsung di</p>
                 <div class="event-venue-name">GBKP Rgn. Jalan Kotacane</div>
                 <div class="event-venue-address">Jln. Kotacane, No. 311, Kabanjahe, Karo, Sumatera Utara.</div>
-                <a href="https://maps.google.com/?q=GBKP+Jalan+Kotacane+Kabanjahe" target="_blank" class="btn-maps-outline">
+                <a href="https://maps.google.com/?q=GBKP+Rgn.+Jalan+Kotacane" target="_blank" class="btn-maps-outline">
                     <i class="fas fa-map-marker-alt"></i> Google Maps
                 </a>
             </div>
 
-            <!-- DETIL ACARA 2: ACARA ADAT -->
             <div class="event-block-detail reveal-smooth">
                 <svg class="event-custom-icon" viewBox="0 0 100 60" width="38" height="38" style="fill:none; stroke:currentColor; stroke-width:2.5; stroke-linecap:round;">
                     <path d="M10,25 Q50,45 90,25 L82,55 L18,55 Z" />
@@ -423,7 +405,6 @@
         </section>
 
 
-        <!-- INTERMISI CINEMATIC & LOGO MONOGRAM -->
         <svg class="wave-gold-separator" viewBox="0 0 1440 74" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0,32 C240,75 480,75 720,32 C960,-10 1200,-10 1440,32 L1440,74 L0,74 Z" fill="#000000"/>
             <path d="M0,32 C240,75 480,75 720,32 C960,-10 1200,-10 1440,32" stroke="#E5C158" stroke-width="2"/>
@@ -440,7 +421,6 @@
         </section>
 
 
-        <!-- TIMELINE LOVE STORY -->
         <section class="sec-love-story">
             <h2 class="couple-title-dark reveal-smooth" style="color: #ffffff; font-size: 28px; letter-spacing: 4px;">OUR LOVE STORY</h2>
             <hr class="couple-graphic-line reveal-smooth" style="border-top: 1px solid var(--accent-gold); width: 100px; margin: 15px 0 30px 0;">
@@ -485,7 +465,6 @@
         </section>
 
 
-        <!-- SEKSI RSVP PREMIUM BLACK THEME -->
         <section class="sec-rsvp-premium">
             <hr class="rsvp-thin-line-top reveal-smooth">
             <h2 class="rsvp-title-large-white reveal-smooth">RSVP</h2>
@@ -510,17 +489,14 @@
         </section>
 
 
-        <!-- FOTO PENUTUP RSVP DESAIN LENGKUNG ARCH (closing.jpg) -->
         <div class="rsvp-closing-image-container">
             <img src="closing.jpg" alt="Alder & Lelly Portrait" class="rsvp-closing-arch-photo reveal-smooth">
         </div>
 
 
-        <!-- SEKSI TRANSISI PEMBATAS SEBELUM GIFT -->
         <div class="sec-final-divider"></div>
 
 
-        <!-- SEKSI WEDDING GIFT -->
         <section class="sec-gift">
             <div class="gift-content-wrap reveal-smooth">
                 <div class="gift-main-icon-pax"><i class="fas fa-gift"></i></div>
@@ -533,7 +509,6 @@
                 </button>
 
                 <div id="gift-accounts-area">
-                    <!-- REKENING 1 -->
                     <div class="bank-card">
                         <button class="btn-copy" onclick="copyText('1234567890')">Salin</button>
                         <div class="bank-name">BANK BCA</div>
@@ -541,7 +516,6 @@
                         <div class="account-holder">a.n. Alder Manase</div>
                     </div>
 
-                    <!-- REKENING 2 -->
                     <div class="bank-card">
                         <button class="btn-copy" onclick="copyText('0987654321')">Salin</button>
                         <div class="bank-name">BANK MANDIRI</div>
@@ -554,7 +528,6 @@
 
     </div>
 
-    <!-- --- JAVASCRIPT MASTERPIECE ENGINE --- -->
     <script>
         const params = new URLSearchParams(window.location.search);
         const namaTamu = params.get('to') ? decodeURIComponent(params.get('to')) : "Tamu Undangan";
@@ -584,7 +557,7 @@
             }
         }
 
-        // --- ENGINE PARTICLE DUST (DEBU EMAS) ---
+        // --- ENGINE PARTICLE DUST ---
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -623,7 +596,7 @@
         }
         loop();
 
-        // --- SINKRONISASI SLIDESHOW ENGINE 3 DETIK (3000ms) ---
+        // --- SLIDESHOW ENGINE SINKRONISASI 3 DETIK (3000ms) ---
         function startMultiSlideshow(containerSelector) {
             const containers = document.querySelectorAll(containerSelector);
             containers.forEach(container => {
