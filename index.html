@@ -33,13 +33,13 @@
             scroll-behavior: smooth;
         }
 
-        /* ENGINE KANVAS DEBU EMAS */
+        /* ENGINE KANVAS DEBU EMAS --> NOTE TETAP BERJALAN */
         #particle-canvas {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vw;
             pointer-events: none; z-index: 10;
         }
 
-        /* --- HALAMAN AWAL (COVER CINEMATIC 70/30) --- */
+        /* --- HALAMAN AWAL (COVER CINEMATIC 70/30) --> NOTE TETAP BERJALAN --- */
         #cover {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: #000; z-index: 9999; 
@@ -70,7 +70,7 @@
             border: 1px solid rgba(255, 255, 255, 0.15); padding: 10px 20px; border-radius: 12px; width: 90%; max-width: 350px; margin: 8px 0;
         }
         
-        /* REVISI POIN 2 & 3: BACKGROUND TRANSPARAN & REPOSISI NAIK 0.5 CM */
+        /* TOMBOL COVER TRANSPARAN ELEGAN */
         .btn-open {
             background: transparent; 
             color: #ffffff; 
@@ -81,7 +81,7 @@
             border-radius: 30px;
             cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
             transition: 0.3s ease; font-weight: 600; 
-            margin-bottom: 25px; /* Menaikkan posisi tombol agar proporsional di HP */
+            margin-bottom: 25px; 
         }
         .btn-open:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.1); border-color: #ffffff; }
 
@@ -89,7 +89,7 @@
         .main-stream { position: relative; width: 100%; z-index: 2; }
         section { position: relative; min-height: 100vh; width: 100vw; display: flex; flex-direction: column; box-sizing: border-box; overflow: hidden; }
 
-        /* --- HALAMAN KEDUA: REVISI TINGGI SPACER AGAR FOTO PROLOG JELAS MURNI --- */
+        /* --- HALAMAN KEDUA: STRUKTUR RUANG KOSONG SPACER (VISUALISASI SINKRON FOTO) --- */
         .sec-prologue { 
             justify-content: flex-start; 
             padding: 0; 
@@ -99,8 +99,6 @@
             background-color: #000000;
         }
         .sec-prologue .slideshow-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-        
-        /* SINKRONISASI DAN PERBAIKAN SENSITIVITAS NAMA FILE REPOSITORI GITHUB ANDA (.jpg & .JPG) */
         .sec-prologue .slide { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
             background-size: 100vw auto; 
@@ -111,12 +109,10 @@
         }
         .sec-prologue .slide.active { opacity: 1; z-index: 2; }
         
-        /* Menaikkan tinggi ruang kosong transparan menjadi 65vh agar foto pengantin benar-benar terekspos murni */
         .prologue-viewport-spacer {
             height: 65vh; width: 100%; pointer-events: none; position: relative; z-index: 3;
         }
 
-        /* Wadah teks tergeser murni ke area bawah terlindungi gradasi hitam tebal */
         .prologue-text-wrap {
             width: 100%;
             background: linear-gradient(to top, #000000 0%, rgba(0,0,0,1) 55%, rgba(0,0,0,0.95) 78%, rgba(0,0,0,0.4) 95%, transparent 100%);
@@ -167,6 +163,9 @@
         .couple-name-dark { font-family: var(--font-serif); font-size: 20px; font-weight: 600; color: #111111; margin-bottom: 8px; }
         .couple-parents-dark { font-family: var(--font-serif); font-size: 14px; color: #444444; line-height: 1.6; font-weight: 400; font-style: italic; }
 
+        .btn-instagram-link { margin-top: 15px; font-family: var(--font-sans); font-size: 10px; letter-spacing: 3px; color: #000000; text-decoration: none; text-transform: uppercase; display: inline-flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(0,0,0,0.3); padding-bottom: 4px; transition: 0.3s; font-weight: 500; }
+        .btn-instagram-link:hover { color: var(--accent-gold); border-color: var(--accent-gold); }
+
         /* SEKSI TRANSISI WITH LOVE */
         .sec-divider-love {
             min-height: 25vh; background: linear-gradient(to bottom, #ffffff 0%, #1a1a1a 45%, #1a1a1a 100%); 
@@ -196,10 +195,22 @@
         .btn-maps-outline { background: transparent; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.7); padding: 10px 24px; font-family: var(--font-serif); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: 0.3s ease; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
         .btn-maps-outline:hover { background: #ffffff; color: #000000; border-color: #ffffff; box-shadow: 0 4px 15px rgba(255,255,255,0.2); }
 
-        /* SEKSI INTERMISI CINEMATIC & LOGO MONOGRAM */
+        /* --- INTERMISI CINEMATIC & LOGO MONOGRAM FOTO SEKSI (REVISI POIN 1) --- */
         .wave-gold-separator { width: 100vw; height: auto; display: block; background: #000; margin-top: -2px; }
         .sec-intermission-cinema { background: #000000; width: 100vw; display: flex; flex-direction: column; align-items: center; z-index: 6; position: relative; }
         .intermission-video-box { width: 100vw; height: 33.33vh; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        /* Modifikasi Container untuk memuat Gambar story.jpg secara meleleh sinematik */
+        .intermission-logo-container {
+            width: 100vw; padding: 40px 0; text-align: center;
+            background: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+            display: flex; flex-direction: column; align-items: center;
+            margin-top: -2px;
+        }
+        .intermission-logo-img {
+            width: 85vw; max-width: 320px; height: auto; display: block; margin: 0 auto;
+            filter: drop-shadow(0 2px 12px rgba(229,193,88,0.25)); border-radius: 4px;
+        }
 
         /* STRUKTUR TIMELINE LOVE STORY */
         .sec-love-story { background: #0d0d0d; color: #ffffff; padding: 80px 24px; z-index: 6; display: flex; flex-direction: column; align-items: center; }
@@ -210,7 +221,7 @@
         .story-node-title { font-family: var(--font-serif); font-size: 18px; font-style: italic; color: #ffffff; margin-bottom: 8px; font-weight: 500; }
         .story-node-desc { font-family: var(--font-sans); font-size: 13px; color: #bbbbbb; line-height: 1.7; font-weight: 300; text-align: justify; }
 
-        /* SEKSI RSVP PREMIUM HIGH-END */
+        /* SEKSI RSVP PREMIUM HIGH-END (BLACK THEME) */
         .sec-rsvp-premium { background: #0b0b0b; padding: 80px 24px; z-index: 6; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .rsvp-thin-line-top { width: 100%; max-width: 400px; border: none; border-top: 1px solid rgba(255,255,255,0.15); margin-bottom: 25px; }
         .rsvp-title-large-white { font-family: var(--font-heading); font-size: 36px; font-weight: 700; color: #ffffff; letter-spacing: 4px; text-align: right; width: 100%; max-width: 400px; margin: 0 auto 15px auto; }
@@ -225,7 +236,7 @@
         .btn-submit-rsvp-gray { width: 100%; padding: 14px; background: #999999; color: #ffffff; font-family: var(--font-serif); font-size: 14px; letter-spacing: 1px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.3s; margin-top: 10px; text-transform: uppercase; }
         .btn-submit-rsvp-gray:hover { background: #808080; }
 
-        /* FOTO PENUTUP RSVP DESAIN LENGKUNG ARCH */
+        /* FOTO PENUTUP RSVP DESAIN LENGKUNG ARCH (closing.jpg) */
         .rsvp-closing-image-container { width: 100vw; display: flex; justify-content: center; background: #0b0b0b; padding-bottom: 40px; }
         .rsvp-closing-arch-photo { width: 90vw; max-width: 400px; height: 55vh; object-fit: cover; border-radius: 0 0 200px 200px; box-shadow: 0 10px 35px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); }
 
@@ -381,7 +392,7 @@
                 <p style="font-size: 13px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Acara akan berlangsung di</p>
                 <div class="event-venue-name">GBKP Rgn. Jalan Kotacane</div>
                 <div class="event-venue-address">Jln. Kotacane, No. 311, Kabanjahe, Karo, Sumatera Utara.</div>
-                <a href="https://maps.google.com/?q=GBKP+Rgn.+Jalan+Kotacane" target="_blank" class="btn-maps-outline">
+                <a href="https://maps.google.com/?q=GBKP+Jalan+Kotacane+Kabanjahe" target="_blank" class="btn-maps-outline">
                     <i class="fas fa-map-marker-alt"></i> Google Maps
                 </a>
             </div>
@@ -415,8 +426,8 @@
                 <source src="video.mp4" type="video/mp4">
             </video>
             
-            <div class="events-gradient-header" style="background: linear-gradient(to bottom, #1a1a1a 0%, #0a0b0b 100%);">
-                <div class="with-love-script reveal-smooth" style="font-size: 65px;">A & L</div>
+            <div class="intermission-logo-container">
+                <img src="story.jpg" alt="Our Story Logo" class="intermission-logo-img reveal-smooth">
             </div>
         </section>
 
@@ -628,7 +639,7 @@
 
         document.querySelectorAll('.reveal-smooth').forEach(el => smoothObserver.observe(el));
 
-        // --- ENGINE HITUNG MUNDUR ACARA (TARGET: JUMAT, 11 JULI 2026 JAM 14:00 WIB) ---
+        // --- ENGINE HITUNG MUNDUR ACARA (TARGET: 11 JULI 2026 JAM 14:00 WIB) ---
         function countdownEngine() {
             const targetDate = new Date("July 11, 2026 14:00:00").getTime();
             
