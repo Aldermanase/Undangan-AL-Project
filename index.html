@@ -84,7 +84,6 @@
         .main-stream { position: relative; width: 100%; z-index: 2; }
         section { position: relative; min-height: 100vh; width: 100vw; display: flex; flex-direction: column; box-sizing: border-box; overflow: hidden; }
 
-        /* KONTEN CARD UTAMA UNTUK FORM & GIFT */
         .luxury-card {
             background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.6); padding: 40px 24px; border-radius: 20px;
@@ -94,126 +93,90 @@
 
         /* --- HALAMAN KEDUA: CINEMATIC PROLOGUE, COUNTDOWN FLAT, DAN THE VOWS --- */
         .sec-prologue { 
-            justify-content: flex-start; 
-            padding: 60px 24px 20px 24px; 
+            justify-content: flex-end; 
+            padding: 0; 
             color: white;
             text-align: center;
-            min-height: auto;
+            min-height: 100vh;
         }
         .slideshow-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
-        .slideshow-bg::after {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6); z-index: -1; 
-        }
         .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.2s ease-in-out; }
         .slide.active { opacity: 1; }
         
+        .prologue-text-wrap {
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 75%, rgba(0,0,0,0.4) 90%, transparent 100%);
+            padding: 90px 24px 50px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+        }
+
         .prolog-name-script { font-family: var(--font-script); font-size: 55px; color: white; margin-bottom: 20px; font-weight: 400; }
         .prolog-verse-text { font-family: var(--font-serif); font-size: 16px; font-style: italic; line-height: 1.7; max-width: 340px; margin: 0 auto; color: rgba(255,255,255,0.9); }
         .prolog-verse-reference { font-family: var(--font-serif); font-size: 14px; margin-top: 10px; color: rgba(255,255,255,0.7); letter-spacing: 1px; }
 
-        /* COUNTDOWN FLAT MINIMALIS --> TARGET 11 JULI 2026 */
         .countdown-container-flat { 
-            display: flex; justify-content: center; gap: 25px; margin: 40px auto; max-width: 340px;
+            display: flex; justify-content: center; gap: 25px; 
+            margin: 45px auto 45px auto; 
+            width: 100%; max-width: 340px;
         }
         .countdown-item-flat { text-align: center; min-width: 50px; }
         .countdown-item-flat span { font-family: var(--font-serif); font-size: 32px; font-weight: 300; color: white; display: block; line-height: 1; }
         .countdown-item-flat p { font-family: var(--font-sans); font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.6); text-transform: uppercase; margin-top: 8px; }
 
-        /* ORNAMEN GRAPHIC */
-        .quote-icon-graphic { font-size: 60px; font-family: var(--font-serif); line-height: 0; color: white; text-align: left; max-width: 340px; margin: 10px auto 0 auto; opacity: 0.9; }
-        .quote-line-graphic { border: none; border-top: 1px solid rgba(255,255,255,0.3); max-width: 340px; margin: 0 auto 30px auto; }
+        .quote-icon-graphic { font-size: 60px; font-family: var(--font-serif); line-height: 0; color: white; text-align: left; width: 100%; max-width: 340px; margin: 10px auto 0 auto; opacity: 0.9; }
+        .quote-line-graphic { border: none; border-top: 1px solid rgba(255,255,255,0.3); width: 100%; max-width: 340px; margin: 0 auto 30px auto; }
 
-        /* THE VOWS STYLING */
-        .vows-title-block { font-family: var(--font-heading); font-size: 40px; font-weight: 700; letter-spacing: 2px; text-align: right; max-width: 340px; margin: 0 auto; line-height: 1.1; color: white; }
-        .vows-paragraph { font-family: var(--font-serif); font-size: 16px; line-height: 1.7; text-align: justify; max-width: 340px; margin: 20px auto; color: rgba(255,255,255,0.9); }
+        .vows-title-block { font-family: var(--font-heading); font-size: 40px; font-weight: 700; letter-spacing: 2px; text-align: right; width: 100%; max-width: 340px; margin: 0 auto; line-height: 1.1; color: white; }
+        .vows-paragraph { font-family: var(--font-serif); font-size: 16px; line-height: 1.7; text-align: justify; max-width: 340px; margin: 20px auto 0 auto; color: rgba(255,255,255,0.9); }
 
         /* SEKSI VIDEO */
-        .sec-cinema-video { 
-            min-height: auto; 
-            background-color: #1a1a1a; 
-            display: flex; 
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center; 
-            padding: 10px 24px 60px 24px; 
-            z-index: 5; 
-        }
-        .video-box-pax { 
-            width: 90vw; 
-            max-width: 340px; 
-            height: auto; 
-            aspect-ratio: 16/10; 
-            border-radius: 2px; 
-            overflow: hidden; 
-            box-shadow: 0 5px 25px rgba(0,0,0,0.6); 
-        }
+        .sec-cinema-video { min-height: auto; background-color: #1a1a1a; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 10px 24px 60px 24px; z-index: 5; }
+        .video-box-pax { width: 90vw; max-width: 340px; height: auto; aspect-ratio: 16/10; border-radius: 2px; overflow: hidden; box-shadow: 0 5px 25px rgba(0,0,0,0.6); }
         .video-box-pax video { width: 100%; height: 100%; object-fit: cover; }
         .video-notice-text { font-family: var(--font-serif); font-size: 13px; color: rgba(255, 255, 255, 0.8); margin-top: 25px; text-align: center; font-style: italic; letter-spacing: 0.5px; }
 
         /* --- STRUKTUR MEMPELAI --- */
-        .sec-couple { 
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            justify-content: flex-start;
-            padding-bottom: 0;
-        }
+        .sec-couple { display: flex; flex-direction: column; min-height: 100vh; justify-content: flex-start; padding-bottom: 0; }
+        
+        /* REVISI: PENERAPAN STRUKTUR GRADASI UNIVERSAL PADA ATAS DAN BAWAH FOTO UNTUK MENCEGAH KONTRAS TERPUTUS */
         .couple-image-wrap {
-            height: 65vh; 
-            position: relative;
-            width: 100%;
-            overflow: hidden;
+            height: 65vh; position: relative; width: 100%; overflow: hidden;
+        }
+        .couple-image-wrap::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 22%;
+            background: linear-gradient(to bottom, #1a1a1a 0%, transparent 100%); z-index: 3; pointer-events: none;
+        }
+        .couple-image-wrap-groom::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 22%;
+            background: linear-gradient(to top, #ffffff 0%, transparent 100%); z-index: 3; pointer-events: none;
+        }
+        .couple-image-wrap-bride::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 22%;
+            background: linear-gradient(to top, #f4ede4 0%, transparent 100%); z-index: 3; pointer-events: none;
         }
         
-        /* THE GROOM TEXT CONTAINER (LIGHT THEME) */
+        /* THE GROOM TEXT CONTAINER */
         .couple-text-wrap-groom {
-            height: 35vh; 
-            background: #ffffff; 
-            color: #000000; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px 24px;
-            text-align: center;
-            position: relative;
-            z-index: 5;
+            height: 35vh; background: #ffffff; color: #000000; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px 24px; text-align: center; position: relative; z-index: 5;
         }
 
-        /* THE BRIDE TEXT CONTAINER (WARM IVORY THEME) */
+        /* THE BRIDE TEXT CONTAINER */
         .couple-text-wrap-bride {
-            height: 35vh; 
-            background: #f4ede4; 
-            color: #000000; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px 24px;
-            text-align: center;
-            position: relative;
-            z-index: 5;
+            height: 35vh; background: #f4ede4; color: #000000; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px 24px; text-align: center; position: relative; z-index: 5;
         }
 
-        /* ANIMASI REVEAL SMOOTH IN-OUT TEXT-IN */
+        /* ENGINE ANIMASI IN-OUT TEXT-IN SMOOTH */
         .reveal-smooth {
-            opacity: 0;
-            transform: translateY(35px);
-            filter: blur(4px);
-            transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), 
-                        transform 1s cubic-bezier(0.25, 1, 0.5, 1), 
-                        filter 1s cubic-bezier(0.25, 1, 0.5, 1);
+            opacity: 0; transform: translateY(35px); filter: blur(4px);
+            transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1s cubic-bezier(0.25, 1, 0.5, 1), filter 1s cubic-bezier(0.25, 1, 0.5, 1);
             will-change: transform, opacity, filter;
         }
-        .reveal-smooth.active {
-            opacity: 1;
-            transform: translateY(0);
-            filter: blur(0);
-        }
+        .reveal-smooth.active { opacity: 1; transform: translateY(0); filter: blur(0); }
 
         .couple-graphic-line { width: 180px; border: none; border-top: 1px solid rgba(0, 0, 0, 0.2); margin-bottom: 12px; }
-
         .couple-title-dark { font-family: var(--font-heading); font-size: 26px; letter-spacing: 3px; font-weight: 700; color: #000000; margin-bottom: 8px; }
         .couple-name-dark { font-family: var(--font-serif); font-size: 20px; font-weight: 600; color: #111111; margin-bottom: 8px; }
         .couple-parents-dark { font-family: var(--font-serif); font-size: 14px; color: #444444; line-height: 1.6; font-weight: 400; font-style: italic; }
@@ -224,166 +187,73 @@
         }
         .btn-instagram-link:hover { color: var(--accent-gold); border-color: var(--accent-gold); }
 
-        /* SEKSI TRANSISI "WITH LOVE" DIANTARA GROOM & BRIDE */
+        /* --- REVISI: SEKSI TRANSISI "WITH LOVE" BERGRADASI MELELEH HALUS DENGAN FONT PUTIH --- */
         .sec-divider-love {
-            min-height: 22vh;
-            background: #1a1a1a; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            z-index: 6;
+            min-height: 25vh;
+            /* Perubahan: Efek gradasi transisi hitam dari alas putih milik Groom menuju dasar hitam legam */
+            background: linear-gradient(to bottom, #ffffff 0%, #1a1a1a 45%, #1a1a1a 100%); 
+            display: flex; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 6;
+            margin-top: -1px;
         }
-        .with-love-script {
-            font-family: var(--font-script);
-            font-size: 52px;
-            color: var(--accent-gold); 
-            letter-spacing: 1px;
-            font-weight: 400;
+        .with-love-script { 
+            font-family: var(--font-script); font-size: 52px; 
+            color: #ffffff; /* Perubahan: Font diubah ke warna putih bersih sesuai instruksi gambar 283742.jpg */
+            letter-spacing: 1px; font-weight: 400; 
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
         }
 
-        /* --- REVISI TOTAL SEKSI ACARA DAN LOKASI CINEMATIC --- */
-        .sec-masterpiece-events {
-            background: #000000;
-            color: #ffffff;
-            padding: 0 0 60px 0;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 6;
+        /* SEKSI ACARA DAN LOKASI CINEMATIC */
+        .sec-masterpiece-events { background: #000000; color: #ffffff; padding: 0 0 60px 0; text-align: center; display: flex; flex-direction: column; align-items: center; z-index: 6; }
+        
+        /* --- REVISI: PENAMBAHAN KANTONG CAMPURAN GRADASI HITAM KE ATAS MENDEKATI TEKS INSTAGRAM BRIDE --- */
+        .events-gradient-header { 
+            width: 100vw; 
+            padding: 85px 20px 40px 20px; /* Ditambahkan padding vertikal ke atas untuk menarik gradasi bayangan */
+            /* Perubahan: Gradasi dirancang langsung pekat ke hitam dari warna dasar Bride (#f4ede4) sejak awal checkpoint */
+            background: linear-gradient(to bottom, #f4ede4 0%, #000000 35%, #000000 100%); 
+            display: flex; justify-content: center; align-items: center;
+            margin-top: -2px;
         }
+        .events-main-title { font-family: var(--font-script); font-size: clamp(28px, 6vw, 44px); color: #ffffff; font-weight: 400; letter-spacing: 1px; text-shadow: 0 2px 15px rgba(225,225,225,0.1); padding: 0 20px; }
+        
+        .events-slideshow-container { width: 100vw; height: 55vh; position: relative; overflow: hidden; margin-bottom: 50px; box-shadow: inset 0 -30px 40px #000000, inset 0 30px 40px #000000; }
+        /* Pembatas Gradasi Halus Atas & Bawah Slideshow Gallery Event */
+        .events-slideshow-container::before { content: ''; position: absolute; top:0; left:0; width:100%; height:20%; background: linear-gradient(to bottom, #000 0%, transparent 100%); z-index:3; }
+        .events-slideshow-container::after { content: ''; position: absolute; bottom:0; left:0; width:100%; height:20%; background: linear-gradient(to top, #000 0%, transparent 100%); z-index:3; }
 
-        /* Gradasi Atas Menyatu Mulus dengan Sesi The Bride */
-        .events-gradient-header {
-            width: 100vw;
-            height: 15vh;
-            background: linear-gradient(to bottom, #f4ede4 0%, #000000 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        .event-block-detail { max-width: 350px; width: 90%; margin-bottom: 55px; display: flex; flex-direction: column; align-items: center; }
+        .event-custom-icon { color: var(--accent-gold); font-size: 32px; margin-bottom: 15px; filter: drop-shadow(0 2px 5px rgba(229,193,88,0.3)); }
+        .event-heading-type { font-family: var(--font-heading); font-size: 22px; letter-spacing: 4px; font-weight: 700; color: #ffffff; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 6px; width: 100%; }
+        .event-datetime-serif { font-family: var(--font-serif); font-size: 18px; font-style: italic; color: var(--accent-gold); margin-bottom: 4px; letter-spacing: 1px; }
+        .event-time-sans { font-family: var(--font-sans); font-size: 14px; font-weight: 500; color: #ffffff; margin-bottom: 16px; letter-spacing: 1px; }
+        .event-venue-name { font-family: var(--font-sans); font-size: 15px; font-weight: 600; color: #ffffff; margin-bottom: 4px; }
+        .event-venue-address { font-family: var(--font-serif); font-size: 14px; color: #cccccc; line-height: 1.6; margin-bottom: 20px; }
+        .btn-maps-outline { background: transparent; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.7); padding: 10px 24px; font-family: var(--font-serif); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: 0.3s ease; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
+        .btn-maps-outline:hover { background: #ffffff; color: #000000; border-color: #ffffff; box-shadow: 0 4px 15px rgba(255,255,255,0.2); }
 
-        /* Judul Kustom Mewah Khas Pernikahan */
-        .events-main-title {
-            font-family: var(--font-script);
-            font-size: clamp(28px, 6vw, 44px);
-            color: #ffffff;
-            font-weight: 400;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 15px rgba(225,225,225,0.1);
-            padding: 0 20px;
-            margin-bottom: 30px;
-        }
+        /* TRANSISI GRADASI HITAM SEMPURNA */
+        .sec-final-divider { min-height: 15vh; background: linear-gradient(to bottom, #000000 0%, #F1ECE6 100%); z-index: 6; }
 
-        /* Slideshow Kontinu 3 Foto di Bawah Judul */
-        .events-slideshow-container {
-            width: 100vw;
-            height: 55vh;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 50px;
-            box-shadow: inset 0 -30px 40px #000000, inset 0 30px 40px #000000;
-        }
-
-        /* Detil Informasi Acara Kristen & Batak Karo */
-        .event-block-detail {
-            max-width: 350px;
-            width: 90%;
-            margin-bottom: 55px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Ornamen Batak Karo & Gereja Custom SVG Icon */
-        .event-custom-icon {
-            color: var(--accent-gold);
-            font-size: 32px;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 2px 5px rgba(229,193,88,0.3));
-        }
-
-        .event-heading-type {
-            font-family: var(--font-heading);
-            font-size: 22px;
-            letter-spacing: 4px;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding-bottom: 6px;
-            width: 100%;
-        }
-
-        .event-datetime-serif {
-            font-family: var(--font-serif);
-            font-size: 18px;
-            font-style: italic;
-            color: var(--accent-gold);
-            margin-bottom: 4px;
-            letter-spacing: 1px;
-        }
-
-        .event-time-sans {
-            font-family: var(--font-sans);
-            font-size: 14px;
-            font-weight: 500;
-            color: #ffffff;
-            margin-bottom: 16px;
-            letter-spacing: 1px;
-        }
-
-        .event-venue-name {
-            font-family: var(--font-sans);
-            font-size: 15px;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 4px;
-        }
-
-        .event-venue-address {
-            font-family: var(--font-serif);
-            font-size: 14px;
-            color: #cccccc;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        /* Tombol Google Maps Minimalis Putih Sesuai Gambar */
-        .btn-maps-outline {
-            background: transparent;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            padding: 10px 24px;
-            font-family: var(--font-serif);
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-        }
-        .btn-maps-outline:hover {
-            background: #ffffff;
-            color: #000000;
-            border-color: #ffffff;
-            box-shadow: 0 4px 15px rgba(255,255,255,0.2);
-        }
-
-        /* SEKSI RSVP & GIFT */
-        .sec-rsvp { background-color: #F1ECE6; justify-content: center; padding: 60px 0; }
+        /* SEKSI RSVP */
+        .sec-rsvp { background-color: #F1ECE6; justify-content: center; padding: 20px 0 80px 0; z-index: 6; }
         .rsvp-form input, .rsvp-form select { width: 100%; padding: 14px; margin: 8px 0; border: 1px solid #CCC; border-radius: 10px; font-family: inherit; font-size: 14px; background: white; }
         h2.section-title { font-family: var(--font-serif); font-size: 26px; color: var(--primary); letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
         p.section-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
 
-        .sec-gift { background-image: linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0.4)), url('bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed; justify-content: center; padding: 60px 0; }
-        .bank-card { background: white; border-radius: 12px; padding: 20px; margin: 15px 0; border-top: 4px solid var(--primary); text-align: left; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; }
+        /* SEKSI WEDDING GIFT */
+        .sec-gift { background-image: linear-gradient(rgba(20, 20, 20, 0.75), rgba(20, 20, 20, 0.85)), url('bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed; justify-content: center; align-items: center; padding: 80px 24px; z-index: 6; }
+        .gift-content-wrap { max-width: 450px; width: 100%; text-align: center; }
+        .gift-main-icon-pax { font-size: 42px; color: var(--accent-gold); margin-bottom: 12px; filter: drop-shadow(0 2px 10px rgba(229,193,88,0.3)); }
+        .gift-title-text { font-family: var(--font-heading); font-size: 28px; color: #ffffff; letter-spacing: 4px; margin-bottom: 18px; text-transform: uppercase; }
+        .gift-paragraph-quote { font-family: var(--font-serif); font-size: 15px; color: rgba(255, 255, 255, 0.9); line-height: 1.8; margin-bottom: 30px; text-align: center; }
+        
+        .btn-trigger-gift-box { background: transparent; color: var(--accent-gold); border: 1px solid var(--accent-gold); padding: 14px 35px; font-family: var(--font-serif); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; border-radius: 40px; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; transition: all 0.4s ease; box-shadow: 0 4px 15px rgba(229,193,88,0.1); }
+        .btn-trigger-gift-box:hover { background: var(--accent-gold); color: #000000; box-shadow: 0 4px 20px rgba(229,193,88,0.4); transform: translateY(-2px); }
+
+        #gift-accounts-area { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease; width: 100%; }
+        #gift-accounts-area.show { max-height: 500px; opacity: 1; margin-top: 30px; }
+
+        .bank-card { background: #ffffff; border-radius: 12px; padding: 20px; margin: 15px 0; border-top: 4px solid var(--primary); text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.3); position: relative; }
         .bank-name { font-family: var(--font-serif); font-weight: 600; font-size: 15px; color: var(--primary); letter-spacing: 1px; }
         .account-number { font-family: var(--font-sans); font-size: 18px; font-weight: 600; color: #333; margin: 6px 0; letter-spacing: 1px; }
         .account-holder { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -432,20 +302,18 @@
                 <div class="slide" style="background-image: url('prolog4.jpg');"></div>
             </div>
 
-            <div class="reveal-smooth">
+            <div class="prologue-text-wrap reveal-smooth">
                 <div class="prolog-name-script">Alder & Lelly</div>
                 <p class="prolog-verse-text">”Tidak baik, kalau manusia itu seorang diri saja. Aku akan menjadikan penolong baginya, yang sepadan dengan dia”</p>
                 <p class="prolog-verse-reference">Kejadian 2:18</p>
-            </div>
 
-            <div class="countdown-container-flat reveal-smooth">
-                <div class="countdown-item-flat"><span id="days">00</span><p>Days</p></div>
-                <div class="countdown-item-flat"><span id="hours">00</span><p>Hours</p></div>
-                <div class="countdown-item-flat"><span id="minutes">00</span><p>Minutes</p></div>
-                <div class="countdown-item-flat"><span id="seconds">00</span><p>Seconds</p></div>
-            </div>
+                <div class="countdown-container-flat">
+                    <div class="countdown-item-flat"><span id="days">00</span><p>Days</p></div>
+                    <div class="countdown-item-flat"><span id="hours">00</span><p>Hours</p></div>
+                    <div class="countdown-item-flat"><span id="minutes">00</span><p>Minutes</p></div>
+                    <div class="countdown-item-flat"><span id="seconds">00</span><p>Seconds</p></div>
+                </div>
 
-            <div class="reveal-smooth" style="width: 100%;">
                 <div class="quote-icon-graphic">“</div>
                 <hr class="quote-line-graphic">
                 <div class="vows-title-block">THE<br>VOWS</div>
@@ -465,7 +333,8 @@
 
         <!-- 🌟 HALAMAN KEEMPAT: THE GROOM -->
         <section class="sec-couple">
-            <div class="couple-image-wrap">
+            <!-- Note Kapital Ekstensi .JPG Dipertahankan Aman, Ditambah Masking Atas Bawah -->
+            <div class="couple-image-wrap couple-image-wrap-groom">
                 <div class="slideshow-bg">
                     <div class="slide active" style="background-image: url('groom1.JPG');"></div>
                     <div class="slide" style="background-image: url('groom2.JPG');"></div>
@@ -483,7 +352,7 @@
         </section>
 
 
-        <!-- 🌟 POSISI TRANSISI: "WITH LOVE" DI ANTARA GROOM & BRIDE -->
+        <!-- 🌟 POSISI TRANSISI: LELUR GRADASI UNTUK MENYATUKAN GROOM DENGAN WITH LOVE -->
         <section class="sec-divider-love">
             <div class="with-love-script reveal-smooth">with love</div>
         </section>
@@ -491,7 +360,8 @@
 
         <!-- 🌟 HALAMAN KELIMA: THE BRIDE -->
         <section class="sec-couple">
-            <div class="couple-image-wrap">
+            <!-- Note Kapital Ekstensi .JPG Dipertahankan Aman, Ditambah Masking Atas Bawah -->
+            <div class="couple-image-wrap couple-image-wrap-bride">
                 <div class="slideshow-bg">
                     <div class="slide active" style="background-image: url('bride1.JPG');"></div>
                     <div class="slide" style="background-image: url('bride2.JPG');"></div>
@@ -509,14 +379,13 @@
         </section>
 
 
-        <!-- 🌟 REVISI TOTAL: HALAMAN DETIL WAKTU & LOKASI ACARA CINEMATIC (SESUAI REQUEST LENGKAP) -->
+        <!-- 🌟 SEKSI ACARA DAN LOKASI: PENINGKATAN CAMPURAN GRADASI HITAM KE ATAS MENJAGA KETERBACAAN TEKS -->
         <section class="sec-masterpiece-events">
-            <!-- Header Gradasi Halus dari Ivory Menuju Hitam -->
             <div class="events-gradient-header">
                 <div class="events-main-title reveal-smooth">Jadilah bagian dari hari istimewa kami</div>
             </div>
 
-            <!-- Slideshow Kontinu 3 Foto (Gunakan nama file aset event1.jpg, event2.jpg, event3.jpg) -->
+            <!-- Slideshow Kontinu (event1.jpg, event2.jpg, event3.jpg) dengan Masking Gradasi Atas Bawah -->
             <div class="events-slideshow-container reveal-smooth">
                 <div class="slideshow-bg">
                     <div class="slide active" style="background-image: url('event1.jpg');"></div>
@@ -527,7 +396,6 @@
 
             <!-- DETIL ACARA 1: PEMBERKATAN -->
             <div class="event-block-detail reveal-smooth">
-                <!-- Icon Gereja Premium -->
                 <div class="event-custom-icon"><i class="fas fa-church"></i></div>
                 <div class="event-heading-type">PEMBERKATAN</div>
                 <div class="event-datetime-serif">JUMAT, 11 Juli 2026</div>
@@ -535,15 +403,13 @@
                 <p style="font-size: 13px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Acara akan berlangsung di</p>
                 <div class="event-venue-name">GBKP Rgn. Jalan Kotacane</div>
                 <div class="event-venue-address">Jln. Kotacane, No. 311, Kabanjahe, Karo, Sumatera Utara.</div>
-                <!-- Tombol Navigasi Google Maps Outlined -->
                 <a href="https://maps.google.com/?q=GBKP+Rgn+Jalan+Kotacane+Kabanjahe" target="_blank" class="btn-maps-outline">
                     <i class="fas fa-map-marker-alt"></i> Google Maps
                 </a>
             </div>
 
-            <!-- DETIL ACARA 2: ACARA ADAT BATAK KARO -->
+            <!-- DETIL ACARA 2: ACARA ADAT -->
             <div class="event-block-detail reveal-smooth">
-                <!-- Icon Rumah Adat Tradisional Batak (Custom SVG Masterpiece Shape) -->
                 <svg class="event-custom-icon" viewBox="0 0 100 60" width="38" height="38" style="fill:none; stroke:currentColor; stroke-width:2.5; stroke-linecap:round;">
                     <path d="M10,25 Q50,45 90,25 L82,55 L18,55 Z" />
                     <path d="M22,55 L50,22 L78,55" />
@@ -555,12 +421,15 @@
                 <p style="font-size: 13px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Acara akan berlangsung di</p>
                 <div class="event-venue-name">Jambur Limpit/Wisma Limpit</div>
                 <div class="event-venue-address">Jln. Rakoetta Brahmana, Kabanjahe. Karo. Sumatera Utara.</div>
-                <!-- Tombol Navigasi Google Maps Outlined -->
                 <a href="https://maps.google.com/?q=Jambur+Limpit+Wisma+Limpit+Kabanjahe" target="_blank" class="btn-maps-outline">
                     <i class="fas fa-map-marker-alt"></i> Google Maps
                 </a>
             </div>
         </section>
+
+
+        <!-- TRANSISI PEMBATAS ATAS RSVP -->
+        <div class="sec-final-divider"></div>
 
 
         <!-- 🌟 HALAMAN KEENAM: RSVP FORM -->
@@ -579,24 +448,34 @@
         </section>
 
 
-        <!-- 🌟 HALAMAN KETUJUH: WEDDING GIFT -->
+        <!-- 🌟 HALAMAN KETUJUH: WEDDING GIFT (MURNI SENSASI GRADASI MATANG) -->
         <section class="sec-gift">
-            <div class="luxury-card reveal-smooth">
-                <h2 class="section-title" style="color: var(--primary);">Wedding Gift</h2>
-                <p class="section-desc">Doa restu Anda adalah karunia terindah. Namun jika Anda ingin memberikan tanda kasih, dapat melalui rekening di bawah ini:</p>
-                
-                <div class="bank-card">
-                    <button class="btn-copy" onclick="copyText('1234567890')">Salin</button>
-                    <div class="bank-name">BANK BCA</div>
-                    <div class="account-number" id="num-1">1234567890</div>
-                    <div class="account-holder">a.n. Alder Manase</div>
-                </div>
+            <div class="gift-content-wrap reveal-smooth">
+                <div class="gift-main-icon-pax"><i class="fas fa-gift"></i></div>
+                <h2 class="gift-title-text">Wedding Gift</h2>
+                <p class="gift-paragraph-quote">
+                    Kehadiran dan doa restu Bapak/Ibu/Saudara/i merupakan anugerah terindah bagi kami. Namun, apabila Bapak/Ibu/Saudara/i tidak dapat hadir dan hendak memberikan tanda kasih kepada kami, dapat menggunakan fitur di bawah ini.
+                </p>
+                <button class="btn-trigger-gift-box" onclick="toggleGiftAccountsEngine()">
+                    <i class="fas fa-gift" style="font-size: 13px;"></i> KIRIM HADIAH
+                </button>
 
-                <div class="bank-card">
-                    <button class="btn-copy" onclick="copyText('0987654321')">Salin</button>
-                    <div class="bank-name">BANK MANDIRI</div>
-                    <div class="account-number" id="num-2">0987654321</div>
-                    <div class="account-holder">a.n. Lelly Sabet Sihombing</div>
+                <div id="gift-accounts-area">
+                    <!-- REKENING 1 -->
+                    <div class="bank-card">
+                        <button class="btn-copy" onclick="copyText('1234567890')">Salin</button>
+                        <div class="bank-name">BANK BCA</div>
+                        <div class="account-number" id="num-1">1234567890</div>
+                        <div class="account-holder">a.n. Alder Manase</div>
+                    </div>
+
+                    <!-- REKENING 2 -->
+                    <div class="bank-card">
+                        <button class="btn-copy" onclick="copyText('0987654321')">Salin</button>
+                        <div class="bank-name">BANK MANDIRI</div>
+                        <div class="account-number" id="num-2">0987654321</div>
+                        <div class="account-holder">a.n. Lelly Sabet Sihombing</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -625,7 +504,15 @@
             else { audio.pause(); document.getElementById('music-box').innerText = "🔇"; }
         }
 
-        // --- ENGINE PARTICLE DUST (DEBU EMAS) ---
+        function toggleGiftAccountsEngine() {
+            const giftArea = document.getElementById('gift-accounts-area');
+            giftArea.classList.toggle('show');
+            if(giftArea.classList.contains('show')) {
+                setTimeout(() => { window.scrollBy({ top: 180, behavior: 'smooth' }); }, 200);
+            }
+        }
+
+        // --- ENGINE PARTICLE DUST ---
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -664,7 +551,7 @@
         }
         loop();
 
-        // --- SLIDESHOW ENGINE (2.3 DETIK CROSSFADE) ---
+        // --- SLIDESHOW ENGINE ---
         function startMultiSlideshow(containerSelector) {
             const containers = document.querySelectorAll(containerSelector);
             containers.forEach(container => {
@@ -679,7 +566,7 @@
         }
         startMultiSlideshow('.slideshow-bg');
 
-        // --- ENGINE ADVANCED IN-OUT TEXT ANIMATION (INTERSECTION OBSERVER) ---
+        // --- ENGINE IN-OUT ANIMASI PREMIUM ---
         const smoothObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -691,12 +578,12 @@
         }, { 
             root: null,
             threshold: 0.1, 
-            rootMargin: "0px 0px -50px 0px" 
+            rootMargin: "0px 0px -40px 0px" 
         });
 
         document.querySelectorAll('.reveal-smooth').forEach(el => smoothObserver.observe(el));
 
-        // --- ENGINE HITUNG MUNDUR ACARA (TARGET: 11 JULI 2026) ---
+        // --- ENGINE HITUNG MUNDUR (TARGET: JUMAT, 11 JULI 2026 JAM 14:00 WIB) ---
         function countdownEngine() {
             const targetDate = new Date("July 11, 2026 14:00:00").getTime();
             
@@ -734,7 +621,7 @@
             });
         }
 
-        // --- RSVP WHATSAPP AUTOMATION ---
+        // --- RSVP WHATSAPP ---
         function prosesRSVP() {
             const nomorWA = "6281234567890"; 
             const inputNama = document.getElementById('rsvp-nama').value;
