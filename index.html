@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding Masterpiece of Alder & Lelly</title>
+    <title>The Wedding of Alder & Lelly</title>
     
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -82,7 +82,7 @@
         .btn-open:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.1); border-color: #ffffff; }
 
         /* --- STRUCTURE CONTINUOUS STREAM --- */
-        .main-stream { position: relative; width: 100%; z-index: 2; }
+        .main-stream { relative; width: 100%; z-index: 2; }
         section { position: relative; min-height: 100vh; width: 100vw; display: flex; flex-direction: column; box-sizing: border-box; overflow: hidden; }
 
         /* --- HALAMAN KEDUA: STRUKTUR PROLOGUE --- */
@@ -170,10 +170,9 @@
         .sec-masterpiece-events { background: #000000; color: #ffffff; padding: 0 0 40px 0; text-align: center; display: flex; flex-direction: column; align-items: center; z-index: 6; }
         .events-gradient-header { width: 100vw; padding: 85px 20px 40px 20px; background: linear-gradient(to bottom, #f4ede4 0%, #000000 35%, #000000 100%); display: flex; justify-content: center; align-items: center; margin-top: -2px; }
         
-        /* REVISI: UPSIZE 1X + GOLD SHIMMER */
         .events-main-title { 
             font-family: var(--font-script); 
-            font-size: clamp(52px, 11vw, 84px); /* Ukuran dinaikkan 1x lipat */
+            font-size: clamp(52px, 11vw, 84px); 
             font-weight: 400; letter-spacing: 1px; line-height: 1.2;
         }
         
@@ -194,26 +193,15 @@
         .btn-maps-outline { background: transparent; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.7); padding: 10px 24px; font-family: var(--font-serif); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: 0.3s ease; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
         .btn-maps-outline:hover { background: #ffffff; color: #000000; border-color: #ffffff; box-shadow: 0 4px 15px rgba(255,255,255,0.2); }
 
-        /* --- REVISI: FULLSCREEN STORY.JPG DENGAN GRADASI HALUS ATAS BAWAH --- */
+        /* --- FULLSCREEN STORY.JPG DENGAN GRADASI HALUS ATAS BAWAH --- */
         .wave-gold-separator { width: 100vw; height: auto; display: block; background: #000; margin-top: -2px; }
         .sec-intermission-cinema { background: #000000; width: 100vw; display: flex; flex-direction: column; align-items: center; z-index: 6; position: relative; }
         .intermission-video-box { width: 100vw; height: 33.33vh; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        .intermission-logo-container {
-            width: 100vw; height: 100vh; position: relative; overflow: hidden; background: #000;
-        }
-        .intermission-logo-img {
-            width: 100vw; height: 100vh; object-fit: cover; display: block;
-        }
-        /* Lapisan Gradasi Meleleh Atas Bawah */
-        .intermission-logo-container::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 25%;
-            background: linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.6) 40%, transparent 100%); z-index: 2;
-        }
-        .intermission-logo-container::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 25%;
-            background: linear-gradient(to top, #0d0d0d 0%, rgba(13,13,13,0.6) 40%, transparent 100%); z-index: 2;
-        }
+        .intermission-logo-container { width: 100vw; height: 100vh; position: relative; overflow: hidden; background: #000; }
+        .intermission-logo-img { width: 100vw; height: 100vh; object-fit: cover; display: block; }
+        .intermission-logo-container::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 25%; background: linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.6) 40%, transparent 100%); z-index: 2; }
+        .intermission-logo-container::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 25%; background: linear-gradient(to top, #0d0d0d 0%, rgba(13,13,13,0.6) 40%, transparent 100%); z-index: 2; }
 
         /* STRUKTUR TIMELINE LOVE STORY */
         .sec-love-story { background: #0d0d0d; color: #ffffff; padding: 80px 24px; z-index: 6; display: flex; flex-direction: column; align-items: center; }
@@ -239,27 +227,21 @@
         .btn-submit-rsvp-gray { width: 100%; padding: 14px; background: #999999; color: #ffffff; font-family: var(--font-serif); font-size: 14px; letter-spacing: 1px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.3s; margin-top: 10px; text-transform: uppercase; }
         .btn-submit-rsvp-gray:hover { background: #808080; }
 
-        /* --- REVISI: DIALOG BOX UCAPAN TAMU (WISHES STATE AKTUAL KOSONG EMAS ARISTOKRAT) --- */
-        .wishes-container-dialog {
-            width: 100%; max-width: 400px; margin: 40px auto 10px auto; text-align: left;
-        }
-        .wishes-dialog-header-title {
-            font-family: var(--font-heading); font-size: 20px; color: #ffffff; letter-spacing: 3px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; text-transform: uppercase;
-        }
-        .wishes-empty-box-frame {
-            background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(225, 225, 225, 0.15);
-            padding: 30px 20px; border-radius: 8px; text-align: center;
-        }
-        .wishes-empty-text-serif {
-            font-family: var(--font-serif); font-size: 14px; font-style: italic; color: rgba(255,255,255,0.5); letter-spacing: 0.5px;
-        }
+        .wishes-container-dialog { width: 100%; max-width: 400px; margin: 40px auto 10px auto; text-align: left; }
+        .wishes-dialog-header-title { font-family: var(--font-heading); font-size: 20px; color: #ffffff; letter-spacing: 3px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; text-transform: uppercase; }
+        .wishes-empty-box-frame { background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(225, 225, 225, 0.15); padding: 30px 20px; border-radius: 8px; text-align: center; }
+        .wishes-empty-text-serif { font-family: var(--font-serif); font-size: 14px; font-style: italic; color: rgba(255,255,255,0.5); letter-spacing: 0.5px; }
 
         /* FOTO PENUTUP RSVP DESAIN LENGKUNG ARCH */
         .rsvp-closing-image-container { width: 100vw; display: flex; justify-content: center; background: #0b0b0b; padding-bottom: 40px; }
         .rsvp-closing-arch-photo { width: 90vw; max-width: 400px; height: 55vh; object-fit: cover; border-radius: 0 0 200px 200px; box-shadow: 0 10px 35px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); }
 
-        /* SEKSI WEDDING GIFT */
-        .sec-gift { background-image: linear-gradient(rgba(20, 20, 20, 0.75), rgba(20, 20, 20, 0.85)), url('bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed; justify-content: center; align-items: center; padding: 80px 24px; z-index: 6; }
+        /* --- REVISI 1: GRADASI MELELEH MATANG WEDDING GIFT MENUJU GALLERY --- */
+        .sec-gift { 
+            /* Mengubah warna ujung bawah gradasi murni menjadi #111111 agar terikat serasi dengan seksi gallery */
+            background-image: linear-gradient(to bottom, rgba(20, 20, 20, 0.75) 0%, rgba(17, 17, 17, 1) 95%, #111111 100%), url('bg.jpg'); 
+            background-size: cover; background-position: center; background-attachment: fixed; justify-content: center; align-items: center; padding: 80px 24px; z-index: 6; 
+        }
         .gift-content-wrap { max-width: 450px; width: 100%; text-align: center; position: relative; z-index: 5; }
         .gift-main-icon-pax { font-size: 42px; color: var(--accent-gold); margin-bottom: 12px; filter: drop-shadow(0 2px 10px rgba(229,193,88,0.3)); }
         .gift-title-text { font-family: var(--font-heading); font-size: 28px; color: #ffffff; letter-spacing: 4px; margin-bottom: 18px; text-transform: uppercase; }
@@ -278,7 +260,7 @@
         .btn-copy { background: #F8F5F1; color: var(--primary); border: 1px solid var(--primary); padding: 6px 12px; font-size: 10px; font-weight: bold; border-radius: 6px; cursor: pointer; position: absolute; top: 20px; right: 20px; transition: 0.3s; text-transform: uppercase; }
         .btn-copy:hover { background: var(--primary); color: white; }
 
-        /* --- 5. LAMAN BARU: OUR GALLERY MURNI KOLASE DENGAN PREVIEW TIMEOUT --- */
+        /* --- REVISI 2: OUR GALLERY ASIMETRIS KOLASE GAYA EMAS --- */
         .sec-our-gallery {
             background: #111111; padding: 80px 16px; text-align: center; z-index: 6;
         }
@@ -286,31 +268,37 @@
             font-family: var(--font-heading); font-size: 32px; color: #ffffff; letter-spacing: 5px; margin-bottom: 35px;
         }
         .gallery-masonry-collage {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 480px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; max-width: 440px; margin: 0 auto; padding: 0 8px;
         }
-        /* Variasi ukuran petak foto kolase sesuai gambar 284449.jpg */
         .gallery-item-pax {
-            width: 100%; aspect-ratio: 3/4; overflow: hidden; border-radius: 3px; cursor: pointer; transition: transform 0.3s;
+            position: relative; overflow: hidden; border-radius: 8px; cursor: pointer; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.03);
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
-        .gallery-item-pax img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
-        .gallery-item-pax:hover img { transform: scale(1.05); }
-        .gallery-item-wide-block { grid-column: span 3; aspect-ratio: 16/10; }
+        .gallery-item-pax:hover { transform: scale(1.02); }
+        .gallery-item-pax img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        /* Pengaturan Dimensi Dinamis Variatif Pola Kolase Unik (Memperbaiki Kerusakan Tampilan 284626.jpg) */
+        .gallery-item-pax:nth-child(4n+1) { grid-column: span 2; aspect-ratio: 16/10; }
+        .gallery-item-pax:nth-child(4n+2) { grid-column: span 1; aspect-ratio: 1/1; }
+        .gallery-item-pax:nth-child(4n+3) { grid-column: span 1; aspect-ratio: 1/1; }
+        .gallery-item-pax:nth-child(4n+4) { grid-column: span 2; aspect-ratio: 16/11; }
 
-        /* Fullscreen Lightbox Overlay System */
+        /* Fullscreen Lightbox Overlay System (2 Detik Auto-Close Sesuai Request) */
         #gallery-lightbox-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.98); z-index: 100000; display: none;
-            justify-content: center; align-items: center; pointer-events: none;
+            background: rgba(0, 0, 0, 0.96); z-index: 100000; display: none;
+            justify-content: center; align-items: center; transition: all 0.3s ease;
         }
-        #lightbox-active-img { max-width: 100vw; max-height: 100vh; object-fit: contain; animation: zoomOverlayIn 0.25s ease-out; }
-        @keyframes zoomOverlayIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        #lightbox-active-img { max-width: 95vw; max-height: 90vh; object-fit: contain; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); animation: zoomOverlayIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        @keyframes zoomOverlayIn { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        /* --- 6. LAMAN BARU: UCAPAN TERIMA KASIH DENGAN GARIS EMAS TERBANG ORBIT --- */
+        /* --- REVISI 3: SEKSI UCAPAN TERIMA KASIH DENGAN ANIMASI BURUNG EMAS TERBANG --- */
         .sec-thank-you-cinematic {
-            background: #000000; padding: 100px 24px; text-align: center; z-index: 6; position: relative; overflow: hidden;
+            background: #000000; padding: 100px 24px 0 24px; text-align: center; z-index: 6; position: relative; overflow: hidden;
         }
         .thank-you-orbit-wrapper {
-            position: relative; max-width: 360px; margin: 0 auto; padding: 40px 20px;
+            position: relative; max-width: 360px; margin: 0 auto; padding: 40px 20px; z-index: 5;
         }
         .thank-you-main-title {
             font-family: var(--font-heading); font-size: 38px; color: #ffffff; letter-spacing: 6px; margin-bottom: 20px;
@@ -318,42 +306,45 @@
         .thank-you-body-paragraph {
             font-family: var(--font-serif); font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.8; text-align: center;
         }
-        .thanks-static-photo-box {
-            width: 90vw; max-width: 400px; height: auto; aspect-ratio: 16/10; object-fit: cover;
-            margin: 40px auto 0 auto; display: block; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-        }
 
-        /* Efek partikel garis emas terbang mengelilingi ucapan */
-        @keyframes goldLineOrbitAnimation {
-            0% { transform: rotate(0deg) translateX(140px) rotate(0deg); opacity: 0; }
+        /* Spesifikasi CSS Orbit & Flap Gerakan Sayap Burung Merpati Emas */
+        @keyframes birdOrbitPath {
+            0% { transform: rotate(0deg) translateX(130px) rotate(0deg); opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { transform: rotate(360deg) translateX(140px) rotate(-360deg); opacity: 0; }
+            100% { transform: rotate(360deg) translateX(130px) rotate(-360deg); opacity: 0; }
         }
-        .flying-gold-streak-line {
-            position: absolute; width: 4px; height: 4px; background: var(--accent-gold); border-radius: 50%;
-            box-shadow: 0 0 14px 4px var(--accent-gold), 0 0 30px 2px #ffffff;
-            animation: goldLineOrbitAnimation 7s linear infinite; pointer-events: none; top: 45%; left: 48%;
+        @keyframes birdWingFlap {
+            0%, 100% { transform: scaleY(1) rotate(0deg); }
+            50% { transform: scaleY(-0.3) rotate(-15deg); }
+        }
+        .flying-gold-bird-pax {
+            position: absolute; color: var(--accent-gold); font-size: 18px;
+            animation: birdOrbitPath 9s linear infinite; pointer-events: none;
+            top: 45%; left: 46%; filter: drop-shadow(0 2px 8px rgba(229,193,88,0.6));
+        }
+        .flying-gold-bird-pax i {
+            display: inline-block; animation: birdWingFlap 0.35s ease-in-out infinite;
         }
 
-        /* --- 7. PENUTUP BRAND LOGO DENGAN RADIAL GRADASI VIGNETTE --- */
+        /* --- REVISI 4: FOTO UTUH TANPA TERPOTONG HINGGA GARIS BATAS BAWAH BRAND --- */
+        .thanks-static-photo-box {
+            width: 100vw; max-width: 450px; 
+            height: auto; /* Diubah dari aspek-rasio kaku menjadi auto agar foto terekspos seutuhnya */
+            object-fit: contain; 
+            margin: 50px auto 0 auto; display: block; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            border-bottom: 2px solid rgba(229, 193, 88, 0.25); /* Garis batas bawah emas halus sebelum logo brand */
+        }
+
+        /* PENUTUP BRAND LOGO DENGAN RADIAL GRADASI VIGNETTE */
         .sec-footer-brand-signature {
             background: #000000; padding: 60px 24px 40px 24px; text-align: center; z-index: 6; display: flex; flex-direction: column; align-items: center;
         }
-        .brand-logo-gradient-mask {
-            position: relative; width: 120px; height: 120px; display: flex; justify-content: center; align-items: center;
-        }
-        .brand-logo-gradient-mask img {
-            width: 100%; height: 100%; object-fit: contain; display: block; position: relative; z-index: 2;
-        }
-        /* Efek Ring Vignette Memudar Lembut di Sekeliling Logo Brand */
-        .brand-logo-gradient-mask::after {
-            content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
-            background: radial-gradient(circle, transparent 40%, #000000 72%); z-index: 3; pointer-events: none;
-        }
-        .footer-copyright-text {
-            font-family: var(--font-sans); font-size: 10px; color: #444444; letter-spacing: 1px; margin-top: 25px; text-transform: uppercase;
-        }
+        .brand-logo-gradient-mask { position: relative; width: 120px; height: 120px; display: flex; justify-content: center; align-items: center; }
+        .brand-logo-gradient-mask img { width: 100%; height: 100%; object-fit: contain; display: block; position: relative; z-index: 2; }
+        .brand-logo-gradient-mask::after { content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; background: radial-gradient(circle, transparent 40%, #000000 72%); z-index: 3; pointer-events: none; }
+        .footer-copyright-text { font-family: var(--font-sans); font-size: 10px; color: #444444; letter-spacing: 1px; margin-top: 25px; text-transform: uppercase; }
         .sec-final-divider { min-height: 10vh; background: linear-gradient(to bottom, #0b0b0b 0%, #111111 100%); z-index: 6; }
     </style>
 </head>
@@ -362,9 +353,9 @@
     <!-- DEBU EMAS CANVAS -->
     <canvas id="particle-canvas"></canvas>
 
-    <!-- LIGHTBOX OVERLAY GALERI (2 DETIK AUTO CLOSE) -->
+    <!-- LIGHTBOX OVERLAY GALERI (2 DETIK AUTO-CLOSE SYSTEM UTUH) -->
     <div id="gallery-lightbox-overlay">
-        <img id="lightbox-active-img" src="" alt="Fullscreen Preview">
+        <img id="lightbox-active-img" src="" alt="Masterpiece Fullscreen Preview">
     </div>
 
     <!-- AUDIO ENGINE -->
@@ -395,9 +386,9 @@
         <section class="sec-prologue">
             <div class="slideshow-bg">
                 <div class="slide active" style="background-image: url('prolog1.jpg');"></div>
-                <div class="slide" style="background-image: url('prolog2.JPG');"></div>
-                <div class="slide" style="background-image: url('prolog3.JPG');"></div>
-                <div class="slide" style="background-image: url('prolog4.JPG');"></div>
+                <div class="slide" style="background-image: url('prolog2.jpg');"></div>
+                <div class="slide" style="background-image: url('prolog3.jpg');"></div>
+                <div class="slide" style="background-image: url('prolog4.jpg');"></div>
             </div>
 
             <div class="prologue-viewport-spacer"></div>
@@ -417,7 +408,7 @@
                 <div class="quote-icon-graphic">“</div>
                 <hr class="quote-line-graphic">
                 <div class="vows-title-block">THE<br>VOWS</div>
-                <p class="vows-paragraph">Tuhan membuat segala sesuatu indah pada waktunya. Indah saat Dia mempertemukan, indah saat Dia menumbuhkan kasih, dan indah saat Dia mempersatukan putra-putri kami dalam suatu ikatan Pernikahan Kudus.</p>
+                <p class="vows-paragraph">Tuhan membuat segala sesuatu indah pada waktunya. Indah saat Dia mempertemukan, indah saat Dia menumbuhkan kasih, dan indah saat Dia mempersatukan kami dalam suatu ikatan Pernikahan Kudus.</p>
             </div>
         </section>
 
@@ -451,7 +442,7 @@
         </section>
 
 
-        <!-- 🌟 POSISI TRANSISI: REVISI WITH LOVE CAPITAL EMAS BERKILAU LUXURY -->
+        <!-- 🌟 POSISI TRANSISI WITH LOVE CAPITAL EMAS SHIMMER -->
         <section class="sec-divider-love">
             <div class="with-love-script luxury-gold-shimmer reveal-smooth">WITH LOVE</div>
         </section>
@@ -479,7 +470,6 @@
 
         <!-- 🌟 HALAMAN DETIL WAKTU & LOKASI ACARA -->
         <section class="sec-masterpiece-events">
-            <!-- REVISI: JUDUL ACARA UPSIZE + EMAS BERKILAU LUXURY -->
             <div class="events-gradient-header">
                 <div class="events-main-title luxury-gold-shimmer reveal-smooth">Jadilah bagian dari hari istimewa kami</div>
             </div>
@@ -537,7 +527,6 @@
                 <source src="video.mp4" type="video/mp4">
             </video>
             
-            <!-- REVISI: FOTO STORY.JPG JADI FULLSCREEN DAN BERGRADASI MELELEH ATAS BAWAH -->
             <div class="intermission-logo-container">
                 <img src="story.jpg" alt="Our Story Masterpiece Photo" class="intermission-logo-img">
             </div>
@@ -546,7 +535,7 @@
 
         <!-- TIMELINE LOVE STORY -->
         <section class="sec-love-story">
-            <h2 class="couple-title-dark reveal-smooth" style="color: #ffffff; font-size: 28px; letter-spacing: 4px;">OUR LOVE STORY</h2>
+            <h2 class="couple-title-dark reveal-smooth" style="color: #ffffff; font-size: 28px; letter-spacing: 4px;">FROM HELLO TO FOREVER</h2>
             <hr class="couple-graphic-line reveal-smooth" style="border-top: 1px solid var(--accent-gold); width: 100px; margin: 15px 0 30px 0;">
             
             <div class="story-timeline-axis">
@@ -612,7 +601,6 @@
                 <button class="btn-submit-rsvp-gray" onclick="prosesRSVP()">Submit Form</button>
             </div>
 
-            <!-- REVISI: KOTAK DIALOG UCAPAN TAMU (WISHES DIALOG BOX SEPERTI GAMBAR 284450.jpg) -->
             <div class="wishes-container-dialog reveal-smooth">
                 <div class="wishes-dialog-header-title">WISHES & PRAYERS</div>
                 <div class="wishes-empty-box-frame">
@@ -628,9 +616,9 @@
         </div>
 
 
-        <!-- SEKSI WEDDING GIFT -->
+        <!-- 🌟 SEKSI WEDDING GIFT (REVISI 1: BLENDING PERPINDAHAN BACKGROUND DENGAN GRADASI HALUS) -->
         <section class="sec-gift">
-            <div class="gift-content-wrap reveal-smooth">
+            <div class="gift-content-wrap">
                 <div class="gift-main-icon-pax"><i class="fas fa-gift"></i></div>
                 <h2 class="gift-title-text">Wedding Gift</h2>
                 <p class="gift-paragraph-quote">
@@ -641,7 +629,6 @@
                 </button>
 
                 <div id="gift-accounts-area">
-                    <!-- REKENING 1 -->
                     <div class="bank-card">
                         <button class="btn-copy" onclick="copyText('1234567890')">Salin</button>
                         <div class="bank-name">BANK BCA</div>
@@ -649,7 +636,6 @@
                         <div class="account-holder">a.n. Alder Manase</div>
                     </div>
 
-                    <!-- REKENING 2 -->
                     <div class="bank-card">
                         <button class="btn-copy" onclick="copyText('0987654321')">Salin</button>
                         <div class="bank-name">BANK MANDIRI</div>
@@ -661,47 +647,47 @@
         </section>
 
 
-        <!-- 🌟 5. LAMAN BARU: OUR GALLERY KOLASE INTERAKTIF PREVIEW 2 DETIK -->
+        <!-- 🌟 5. SEKSI: OUR GALLERY (REVISI 2: POLA ASIMETRIS KOLASE MEMPERBAIKI KENDALA GAMBAR 284626.jpg) -->
         <section class="sec-our-gallery">
             <h2 class="gallery-title-header luxury-gold-shimmer reveal-smooth">OUR GALLERY</h2>
             
             <div class="gallery-masonry-collage reveal-smooth">
-                <!-- Foto-foto Alur Sebelumnya -->
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="foto.jpg" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="prolog1.jpg" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="prolog2.JPG" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="prolog3.JPG" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="prolog4.JPG" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="groom1.JPG" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="groom2.JPG" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="groom3.JPG" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="bride1.JPG" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="bride2.JPG" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="bride3.JPG" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="event1.jpg" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="event2.jpg" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="event3.jpg" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="story.jpg" alt="Gallery"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="closing.jpg" alt="Gallery"></div>
+                <!-- Penyisipan Aset Foto Menyeluruh Terikat ke Fungsi Tunggal openGalleryLightbox -->
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="foto.jpg" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="prolog1.jpg" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="prolog2.JPG" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="prolog3.JPG" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="prolog4.JPG" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="groom1.JPG" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="groom2.JPG" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="groom3.JPG" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="bride1.JPG" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="bride2.JPG" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="bride3.JPG" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="event1.jpg" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="event2.jpg" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="event3.jpg" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="story.jpg" alt="Gallery"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="closing.jpg" alt="Gallery"></div>
                 
-                <!-- 6 Slot Foto Baru Kolase Galeri -->
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="gallery1.jpg" alt="Gallery New 1"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="gallery2.jpg" alt="Gallery New 2"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="gallery3.jpg" alt="Gallery New 3"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="gallery4.jpg" alt="Gallery New 4"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="gallery5.jpg" alt="Gallery New 5"></div>
-                <div class="gallery-item-pax" onclick="triggerLightboxEngine(this.querySelector('img').src)"><img src="gallery6.jpg" alt="Gallery New 6"></div>
+                <!-- Slot 6 Berkas Foto Kolase Baru -->
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="gallery1.jpg" alt="Gallery 1"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="gallery2.jpg" alt="Gallery 2"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="gallery3.jpg" alt="Gallery 3"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="gallery4.jpg" alt="Gallery 4"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="gallery5.jpg" alt="Gallery 5"></div>
+                <div class="gallery-item-pax" onclick="openGalleryLightbox(this.querySelector('img').src)"><img src="gallery6.jpg" alt="Gallery 6"></div>
             </div>
         </section>
 
 
-        <!-- 🌟 6. LAMAN BARU: UCAPAN TERIMA KASIH DENGAN GARIS EMAS TERBANG LOOP ORBIT -->
+        <!-- 🌟 6. SEKSI: UCAPAN TERIMA KASIH (REVISI 3: INTEGRASI ANIMASI BURUNG EMAS TERBANG ORBIT) -->
         <section class="sec-thank-you-cinematic">
             <div class="thank-you-orbit-wrapper reveal-smooth">
-                <!-- Partikel Garis Emas Terbang -->
-                <div class="flying-gold-streak-line"></div>
-                <div class="flying-gold-streak-line" style="animation-delay: -2s; animation-duration: 9s;"></div>
-                <div class="flying-gold-streak-line" style="animation-delay: -4.5s; animation-duration: 5.5s;"></div>
+                <!-- Burung Merpati Emas Flapping Sayap Meluncur Mengorbit Ucapan -->
+                <div class="flying-gold-bird-pax"><i class="fas fa-dove"></i></div>
+                <div class="flying-gold-bird-pax" style="animation-delay: -3s; animation-duration: 11s; top: 40%;"><i class="fas fa-dove"></i></div>
+                <div class="flying-gold-bird-pax" style="animation-delay: -6s; animation-duration: 7s; top: 50%;"><i class="fas fa-dove"></i></div>
                 
                 <h2 class="thank-you-main-title luxury-gold-shimmer">TERIMA KASIH</h2>
                 <p class="thank-you-body-paragraph">
@@ -709,12 +695,12 @@
                 </p>
             </div>
             
-            <!-- 1 Foto Statis Di Bawah Ucapan Terima Kasih -->
-            <img src="thanks.jpg" alt="Thank You Close Silhouette" class="thanks-static-photo-box reveal-smooth">
+            <!-- 🌟 REVISI 4: FOTO UTUH TANPA TERPOTONG HINGGA GARIS BATAS BAWAH SEBELUM LOGO BRAND -->
+            <img src="thanks.jpg" alt="Thank You Full Banner Portrait" class="thanks-static-photo-box reveal-smooth">
         </section>
 
 
-        <!-- TRANSISI AMAN MENUJU FOOTER BRAND -->
+        <!-- TRANSISI PEMBATAS AKHIR -->
         <div class="sec-final-divider"></div>
 
 
@@ -758,8 +744,8 @@
             }
         }
 
-        // --- INTERAKSI PREVIEW 2 DETIK KOLASE GALERI ---
-        let lightboxTimer;
+        // --- REVISI JAVASCRIPT LIGHTBOX ENGINE (SINKRONISASI TEPAT 2 DETIK TUTUP OTOMATIS) ---
+        let lightboxTimeout;
         function openGalleryLightbox(imgSrc) {
             const overlay = document.getElementById('gallery-lightbox-overlay');
             const activeImg = document.getElementById('lightbox-active-img');
@@ -767,10 +753,11 @@
             activeImg.src = imgSrc;
             overlay.style.display = 'flex';
             
+            // System Reset Timer Mengembalikan Ke Tampilan Kolase
             clearTimeout(lightboxTimeout);
             lightboxTimeout = setTimeout(() => {
                 overlay.style.display = 'none';
-            }, 2000); // Otomatis menutup kembali dalam durasi 2 detik murni
+            }, 2000); 
         }
 
         // --- ENGINE PARTICLE DUST ---
@@ -844,7 +831,7 @@
 
         document.querySelectorAll('.reveal-smooth').forEach(el => smoothObserver.observe(el));
 
-        // --- ENGINE HITUNG MUNDUR ACARA (TARGET: JUMAT, 11 JULI 2026 JAM 14:00 WIB) ---
+        // --- ENGINE HITUNG MUNDUR ACARA (TARGET: 11 JULI 2026 JAM 14:00 WIB) ---
         function countdownEngine() {
             const targetDate = new Date("July 11, 2026 14:00:00").getTime();
             
