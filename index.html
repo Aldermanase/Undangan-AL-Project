@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Wedding Masterpiece of Alder & Lelly</title>
     
-    <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
     
-    <!-- FONT AWESOME FOR ICONS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
@@ -84,13 +82,6 @@
         .main-stream { position: relative; width: 100%; z-index: 2; }
         section { position: relative; min-height: 100vh; width: 100vw; display: flex; flex-direction: column; box-sizing: border-box; overflow: hidden; }
 
-        .luxury-card {
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.6); padding: 40px 24px; border-radius: 20px;
-            max-width: 420px; width: 90%; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            margin: auto; z-index: 5;
-        }
-
         /* --- HALAMAN KEDUA: CINEMATIC PROLOGUE, COUNTDOWN FLAT, DAN THE VOWS --- */
         .sec-prologue { 
             justify-content: flex-end; 
@@ -105,8 +96,8 @@
         
         .prologue-text-wrap {
             width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 75%, rgba(0,0,0,0.4) 90%, transparent 100%);
-            padding: 90px 24px 50px 24px;
+            background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0.7) 80%, rgba(0,0,0,0.3) 92%, transparent 100%);
+            padding: 140px 24px 60px 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -138,35 +129,16 @@
         .video-box-pax video { width: 100%; height: 100%; object-fit: cover; }
         .video-notice-text { font-family: var(--font-serif); font-size: 13px; color: rgba(255, 255, 255, 0.8); margin-top: 25px; text-align: center; font-style: italic; letter-spacing: 0.5px; }
 
-        /* --- STRUKTUR MEMPELAI --- */
+        /* --- STRUKTUR MEMPELAI DENGAN SYSTEM SOFT IMAGE MASKING --- */
         .sec-couple { display: flex; flex-direction: column; min-height: 100vh; justify-content: flex-start; padding-bottom: 0; }
         
-        /* REVISI: PENERAPAN STRUKTUR GRADASI UNIVERSAL PADA ATAS DAN BAWAH FOTO UNTUK MENCEGAH KONTRAS TERPUTUS */
-        .couple-image-wrap {
-            height: 65vh; position: relative; width: 100%; overflow: hidden;
-        }
-        .couple-image-wrap::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 22%;
-            background: linear-gradient(to bottom, #1a1a1a 0%, transparent 100%); z-index: 3; pointer-events: none;
-        }
-        .couple-image-wrap-groom::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 22%;
-            background: linear-gradient(to top, #ffffff 0%, transparent 100%); z-index: 3; pointer-events: none;
-        }
-        .couple-image-wrap-bride::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 22%;
-            background: linear-gradient(to top, #f4ede4 0%, transparent 100%); z-index: 3; pointer-events: none;
-        }
+        .couple-image-wrap { height: 65vh; position: relative; width: 100%; overflow: hidden; }
+        .couple-image-wrap::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 22%; background: linear-gradient(to bottom, #1a1a1a 0%, transparent 100%); z-index: 3; pointer-events: none; }
+        .couple-image-wrap-groom::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 22%; background: linear-gradient(to top, #ffffff 0%, transparent 100%); z-index: 3; pointer-events: none; }
+        .couple-image-wrap-bride::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 22%; background: linear-gradient(to top, #f4ede4 0%, transparent 100%); z-index: 3; pointer-events: none; }
         
-        /* THE GROOM TEXT CONTAINER */
-        .couple-text-wrap-groom {
-            height: 35vh; background: #ffffff; color: #000000; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px 24px; text-align: center; position: relative; z-index: 5;
-        }
-
-        /* THE BRIDE TEXT CONTAINER */
-        .couple-text-wrap-bride {
-            height: 35vh; background: #f4ede4; color: #000000; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px 24px; text-align: center; position: relative; z-index: 5;
-        }
+        .couple-text-wrap-groom { height: 35vh; background: #ffffff; color: #000000; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px 24px; text-align: center; position: relative; z-index: 5; }
+        .couple-text-wrap-bride { height: 35vh; background: #f4ede4; color: #000000; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px 24px; text-align: center; position: relative; z-index: 5; }
 
         /* ENGINE ANIMASI IN-OUT TEXT-IN SMOOTH */
         .reveal-smooth {
@@ -181,43 +153,23 @@
         .couple-name-dark { font-family: var(--font-serif); font-size: 20px; font-weight: 600; color: #111111; margin-bottom: 8px; }
         .couple-parents-dark { font-family: var(--font-serif); font-size: 14px; color: #444444; line-height: 1.6; font-weight: 400; font-style: italic; }
 
-        /* INSTAGRAM ACTION LINK */
-        .btn-instagram-link {
-            margin-top: 15px; font-family: var(--font-sans); font-size: 10px; letter-spacing: 3px; color: #000000; text-decoration: none; text-transform: uppercase; display: inline-flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(0,0,0,0.3); padding-bottom: 4px; transition: 0.3s; font-weight: 500;
-        }
+        .btn-instagram-link { margin-top: 15px; font-family: var(--font-sans); font-size: 10px; letter-spacing: 3px; color: #000000; text-decoration: none; text-transform: uppercase; display: inline-flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(0,0,0,0.3); padding-bottom: 4px; transition: 0.3s; font-weight: 500; }
         .btn-instagram-link:hover { color: var(--accent-gold); border-color: var(--accent-gold); }
 
-        /* --- REVISI: SEKSI TRANSISI "WITH LOVE" BERGRADASI MELELEH HALUS DENGAN FONT PUTIH --- */
+        /* SEKSI TRANSISI "WITH LOVE" BERGRADASI MELELEH HALUS DENGAN FONT PUTIH */
         .sec-divider-love {
             min-height: 25vh;
-            /* Perubahan: Efek gradasi transisi hitam dari alas putih milik Groom menuju dasar hitam legam */
             background: linear-gradient(to bottom, #ffffff 0%, #1a1a1a 45%, #1a1a1a 100%); 
-            display: flex; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 6;
-            margin-top: -1px;
+            display: flex; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 6; margin-top: -1px;
         }
-        .with-love-script { 
-            font-family: var(--font-script); font-size: 52px; 
-            color: #ffffff; /* Perubahan: Font diubah ke warna putih bersih sesuai instruksi gambar 283742.jpg */
-            letter-spacing: 1px; font-weight: 400; 
-            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.15);
-        }
+        .with-love-script { font-family: var(--font-script); font-size: 52px; color: #ffffff; letter-spacing: 1px; font-weight: 400; text-shadow: 0 2px 10px rgba(255, 255, 255, 0.15); }
 
         /* SEKSI ACARA DAN LOKASI CINEMATIC */
-        .sec-masterpiece-events { background: #000000; color: #ffffff; padding: 0 0 60px 0; text-align: center; display: flex; flex-direction: column; align-items: center; z-index: 6; }
-        
-        /* --- REVISI: PENAMBAHAN KANTONG CAMPURAN GRADASI HITAM KE ATAS MENDEKATI TEKS INSTAGRAM BRIDE --- */
-        .events-gradient-header { 
-            width: 100vw; 
-            padding: 85px 20px 40px 20px; /* Ditambahkan padding vertikal ke atas untuk menarik gradasi bayangan */
-            /* Perubahan: Gradasi dirancang langsung pekat ke hitam dari warna dasar Bride (#f4ede4) sejak awal checkpoint */
-            background: linear-gradient(to bottom, #f4ede4 0%, #000000 35%, #000000 100%); 
-            display: flex; justify-content: center; align-items: center;
-            margin-top: -2px;
-        }
+        .sec-masterpiece-events { background: #000000; color: #ffffff; padding: 0 0 40px 0; text-align: center; display: flex; flex-direction: column; align-items: center; z-index: 6; }
+        .events-gradient-header { width: 100vw; padding: 85px 20px 40px 20px; background: linear-gradient(to bottom, #f4ede4 0%, #000000 35%, #000000 100%); display: flex; justify-content: center; align-items: center; margin-top: -2px; }
         .events-main-title { font-family: var(--font-script); font-size: clamp(28px, 6vw, 44px); color: #ffffff; font-weight: 400; letter-spacing: 1px; text-shadow: 0 2px 15px rgba(225,225,225,0.1); padding: 0 20px; }
         
         .events-slideshow-container { width: 100vw; height: 55vh; position: relative; overflow: hidden; margin-bottom: 50px; box-shadow: inset 0 -30px 40px #000000, inset 0 30px 40px #000000; }
-        /* Pembatas Gradasi Halus Atas & Bawah Slideshow Gallery Event */
         .events-slideshow-container::before { content: ''; position: absolute; top:0; left:0; width:100%; height:20%; background: linear-gradient(to bottom, #000 0%, transparent 100%); z-index:3; }
         .events-slideshow-container::after { content: ''; position: absolute; bottom:0; left:0; width:100%; height:20%; background: linear-gradient(to top, #000 0%, transparent 100%); z-index:3; }
 
@@ -231,14 +183,42 @@
         .btn-maps-outline { background: transparent; color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.7); padding: 10px 24px; font-family: var(--font-serif); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: 0.3s ease; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
         .btn-maps-outline:hover { background: #ffffff; color: #000000; border-color: #ffffff; box-shadow: 0 4px 15px rgba(255,255,255,0.2); }
 
-        /* TRANSISI GRADASI HITAM SEMPURNA */
-        .sec-final-divider { min-height: 15vh; background: linear-gradient(to bottom, #000000 0%, #F1ECE6 100%); z-index: 6; }
+        /* SEKSI INTERMISI CINEMATIC & LOGO MONOGRAM */
+        .wave-gold-separator { width: 100vw; height: auto; display: block; background: #000; margin-top: -2px; }
+        .sec-intermission-cinema { background: #000000; width: 100vw; display: flex; flex-direction: column; align-items: center; z-index: 6; position: relative; }
+        .intermission-video-box { width: 100vw; height: 33.33vh; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 
-        /* SEKSI RSVP */
-        .sec-rsvp { background-color: #F1ECE6; justify-content: center; padding: 20px 0 80px 0; z-index: 6; }
-        .rsvp-form input, .rsvp-form select { width: 100%; padding: 14px; margin: 8px 0; border: 1px solid #CCC; border-radius: 10px; font-family: inherit; font-size: 14px; background: white; }
-        h2.section-title { font-family: var(--font-serif); font-size: 26px; color: var(--primary); letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
-        p.section-desc { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
+        /* STRUKTUR TIMELINE LOVE STORY */
+        .sec-love-story { background: #0d0d0d; color: #ffffff; padding: 80px 24px; z-index: 6; display: flex; flex-direction: column; align-items: center; }
+        .story-timeline-axis { position: relative; max-width: 450px; width: 100%; margin-top: 40px; border-left: 1px solid rgba(229,193,88,0.3); padding-left: 24px; }
+        .story-node-node { position: relative; margin-bottom: 45px; text-align: left; }
+        .story-node-node::before { content: ''; position: absolute; top: 5px; left: -29px; width: 9px; height: 9px; background: var(--accent-gold); border-radius: 50%; box-shadow: 0 0 8px var(--accent-gold); }
+        .story-date-header { font-family: var(--font-heading); font-size: 14px; color: var(--accent-gold); letter-spacing: 2px; font-weight: 600; margin-bottom: 4px; }
+        .story-node-title { font-family: var(--font-serif); font-size: 18px; font-style: italic; color: #ffffff; margin-bottom: 8px; font-weight: 500; }
+        .story-node-desc { font-family: var(--font-sans); font-size: 13px; color: #bbbbbb; line-height: 1.7; font-weight: 300; text-align: justify; }
+
+        /* SEKSI RSVP PREMIUM HIGH-END (BLACK THEME) */
+        .sec-rsvp-premium { background: #0b0b0b; padding: 80px 24px; z-index: 6; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .rsvp-thin-line-top { width: 100%; max-width: 400px; border: none; border-top: 1px solid rgba(255,255,255,0.15); margin-bottom: 25px; }
+        .rsvp-title-large-white { font-family: var(--font-heading); font-size: 36px; font-weight: 700; color: #ffffff; letter-spacing: 4px; text-align: right; width: 100%; max-width: 400px; margin: 0 auto 15px auto; }
+        .rsvp-instruction-serif { font-family: var(--font-serif); font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; max-width: 400px; margin-bottom: 30px; font-style: italic; }
+        
+        .rsvp-form-premium-box { width: 100%; max-width: 400px; text-align: left; }
+        .rsvp-label-field { font-family: var(--font-serif); font-size: 15px; color: #ffffff; display: block; margin-bottom: 6px; font-weight: 400; }
+        .rsvp-label-field span { color: #ff4d4d; margin-left: 2px; }
+        
+        .rsvp-input-premium { width: 100%; padding: 14px; margin-bottom: 20px; background: #ffffff; color: #000000; border: 1px solid #e0e0e0; border-radius: 6px; font-family: var(--font-sans); font-size: 14px; }
+        .rsvp-select-premium {
+            width: 100%; padding: 14px; margin-bottom: 20px; background: #ffffff; color: #666666; border: 1px solid #e0e0e0; border-radius: 6px; font-family: var(--font-sans); font-size: 14px; appearance: none; -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M0,3 L5,7 L10,3 Z' fill='%23666666'/></svg>");
+            background-repeat: no-repeat; background-position: right 15px center;
+        }
+        .btn-submit-rsvp-gray { width: 100%; padding: 14px; background: #999999; color: #ffffff; font-family: var(--font-serif); font-size: 14px; letter-spacing: 1px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: 0.3s; margin-top: 10px; text-transform: uppercase; }
+        .btn-submit-rsvp-gray:hover { background: #808080; }
+
+        /* FOTO PENUTUP RSVP DESAIN LENGKUNG ARCH */
+        .rsvp-closing-image-container { width: 100vw; display: flex; justify-content: center; background: #0b0b0b; padding-bottom: 40px; }
+        .rsvp-closing-arch-photo { width: 90vw; max-width: 400px; height: 55vh; object-fit: cover; border-radius: 0 0 200px 200px; box-shadow: 0 10px 35px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); }
 
         /* SEKSI WEDDING GIFT */
         .sec-gift { background-image: linear-gradient(rgba(20, 20, 20, 0.75), rgba(20, 20, 20, 0.85)), url('bg.jpg'); background-size: cover; background-position: center; background-attachment: fixed; justify-content: center; align-items: center; padding: 80px 24px; z-index: 6; }
@@ -258,8 +238,6 @@
         .account-number { font-family: var(--font-sans); font-size: 18px; font-weight: 600; color: #333; margin: 6px 0; letter-spacing: 1px; }
         .account-holder { font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .btn-luxury { background: var(--primary); color: white; padding: 14px 28px; font-family: var(--font-serif); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border: none; border-radius: 30px; cursor: pointer; transition: 0.3s; width: 100%; margin-top: 10px; font-weight: 600; box-shadow: 0 5px 15px rgba(110,74,88,0.2); }
-        .btn-luxury:hover { background: #523541; transform: translateY(-2px); }
         .btn-copy { background: #F8F5F1; color: var(--primary); border: 1px solid var(--primary); padding: 6px 12px; font-size: 10px; font-weight: bold; border-radius: 6px; cursor: pointer; position: absolute; top: 20px; right: 20px; transition: 0.3s; text-transform: uppercase; }
         .btn-copy:hover { background: var(--primary); color: white; }
 
@@ -268,14 +246,11 @@
 </head>
 <body>
 
-    <!-- DEBU EMAS CANVAS -->
     <canvas id="particle-canvas"></canvas>
 
-    <!-- AUDIO ENGINE -->
     <audio id="bg-audio" loop><source src="musik.mp3" type="audio/mp3"></audio>
     <div id="music-box" onclick="toggleAudio()">🎵</div>
 
-    <!-- 🚪 HALAMAN AWAL (COVER 70/30) -->
     <div id="cover">
         <div class="cover-image-area"></div>
         <div class="cover-text-area">
@@ -290,10 +265,8 @@
     </div>
 
 
-    <!-- 📋 MAIN FLOW -->
     <div class="main-stream">
 
-        <!-- 🌟 HALAMAN KEDUA: PROLOGUE, COUNTDOWN FLAT, DAN THE VOWS -->
         <section class="sec-prologue">
             <div class="slideshow-bg">
                 <div class="slide active" style="background-image: url('prolog1.jpg');"></div>
@@ -322,7 +295,6 @@
         </section>
 
 
-        <!-- 🌟 HALAMAN KETIGA: VIDEO KECIL MANDIRI -->
         <section class="sec-cinema-video">
             <div class="video-box-pax reveal-smooth">
                 <video autoplay loop muted playsinline><source src="video.mp4" type="video/mp4"></video>
@@ -331,9 +303,7 @@
         </section>
 
 
-        <!-- 🌟 HALAMAN KEEMPAT: THE GROOM -->
         <section class="sec-couple">
-            <!-- Note Kapital Ekstensi .JPG Dipertahankan Aman, Ditambah Masking Atas Bawah -->
             <div class="couple-image-wrap couple-image-wrap-groom">
                 <div class="slideshow-bg">
                     <div class="slide active" style="background-image: url('groom1.JPG');"></div>
@@ -352,15 +322,12 @@
         </section>
 
 
-        <!-- 🌟 POSISI TRANSISI: LELUR GRADASI UNTUK MENYATUKAN GROOM DENGAN WITH LOVE -->
         <section class="sec-divider-love">
             <div class="with-love-script reveal-smooth">with love</div>
         </section>
 
 
-        <!-- 🌟 HALAMAN KELIMA: THE BRIDE -->
         <section class="sec-couple">
-            <!-- Note Kapital Ekstensi .JPG Dipertahankan Aman, Ditambah Masking Atas Bawah -->
             <div class="couple-image-wrap couple-image-wrap-bride">
                 <div class="slideshow-bg">
                     <div class="slide active" style="background-image: url('bride1.JPG');"></div>
@@ -379,13 +346,11 @@
         </section>
 
 
-        <!-- 🌟 SEKSI ACARA DAN LOKASI: PENINGKATAN CAMPURAN GRADASI HITAM KE ATAS MENJAGA KETERBACAAN TEKS -->
         <section class="sec-masterpiece-events">
             <div class="events-gradient-header">
                 <div class="events-main-title reveal-smooth">Jadilah bagian dari hari istimewa kami</div>
             </div>
 
-            <!-- Slideshow Kontinu (event1.jpg, event2.jpg, event3.jpg) dengan Masking Gradasi Atas Bawah -->
             <div class="events-slideshow-container reveal-smooth">
                 <div class="slideshow-bg">
                     <div class="slide active" style="background-image: url('event1.jpg');"></div>
@@ -394,7 +359,6 @@
                 </div>
             </div>
 
-            <!-- DETIL ACARA 1: PEMBERKATAN -->
             <div class="event-block-detail reveal-smooth">
                 <div class="event-custom-icon"><i class="fas fa-church"></i></div>
                 <div class="event-heading-type">PEMBERKATAN</div>
@@ -403,12 +367,11 @@
                 <p style="font-size: 13px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Acara akan berlangsung di</p>
                 <div class="event-venue-name">GBKP Rgn. Jalan Kotacane</div>
                 <div class="event-venue-address">Jln. Kotacane, No. 311, Kabanjahe, Karo, Sumatera Utara.</div>
-                <a href="https://maps.google.com/?q=GBKP+Rgn+Jalan+Kotacane+Kabanjahe" target="_blank" class="btn-maps-outline">
+                <a href="https://maps.google.com/?q=GBKP+Jalan+Kotacane+Kabanjahe" target="_blank" class="btn-maps-outline">
                     <i class="fas fa-map-marker-alt"></i> Google Maps
                 </a>
             </div>
 
-            <!-- DETIL ACARA 2: ACARA ADAT -->
             <div class="event-block-detail reveal-smooth">
                 <svg class="event-custom-icon" viewBox="0 0 100 60" width="38" height="38" style="fill:none; stroke:currentColor; stroke-width:2.5; stroke-linecap:round;">
                     <path d="M10,25 Q50,45 90,25 L82,55 L18,55 Z" />
@@ -421,34 +384,102 @@
                 <p style="font-size: 13px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">Acara akan berlangsung di</p>
                 <div class="event-venue-name">Jambur Limpit/Wisma Limpit</div>
                 <div class="event-venue-address">Jln. Rakoetta Brahmana, Kabanjahe. Karo. Sumatera Utara.</div>
-                <a href="https://maps.google.com/?q=Jambur+Limpit+Wisma+Limpit+Kabanjahe" target="_blank" class="btn-maps-outline">
+                <a href="https://maps.google.com/?q=Jambur+Limpit+Kabanjahe" target="_blank" class="btn-maps-outline">
                     <i class="fas fa-map-marker-alt"></i> Google Maps
                 </a>
             </div>
         </section>
 
 
-        <!-- TRANSISI PEMBATAS ATAS RSVP -->
-        <div class="sec-final-divider"></div>
+        <svg class="wave-gold-separator" viewBox="0 0 1440 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,32 C240,75 480,75 720,32 C960,-10 1200,-10 1440,32 L1440,74 L0,74 Z" fill="#000000"/>
+            <path d="M0,32 C240,75 480,75 720,32 C960,-10 1200,-10 1440,32" stroke="#E5C158" stroke-width="2"/>
+        </svg>
 
-
-        <!-- 🌟 HALAMAN KEENAM: RSVP FORM -->
-        <section class="sec-rsvp">
-            <div class="luxury-card rsvp-form reveal-smooth">
-                <h2 class="section-title">Konfirmasi Kehadiran</h2>
-                <p class="section-desc">Mohon konfirmasikan kehadiran Anda melalui formulir elektronik di bawah ini untuk kenyamanan acara.</p>
-                <input type="text" id="rsvp-nama" placeholder="Nama Lengkap Anda" required>
-                <select id="rsvp-status">
-                    <option value="Hadir">Sangat Senang, Saya Akan Hadir</option>
-                    <option value="Tidak Hadir">Maaf, Berhalangan Hadir</option>
-                </select>
-                <input type="number" id="rsvp-jumlah" placeholder="Jumlah Pax Kehadiran (Angka)" min="1" max="5">
-                <button class="btn-luxury" onclick="prosesRSVP()">Kirim via WhatsApp</button>
+        <section class="sec-intermission-cinema">
+            <video class="intermission-video-box reveal-smooth" autoplay loop muted playsinline>
+                <source src="video.mp4" type="video/mp4">
+            </video>
+            
+            <div class="events-gradient-header" style="background: linear-gradient(to bottom, #1a1a1a 0%, #0a0b0b 100%);">
+                <div class="with-love-script reveal-smooth" style="font-size: 65px;">A & L</div>
             </div>
         </section>
 
 
-        <!-- 🌟 HALAMAN KETUJUH: WEDDING GIFT (MURNI SENSASI GRADASI MATANG) -->
+        <section class="sec-love-story">
+            <h2 class="couple-title-dark reveal-smooth" style="color: #ffffff; font-size: 28px; letter-spacing: 4px;">OUR LOVE STORY</h2>
+            <hr class="couple-graphic-line reveal-smooth" style="border-top: 1px solid var(--accent-gold); width: 100px; margin: 15px 0 30px 0;">
+            
+            <div class="story-timeline-axis">
+                <div class="story-node-node reveal-smooth">
+                    <div class="story-date-header">Januari 2019</div>
+                    <div class="story-node-title">Dipertemukan</div>
+                    <p class="story-node-desc">Saat itu bertepatan hari jumat dikantor ada ibadah bersama yang sekaligus menjadi ibadah pertama saya di kantor baru saya. Selepas ibadah anak baru diwajibkan memperkenalkan diri kepada rekan kerja yang sudah lebih dulu bergabung, dan menjadi awal pertemuan dengan Lelly.</p>
+                </div>
+                <div class="story-node-node reveal-smooth">
+                    <div class="story-date-header">Februari 2019</div>
+                    <div class="story-node-title">Ujian kecil</div>
+                    <p class="story-node-desc">Karna konflik antar angkatan yang melibatkan saya, lely dan rekan lain, Akhirnya kami membatasi komunikasi atas dasar tidak memiliki paham yang sama.</p>
+                </div>
+                <div class="story-node-node reveal-smooth">
+                    <div class="story-date-header">Maret 2019</div>
+                    <div class="story-node-title">Ujian kedua</div>
+                    <p class="story-node-desc">Saya dan Lelly berpisah karena ada pemindahan wilayah kerja.</p>
+                </div>
+                <div class="story-node-node reveal-smooth">
+                    <div class="story-date-header">Maret 2019 - April 2021</div>
+                    <div class="story-node-title">Menemukan kesamaan</div>
+                    <p class="story-node-desc">Komunikasi tetap berjalan karena dasar kebutuhan pekerjaan dalam lingkup divisi, komunikasi dalam waktu yang panjang ini secara tidak langsung menunjukkan karakter masing-masing. Berbagai forum dan koordinasi sering mempertemukan kami dalam banyak kesempatan hingga akhirnya kami menemukan teman yang perlahan mengetahui 1 sama lain. Disana kami memilih untuk saling mengenal lebih jauh dan lebih serius.</p>
+                </div>
+                <div class="story-node-node reveal-smooth">
+                    <div class="story-date-header">Desember 2022</div>
+                    <div class="story-node-title">Dipertemukan kembali</div>
+                    <p class="story-node-desc">Rencana Tuhan membawa saya kembali bekerja di kota yang sama dengan Lelly dan mengakhiri masa LDR dan menjalin hubungan yang lebih serius dan saling mendewasakan</p>
+                </div>
+                <div class="story-node-node reveal-smooth">
+                    <div class="story-date-header">Desember 2025</div>
+                    <div class="story-node-title">Menyatakan kesanggupan</div>
+                    <p class="story-node-desc">Pertemuan keluarga diadakan untuk membahas rencana kedepannya.</p>
+                </div>
+                <div class="story-node-node reveal-smooth">
+                    <div class="story-date-header">Juli 2026</div>
+                    <div class="story-node-title">Awal dari cerita yang baru</div>
+                    <p class="story-node-desc">Berawal dari pertemuan yang tidak disengaja pada 2019, akhirnya kami membukatkan rencana untuk menggelar penikahan yang kudus yang akan mengikat kami abadi sampai maut memisahkan.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="sec-rsvp-premium">
+            <hr class="rsvp-thin-line-top reveal-smooth">
+            <h2 class="rsvp-title-large-white reveal-smooth">RSVP</h2>
+            <p class="rsvp-instruction-serif reveal-smooth">Dimohon untuk mengisi konfirmasi kehadiran di bawah ini.</p>
+            
+            <div class="rsvp-form-premium-box reveal-smooth">
+                <label class="rsvp-label-field">Nama <span>*</span></label>
+                <input type="text" id="rsvp-nama" class="rsvp-input-premium" placeholder="Nama" required>
+                
+                <label class="rsvp-label-field">Konfirmasi Kehadiran <span>*</span></label>
+                <select id="rsvp-status" class="rsvp-select-premium">
+                    <option value="" disabled selected>- Select -</option>
+                    <option value="Hadir">Hadir</option>
+                    <option value="Tidak Hadir">Tidak Hadir</option>
+                </select>
+                
+                <label class="rsvp-label-field">Jumlah Kehadiran</label>
+                <input type="number" id="rsvp-jumlah" class="rsvp-input-premium" placeholder="Jumlah Orang" min="1" max="5">
+                
+                <button class="btn-submit-rsvp-gray" onclick="prosesRSVP()">Submit Form</button>
+            </div>
+        </section>
+
+
+        <div class="rsvp-closing-image-container">
+            <img src="closing.jpg" alt="Alder & Lelly Portrait" class="rsvp-closing-arch-photo reveal-smooth">
+        </div>
+
+
         <section class="sec-gift">
             <div class="gift-content-wrap reveal-smooth">
                 <div class="gift-main-icon-pax"><i class="fas fa-gift"></i></div>
@@ -461,7 +492,6 @@
                 </button>
 
                 <div id="gift-accounts-area">
-                    <!-- REKENING 1 -->
                     <div class="bank-card">
                         <button class="btn-copy" onclick="copyText('1234567890')">Salin</button>
                         <div class="bank-name">BANK BCA</div>
@@ -469,7 +499,6 @@
                         <div class="account-holder">a.n. Alder Manase</div>
                     </div>
 
-                    <!-- REKENING 2 -->
                     <div class="bank-card">
                         <button class="btn-copy" onclick="copyText('0987654321')">Salin</button>
                         <div class="bank-name">BANK MANDIRI</div>
@@ -482,7 +511,6 @@
 
     </div>
 
-    <!-- --- JAVASCRIPT MASTERPIECE ENGINE --- -->
     <script>
         const params = new URLSearchParams(window.location.search);
         const namaTamu = params.get('to') ? decodeURIComponent(params.get('to')) : "Tamu Undangan";
@@ -551,7 +579,7 @@
         }
         loop();
 
-        // --- SLIDESHOW ENGINE ---
+        // --- SLIDESHOW ENGINE SINKRONISASI 3 DETIK (3000ms) ---
         function startMultiSlideshow(containerSelector) {
             const containers = document.querySelectorAll(containerSelector);
             containers.forEach(container => {
@@ -561,12 +589,12 @@
                     slides[currentSlide].classList.remove('active');
                     currentSlide = (currentSlide + 1) % slides.length;
                     slides[currentSlide].classList.add('active');
-                }, 2300);
+                }, 3000); 
             });
         }
         startMultiSlideshow('.slideshow-bg');
 
-        // --- ENGINE IN-OUT ANIMASI PREMIUM ---
+        // --- ENGINE IN-OUT ANIMASI PREMIUM (INTERSECTION OBSERVER) ---
         const smoothObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -577,13 +605,13 @@
             });
         }, { 
             root: null,
-            threshold: 0.1, 
+            threshold: 0.05, 
             rootMargin: "0px 0px -40px 0px" 
         });
 
         document.querySelectorAll('.reveal-smooth').forEach(el => smoothObserver.observe(el));
 
-        // --- ENGINE HITUNG MUNDUR (TARGET: JUMAT, 11 JULI 2026 JAM 14:00 WIB) ---
+        // --- ENGINE HITUNG MUNDUR ACARA (TARGET: 11 JULI 2026 JAM 14:00 WIB) ---
         function countdownEngine() {
             const targetDate = new Date("July 11, 2026 14:00:00").getTime();
             
@@ -621,14 +649,14 @@
             });
         }
 
-        // --- RSVP WHATSAPP ---
+        // --- RSVP WHATSAPP AUTOMATION ---
         function prosesRSVP() {
             const nomorWA = "6281234567890"; 
             const inputNama = document.getElementById('rsvp-nama').value;
             const inputStatus = document.getElementById('rsvp-status').value;
             const inputJumlah = document.getElementById('rsvp-jumlah').value || "1";
 
-            if(!inputNama) { alert("Harap masukkan nama Anda."); return; }
+            if(!inputNama || inputStatus === "") { alert("Harap isi nama dan pilih status konfirmasi kehadiran Anda."); return; }
             
             const formatPesan = `Halo Alder & Lelly, Saya *${inputNama}* ingin mengonfirmasi kehadiran bahwa saya *${inputStatus}* dengan kuota *${inputJumlah} orang*. Terima kasih!`;
             window.open(`https://api.whatsapp.com/send?phone=${nomorWA}&text=${formatPesan}`, '_blank');
