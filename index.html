@@ -3,310 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding Masterpiece of Togi & Ruth</title>
+    <title>The Wedding Masterpiece of Alder & Lelly</title>
     
-    <!-- FONTS & ICONS -->
+    <!-- FONTS: Mengimpor kombinasi Font Pernikahan & Formal -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@200;400;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
-        /* --- DESIGN SYSTEM & CSS VARIABLES --- */
+        /* --- DESIGN SYSTEM PRINCIPLE --- */
         :root {
-            --primary: #6E4A58;
-            --accent: #D4AF37; /* Gold Accent */
-            --bg-current: #FBF9F6;
-            --text-color: #2C2A29;
+            --accent-gold: #E5C158;
+            --text-light: #F8F5F1;
+            --text-dark: #2C2A29;
+            --font-wedding: 'Alex Brush', cursive;
             --font-serif: 'Cinzel', serif;
             --font-sans: 'Montserrat', sans-serif;
-            --font-script: 'Pinyon Script', cursive;
+            --font-formal: 'Times New Roman', Times, serif; /* Sesuai Request Poin 8 */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
         body {
             font-family: var(--font-sans);
-            color: var(--text-color);
-            background-color: var(--bg-current);
+            color: var(--text-dark);
+            background-color: #FBF9F6;
             overflow-x: hidden;
-            transition: background-color 1.5s ease, color 1.5s ease;
         }
 
-        /* CANVAS UNTUK EFEK DEBU EMAS INTERAKTIF */
+        /* ENGINE KANVAS DEBU EMAS */
         #particle-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 1;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 10;
         }
 
-        /* --- 1. CINEMATIC COVER OVERLAY --- */
+        /* --- 1, 2, 3, 4. HALAMAN AWAL (COVER CINEMATIC) --- */
         #cover {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #1a1a1a; color: white; z-index: 9999;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; clip-path: inset(0 0 0 0);
-            transition: clip-path 1.5s cubic-bezier(0.86, 0, 0.07, 1);
-            padding: 20px;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            /* Poin 3: Menggunakan latar belakang foto pengantin */
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('foto.jpg');
+            background-size: cover; background-position: center;
+            color: white; z-index: 9999; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            transition: transform 1.3s cubic-bezier(0.77, 0, 0.175, 1);
         }
 
-        #cover.opened {
-            clip-path: inset(0 0 100% 0); /* Efek tirai teater terangkat yang dramatis */
+        /* Poin 1: Animasi Text In Elegan */
+        .cover-animate {
+            animation: textIn 2s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes textIn {
+            from { opacity: 0; transform: translateY(30px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
-        /* --- STYLING SECTIONS --- */
+        /* Poin 4: Ornamen Kotak Dibuat Transparan, Namun Teks Tetap Tajam */
+        .cover-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 30px; border-radius: 16px; width: 85%; max-width: 400px; margin: 25px 0;
+        }
+
+        /* Poin 2: Tombol dengan icon kecil bunga */
+        .btn-open {
+            background: white; color: var(--text-dark); padding: 14px 30px;
+            font-family: var(--font-serif); font-size: 12px; letter-spacing: 2px;
+            text-transform: uppercase; border: none; border-radius: 30px;
+            cursor: pointer; display: flex; align-items: center; gap: 8px;
+            transition: 0.3s; font-weight: 600;
+        }
+        .btn-open:hover { transform: scale(1.05); background: var(--accent-gold); color: white; }
+
+        /* --- STRUCTURE CONTINUOUS SCROLL --- */
+        .main-stream {
+            position: relative; width: 100%; z-index: 2;
+        }
+
+        /* Poin 9 & 10: Halaman Kontinu Terus Berlanjut dan Mengikuti Bergerak Naik */
         section {
-            min-height: 100vh; width: 100vw; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; padding: 80px 24px;
-            position: relative; z-index: 2; box-sizing: border-box;
+            position: relative; min-height: 100vh; width: 100vw;
+            display: flex; flex-direction: column; box-sizing: border-box;
+            overflow: hidden;
         }
 
-        .container {
-            max-width: 480px; width: 100%; text-align: center;
-            padding: 50px 30px; border-radius: 24px;
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.5);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.04);
-            transition: transform 0.5s, background-color 1s;
+        /* --- 6, 7, 8. HALAMAN KEDUA (PROLOGUE INTERAKTIF) --- */
+        .sec-prologue {
+            justify-content: space-between; padding: 60px 30px;
         }
 
-        /* --- ADVANCED SCROLL-TRIGGER ANIMATION CLASS --- */
-        .reveal {
-            opacity: 0; transform: translateY(60px) scale(0.95);
-            filter: blur(4px);
-            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        /* Engine Slideshow Latar Belakang Crossfade 2,3 Detik */
+        .slideshow-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
         }
-        .reveal.active {
-            opacity: 1; transform: translateY(0) scale(1);
-            filter: blur(0);
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            opacity: 0; transition: opacity 1.2s ease-in-out; /* Poin 6: Transisi sehalus mungkin */
+        }
+        .slide.active { opacity: 1; }
+
+        /* Poin 8: Tulisan Prolog Sisi Kiri Bawah */
+        .prolog-left-bottom {
+            align-self: flex-start; margin-top: auto; max-width: 320px;
+            text-align: left; background: rgba(255,255,255,0.7); padding: 15px; border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+        .prolog-title { font-family: var(--font-wedding); font-size: 45px; color: var(--text-dark); }
+        .prolog-text { font-family: var(--font-formal); font-size: 14px; margin-top: 5px; color: #333; }
+
+        /* Poin 13: Prolog 2 (THE VOWS) Sisi Kanan Atas */
+        .prolog-right-top {
+            align-self: flex-end; text-align: right; max-width: 320px;
+            background: rgba(255,255,255,0.7); padding: 15px; border-radius: 8px;
+            backdrop-filter: blur(5px); margin-bottom: 40px;
         }
 
-        /* --- TYPOGRAPHY MASTERPIECE --- */
-        .title-large { font-family: var(--font-serif); font-size: 38px; font-weight: 400; letter-spacing: 4px; color: var(--primary); text-transform: uppercase; }
-        .title-script { font-family: var(--font-script); font-size: 65px; color: var(--accent); margin: 15px 0; }
-        .sub-title { font-size: 11px; letter-spacing: 5px; font-weight: 600; text-transform: uppercase; color: #888; }
-        p { font-size: 14px; line-height: 1.9; color: #4A4A4A; font-weight: 300; }
-        
-        /* FOTO FRAME ARCH (Gaya Arsitektur Modern) */
-        .arch-frame {
-            width: 220px; height: 320px; object-fit: cover;
-            border-radius: 120px 120px 0 0; margin: 25px auto;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border: 2px solid var(--accent); padding: 5px; background: white;
+        /* Poin 14: Video Otomatis 1/3 Layar */
+        .video-pax {
+            width: 33.33vw; height: 20vh; min-width: 150px; align-self: center;
+            border-radius: 8px; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            margin: 20px 0;
+        }
+        .video-pax video { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- 15, 17, 18, 19. MEMPELAI (THE GROOM & THE BRIDE) --- */
+        .sec-couple {
+            justify-content: flex-end; padding-bottom: 60px; text-align: center;
         }
 
-        /* 2. GALERI PRESTISE GRID */
-        .premium-gallery {
-            display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 30px;
+        /* Poin 17: 1/3 Bagian Bawah Diberikan Opacity Hitam untuk Tulisan Emas */
+        .bottom-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 40vh;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 60%, transparent 100%);
+            z-index: 1; pointer-events: none;
         }
-        .gallery-photo {
-            grid-column: span 3; width: 100%; height: 200px; object-fit: cover;
-            border-radius: 12px; transition: 0.5s ease;
-        }
-        .gallery-photo:nth-child(3) { grid-column: span 6; height: 250px; } /* Foto utama di tengah */
-        .gallery-photo:hover { transform: scale(1.05) rotate(1deg); }
 
-        /* 3. AUDIO VISUALIZER LIVE WAVE */
-        #visualizer-container {
-            position: fixed; bottom: 25px; right: 25px; z-index: 10000;
-            display: flex; align-items: flex-end; gap: 3px; height: 30px; cursor: pointer;
-            background: rgba(255,255,255,0.8); padding: 10px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        /* Poin 19: Konten Teks Terpusat Kompak Berwarna Emas */
+        .couple-content {
+            position: relative; z-index: 2; color: var(--accent-gold);
+            width: 100%; padding: 0 24px;
         }
-        .bar { width: 3px; height: 5px; background: var(--primary); transition: height 0.2s ease; }
-        .bar.playing { animation: bounce 0.8s ease infinite alternate; }
-        .bar:nth-child(2) { animation-delay: 0.2s; }
-        .bar:nth-child(3) { animation-delay: 0.4s; }
-        .bar:nth-child(4) { animation-delay: 0.1s; }
-        @keyframes bounce { from { height: 5px; } to { height: 25px; } }
+        .couple-title { font-family: var(--font-serif); font-size: 32px; letter-spacing: 4px; font-weight: 600; }
+        .couple-name { font-family: var(--font-wedding); font-size: 48px; margin: 5px 0; color: white; }
+        .couple-parents { font-family: var(--font-sans); font-size: 13px; color: #DDD; line-height: 1.8; font-weight: 300; }
 
-        /* PREMIUM BUTTON */
-        .btn-luxury {
-            background: var(--primary); color: white; padding: 14px 35px;
-            font-family: var(--font-serif); font-size: 11px; letter-spacing: 3px;
-            text-transform: uppercase; border: none; border-radius: 40px;
-            cursor: pointer; transition: 0.4s; box-shadow: 0 10px 25px rgba(110,74,88,0.2);
-            margin-top: 20px;
+        /* Poin 16 & 20: TRANSISI PEMBATAS (SAVE THE DATE) */
+        .sec-divider {
+            min-height: 40vh; background: #1E1E1E; color: white;
+            justify-content: center; align-items: center; text-align: center;
         }
-        .btn-luxury:hover { background: #3e2730; transform: translateY(-3px); box-shadow: 0 15px 30px rgba(110,74,88,0.4); }
+        .save-the-date { font-family: var(--font-serif); font-size: 20px; letter-spacing: 6px; color: var(--accent-gold); }
 
-        .tamu-card {
-            background: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 16px;
-            margin: 25px 0; border-left: 4px solid var(--accent); text-align: left;
+        /* Poin 11: FADING FADE-IN WARNA UNTUK MENGGANTIKAN BACKGROUND SEBELUMNYA */
+        .fade-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: #FBF9F6; opacity: 0; transition: opacity 1s ease; z-index: -1;
+        }
+        .sec-prologue.fade-out .fade-overlay { opacity: 1; }
+
+        /* AUDIO CONTROLLER CONTAINER */
+        #music-box {
+            position: fixed; bottom: 20px; right: 20px; z-index: 10000;
+            background: white; border-radius: 50%; width: 45px; height: 45px;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15); cursor: pointer; font-size: 18px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 🌟 KANVAS DEBU EMAS INTERAKTIF -->
+    <!-- KANVAS DEBU EMAS JAVASCRIPT ENGINE -->
     <canvas id="particle-canvas"></canvas>
 
-    <!-- 🎵 AUDIO ENGINE -->
-    <audio id="wedding-audio" loop>
+    <!-- AUDIO ELEMENT -->
+    <audio id="bg-audio" loop>
         <source src="musik.mp3" type="audio/mp3">
     </audio>
+    <div id="music-box" onclick="toggleAudio()">🎵</div>
 
-    <!-- 🎵 3. LIVE AUDIO VISUALIZER WAVE -->
-    <div id="visualizer-container" onclick="toggleAudioEngine()">
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-    </div>
-
-    <!-- 🚪 1. CINEMATIC COVER (TIRAI TEATER) -->
+    <!-- 🚪 HALAMAN AWAL (COVER / AMPLOP DEPAN PENGANTIN) -->
     <div id="cover">
-        <span class="sub-title" style="color: #aaa; margin-bottom: 10px;">The Wedding Celebration Of</span>
-        <h1 style="font-family: var(--font-serif); font-size: 38px; letter-spacing: 5px; font-weight: 300;">Togi & Ruth</h1>
-        <div class="tamu-card" style="background: rgba(255,255,255,0.05); border-left: 4px solid var(--accent); color: #fff;">
-            <p style="font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 2px;">Eksklusif Kepada:</p>
-            <div id="namaTamuCover" style="font-size: 24px; font-family: var(--font-serif); margin-top: 5px; color: var(--accent);">Nama Tamu</div>
+        <p class="cover-animate sub-title" style="letter-spacing: 4px; font-size: 11px; text-transform: uppercase;">The Wedding Invitation</p>
+        <h1 class="cover-animate" style="font-family: var(--font-serif); font-size: 36px; margin-top: 5px; font-weight: 400;">Alder & Lelly</h1>
+        
+        <div class="cover-animate cover-box">
+            <p style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #EEE;">Eksklusif Kepada Yth:</p>
+            <div id="namaTamu" style="font-size: 22px; font-family: var(--font-serif); margin-top: 8px; color: var(--accent-gold);">Nama Tamu</div>
         </div>
-        <button class="btn-luxury" style="background: var(--accent); color: #1a1a1a; font-weight: bold;" onclick="unveilMasterpiece()">Mulai Pengalaman Sineas ✉</button>
+
+        <!-- Poin 2: Tombol Buka Undangan dengan Icon Bunga Unicode -->
+        <button class="btn-open cover-animate" onclick="bukaUndanganMasterpiece()">
+            🌸 Buka Undangan
+        </button>
     </div>
 
 
-    <!-- 👑 KONTEN UTAMA MASTERPIECE -->
+    <!-- 📋 MAIN CONTENUOUS FLOW -->
+    <div class="main-stream">
 
-    <!-- SECTION 1: PROLOG (PERMUTARAN WARNA: PEARL) -->
-    <section id="sec-1" style="--bg-section: #FBF9F6; --text-section: #2C2A29;">
-        <div class="container reveal">
-            <span class="sub-title">Prolog</span>
-            <div class="title-script">Welcome</div>
-            <p style="font-style: italic; margin-top: 15px;">
-                "Dua jiwa namun satu pikiran, dua hati namun satu denyut." — Friedrich Halm. Atas kasih karunia Tuhan, kami mengundang Anda menyaksikan penyatuan suci kami.
-            </p>
-        </div>
-    </section>
-
-    <!-- SECTION 2: MEMPELAI (PERMUTARAN WARNA: ROMANTIC ROSE) -->
-    <section id="sec-2" style="--bg-section: #F5EBE6; --text-section: #332C2A;">
-        <div class="container reveal">
-            <span class="sub-title">The Souls</span>
-            <h2 class="title-large" style="font-size: 24px; margin-top: 10px;">Beloved Couple</h2>
-            
-            <img src="foto.jpg" alt="Mempelai Pria" class="arch-frame">
-            <h3 style="font-family: var(--font-serif); letter-spacing: 2px;">Togi Christevensenlaw S.</h3>
-            <p style="font-size: 12px; margin-top: 5px; color: #666;">Putra dari Bapak Walden M. Sihaloho & Ibu Evi H. Simarmata</p>
-            
-            <div class="title-script" style="font-size: 45px; margin: 15px 0;">&</div>
-
-            <img src="foto.jpg" alt="Mempelai Wanita" class="arch-frame">
-            <h3 style="font-family: var(--font-serif); letter-spacing: 2px;">Ruth Melda Simanjuntak</h3>
-            <p style="font-size: 12px; margin-top: 5px; color: #666;">Putri dari Alm. Bapak Manggontar Simanjuntak & Ibu Rosmaida Simamora</p>
-        </div>
-    </section>
-
-    <!-- SECTION 3: PREWEDDING VIDEO -->
-    <section id="sec-3" style="--bg-section: #EAE3DE; --text-section: #2C2A29;">
-        <div class="container reveal">
-            <span class="sub-title">Motion Picture</span>
-            <h2 class="title-large" style="font-size: 24px; margin: 10px 0 20px 0;">Love Journey</h2>
-            <div style="position: relative; padding-bottom: 56.25%; height: 0; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.15);">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" allowfullscreen></iframe>
+        <!-- 🌟 HALAMAN KEDUA: PROLOGUE (FLOW KONTINU) -->
+        <section class="sec-prologue" id="pologue-container">
+            <!-- Poin 7: 4 Image Slideshow untuk Background Prolog -->
+            <div class="slideshow-bg">
+                <div class="slide active" style="background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.2)), url('prolog1.jpg');"></div>
+                <div class="slide" style="background-image: url('prolog2.jpg');"></div>
+                <div class="slide" style="background-image: url('prolog3.jpg');"></div>
+                <div class="slide" style="background-image: url('prolog4.jpg');"></div>
             </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4: GALERI (PERMUTARAN WARNA: LUXURY DARK) -->
-    <section id="sec-4" style="--bg-section: #1E1E1E; --text-section: #FFFFFF;">
-        <div class="container reveal" style="background: rgba(30,30,30,0.7); border: 1px solid rgba(255,255,255,0.1);">
-            <span class="sub-title" style="color: var(--accent);">Visual Album</span>
-            <h2 class="title-large" style="color: white; font-size: 24px; margin-top: 10px;">Our Gallery</h2>
             
-            <div class="premium-gallery">
-                <img src="foto.jpg" alt="G1" class="gallery-photo">
-                <img src="foto.jpg" alt="G2" class="gallery-photo">
-                <img src="foto.jpg" alt="G3" class="gallery-photo">
-                <img src="foto.jpg" alt="G4" class="gallery-photo">
-            </div>
-        </div>
-    </section>
+            <!-- Poin 11: Overlay Fading Warna Pengganti Background -->
+            <div class="fade-overlay"></div>
 
-    <!-- SECTION 5: RSVP -->
-    <section id="sec-5" style="--bg-section: #FBF9F6; --text-section: #2C2A29;">
-        <div class="container reveal" style="text-align: left;">
-            <center>
-                <span class="sub-title">Reservation</span>
-                <h2 class="title-large" style="font-size: 24px; margin: 10px 0 25px 0;">Konfirmasi</h2>
-            </center>
+            <!-- Poin 13: Teks Kanan Atas (THE VOWS) -->
+            <div class="prolog-right-top">
+                <h4 style="font-family: var(--font-serif); font-size: 14px; letter-spacing: 2px; color: var(--text-dark);">THE VOWS</h4>
+                <p style="font-family: var(--font-formal); font-size: 13px; color: #444; margin-top: 5px; font-style: italic;">
+                    "Demikianlah mereka bukan lagi dua, melainkan satu. Karena itu, apa yang telah dipersatukan Allah, tidak boleh diceraikan manusia."
+                </p>
+            </div>
+
+            <!-- Poin 14: Video Autoplay 1/3 Ukuran Layar -->
+            <div class="video-pax">
+                <video autoplay loop muted playsinline>
+                    <source src="video.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <!-- Poin 8: Teks Kiri Bawah (PROLOG NAMA) -->
+            <div class="prolog-left-bottom">
+                <div class="prolog-title">Alder & Lelly</div>
+                <div class="prolog-text">
+                    Atas nama kasih dan karunia Tuhan, kami melangkah bersama menuju ikatan janji suci pernikahan abadi.
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 🌟 HALAMAN KETIGA: THE GROOM -->
+        <section class="sec-couple">
+            <!-- Poin 15: 3 Foto Pengantin Pria Bergantian Otomatis -->
+            <div class="slideshow-bg">
+                <div class="slide active" style="background-image: url('groom1.jpg');"></div>
+                <div class="slide" style="background-image: url('groom2.jpg');"></div>
+                <div class="slide" style="background-image: url('groom3.jpg');"></div>
+            </div>
             
-            <div class="rsvp-form" style="display: flex; flex-direction: column;">
-                <input type="text" id="rsvp-nama" placeholder="Nama Lengkap Anda" style="width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 10px; font-family: inherit;">
-                <select id="rsvp-status" style="width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 10px; font-family: inherit; background: white;">
-                    <option value="Hadir">Akan Hadir Memeriahkan</option>
-                    <option value="Tidak Hadir">Berhalangan Hadir</option>
-                </select>
-                <button class="btn-luxury" onclick="prosesRSVP()">Kirim Kehadiran Premium</button>
+            <div class="bottom-overlay"></div>
+
+            <div class="couple-content">
+                <div class="couple-title">THE GROOM</div>
+                <div class="couple-name">Alder Manase Perangin-angin</div>
+                <div class="couple-parents">
+                    Putra dari :<br>
+                    <b>Bapak Calon Perangin-angin</b><br>&<br><b>Ibu Ratna Cahaya Br. Tarigan</b>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
-    <!-- --- JAVASCRIPT MASTERPIECE ENGINE --- -->
+        <!-- Poin 16 & 20: TRANSISI PEMBATAS KONTRAS (SAVE THE DATE) -->
+        <section class="sec-divider">
+            <div class="save-the-date">SAVE THE DATE</div>
+            <p style="font-size: 12px; color: #888; letter-spacing: 2px; margin-top: 5px;">27 . 04 . 2024</p>
+        </section>
+
+
+        <!-- 🌟 HALAMAN KEEMPAT: THE BRIDE (KOMPAK DENGAN THE GROOM) -->
+        <section class="sec-couple">
+            <!-- Poin 17: 3 Foto Pengantin Wanita Bergantian Otomatis -->
+            <div class="slideshow-bg">
+                <div class="slide active" style="background-image: url('bride1.jpg');"></div>
+                <div class="slide" style="background-image: url('bride2.jpg');"></div>
+                <div class="slide" style="background-image: url('bride3.jpg');"></div>
+            </div>
+            
+            <div class="bottom-overlay"></div>
+
+            <div class="couple-content">
+                <div class="couple-title">THE BRIDE</div>
+                <div class="couple-name">Lelly Sabet Sihombing</div>
+                <div class="couple-parents">
+                    Putri dari :<br>
+                    <b>Bapak Lamtongam Sihombing (✟)</b><br>&<br><b>Ibu Timour Silaban</b>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- --- JAVASCRIPT CORE MASTERPIECE ENGINE --- -->
     <script>
-        // 1. SMART DYNAMIC GREETING & VIP VIBE SHIFT
+        // Membaca Teks Parameter URL
         const params = new URLSearchParams(window.location.search);
         const namaTamu = params.get('to') ? decodeURIComponent(params.get('to')) : "Tamu Undangan";
-        const vibeMode = params.get('vibe');
+        document.getElementById('namaTamu').innerText = namaTamu;
 
-        document.getElementById('namaTamuCover').innerText = namaTamu;
-        document.getElementById('rsvp-nama').value = namaTamu === "Tamu Undangan" ? "" : namaTamu;
+        const audio = document.getElementById('bg-audio');
+        let triggerGoldDustFall = false;
 
-        // Jika URL disisipkan &vibe=vip, ubah palet tema instan menjadi Luxury Gold Emas
-        if(vibeMode === 'vip') {
-            document.documentElement.style.setProperty('--primary', '#B38B22');
-            document.documentElement.style.setProperty('--accent', '#856404');
+        // Poin 5: Buka Undangan dengan Efek Tirai Geser + Pemicu Debu Emas Berjatuhan Halus
+        function bukaUndanganMasterpiece() {
+            document.getElementById('cover').style.transform = 'translateY(-100%)';
+            audio.play().catch(e => console.log("Audio ditahan sistem browser"));
+            triggerGoldDustFall = true; // Aktifkan mode jatuhan pasir emas intensif
+            
+            // Mengurangi intensitas ledakan awal partikel setelah 4 detik menjadi normal
+            setTimeout(() => { triggerGoldDustFall = false; }, 4000);
         }
 
-        // 2. TIMING BUKA UNDANGAN & AUDIO TRIGGER
-        const audio = document.getElementById('wedding-audio');
-        const bars = document.querySelectorAll('.bar');
-
-        function unveilMasterpiece() {
-            document.getElementById('cover').classList.add('opened');
-            audio.play().then(() => {
-                bars.forEach(bar => bar.classList.add('playing'));
-            }).catch(e => console.log("Akses audio otomatis ditahan browser"));
-            animateOnScroll(); // Picu pengecekan scroll pertama
+        function toggleAudio() {
+            if (audio.paused) { audio.play(); document.getElementById('music-box').innerText = "🎵"; }
+            else { audio.pause(); document.getElementById('music-box').innerText = "🔇"; }
         }
 
-        function toggleAudioEngine() {
-            if (audio.paused) {
-                audio.play();
-                bars.forEach(bar => bar.classList.add('playing'));
-            } else {
-                audio.pause();
-                bars.forEach(bar => bar.classList.remove('playing'));
-            }
-        }
-
-        // 3. INTERACTIVE GOLD DUST ENGINE (CANVAS)
+        // --- CORE ENGINE PARTICLE DUST (CANVAS) ---
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
 
-        class Particle {
-            constructor() {
+        class GoldParticle {
+            constructor(isBurst) {
                 this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2.5 + 0.5;
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * 0.5 + 0.1;
-                this.opacity = Math.random() * 0.6 + 0.2;
+                // Jika tombol ditekan, partikel dipaksa muncul dari area atas (efek jatuhan pembukaan)
+                this.y = isBurst ? Math.random() * -50 : Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedY = isBurst ? Math.random() * 2.5 + 1.5 : Math.random() * 0.6 + 0.2; // Lebih cepat jatuh saat transisi terbuka
+                this.speedX = Math.random() * 0.6 - 0.3;
+                this.opacity = Math.random() * 0.7 + 0.2;
             }
             update() {
+                this.y += this.speedY;
                 this.x += this.speedX;
-                this.y -= this.speedY;
-                if (this.y < 0) {
-                    this.y = canvas.height;
+                if (this.y > canvas.height) {
+                    this.y = -10;
                     this.x = Math.random() * canvas.width;
                 }
             }
             draw() {
-                ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                ctx.fillStyle = `rgba(229, 193, 88, ${this.opacity})`;
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
@@ -314,57 +353,52 @@
         }
 
         function initParticles() {
-            particles = [];
-            const count = window.innerWidth < 500 ? 40 : 90; // Atur jumlah partikel sesuai layar
-            for (let i = 0; i < count; i++) { particles.push(new Particle()); }
+            for (let i = 0; i < 70; i++) { particles.push(new GoldParticle(false)); }
         }
         initParticles();
 
-        function loopParticles() {
+        function loop() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Tambahkan partikel jatuh intens jika transisi tombol ditekan aktif
+            if(triggerGoldDustFall && particles.length < 200) {
+                particles.push(new GoldParticle(true));
+            }
+            
             particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(loopParticles);
+            requestAnimationFrame(loop);
         }
-        loopParticles();
+        loop();
 
-        // 4. ADVANCED INTERSECTION OBSERVER & DYNAMIC COLOR MORPHING
-        const sections = document.querySelectorAll('section');
-        const reveals = document.querySelectorAll('.reveal');
-
-        function animateOnScroll() {
-            // Memicu Efek Muncul In/Out Kartu
-            reveals.forEach(rev => {
-                const windowHeight = window.innerHeight;
-                const elementTop = rev.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) {
-                    rev.classList.add('active');
-                } else {
-                    rev.classList.remove('active'); // Efek Out ketika di-scroll balik ke atas
-                }
-            });
-
-            // Sistem Deteksi Mengubah Warna Latar Belakang (Color Morphing)
-            sections.forEach(sec => {
-                const rect = sec.getBoundingClientRect();
-                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-                    const newBg = sec.getAttribute('style').match(/--bg-section:\s*(#[^\s;]+)/)[1];
-                    const newText = sec.getAttribute('style').match(/--text-section:\s*(#[^\s;]+)/)[1];
-                    document.body.style.backgroundColor = newBg;
-                    document.body.style.color = newText;
-                }
+        // --- 6. AUTOMATIC SLIDESHOW ENGINE (2.3 DETIK CROSSFADE) ---
+        function startMultiSlideshow(containerSelector) {
+            const containers = document.querySelectorAll(containerSelector);
+            containers.forEach(container => {
+                const slides = container.querySelectorAll('.slide');
+                let currentSlide = 0;
+                
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, 2300); // Tepat 2,3 detik pergantian
             });
         }
-        window.addEventListener('scroll', animateOnScroll);
+        // Jalankan engine slideshow serentak untuk Prolog, Groom, dan Bride
+        startMultiSlideshow('.slideshow-bg');
 
-        // 5. ENGINE RSVP AUTOMATION
-        function prosesRSVP() {
-            const waMe = "6281234567890"; // 📝 Ganti dengan No WA Anda sendiri
-            const inputNama = document.getElementById('rsvp-nama').value;
-            const inputStatus = document.getElementById('rsvp-status').value;
-            if(!inputNama) { alert("Harap masukkan nama Anda."); return; }
-            const formatPesan = `Halo Togi & Ruth, Saya *${inputNama}* ingin mengonfirmasi kehadiran di Acara Masterpiece Pernikahan Anda bahwa saya *${inputStatus}*. Terima kasih!`;
-            window.open(`https://api.whatsapp.com/send?phone=${waMe}&text=${formatPesan}`, '_blank');
-        }
+        // --- 11. SCROLL DETECTOR FOR BACKGROUND FADING ---
+        window.addEventListener('scroll', () => {
+            const prologSec = document.getElementById('pologue-container');
+            const bounding = prologSec.getBoundingClientRect();
+            
+            // Jika halaman kedua sudah mulai tergulir ke atas sejauh setengah layar
+            if (bounding.top < -window.innerHeight * 0.3) {
+                prologSec.classList.add('fade-out');
+            } else {
+                prologSec.classList.remove('fade-out');
+            }
+        });
     </script>
 </body>
 </html>
